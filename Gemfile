@@ -17,6 +17,8 @@ gem 'responders'
 
 gem 'cancancan', '~> 1.7'
 
+gem 'carrierwave'
+
 group :development do
   gem 'spring'
   gem 'capistrano', '~> 3.0.1'
