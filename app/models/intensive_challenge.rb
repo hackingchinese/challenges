@@ -1,0 +1,1 @@
+class IntensiveChallenge < ActiveRecord::Base
