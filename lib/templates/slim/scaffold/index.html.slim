@@ -1,0 +1,34 @@
+<%
+def path_with_namespace
+  if name["/"]
+    parts = name.split("/")
+    resource = parts.pop
+    "[#{parts.map{|i| ":#{i}"}.join(",")}, #{resource}]"
+  else
+    singular_name
+  end
+end
+  %>
+
+h1 = t('<%= plural_name %>.index.title', default: "<%= plural_name.humanize %>")
+
+table.table.table-striped
+  thead
+    tr
+<% for attribute in attributes -%>
+      th
+        =t('activerecord.attributes.<%= singular_name %>.<%= attribute.name %>', default: "<%=attribute.name.humanize%>")
+<% end -%>
+      th colspan="3"
+ %tbody
+    - for <%= singular_name %> in @<%= plural_name %>
+      tr[class=(cycle(:odd, :even))]
+<% for attribute in attributes -%>
+        td= <%= singular_name %>.<%= attribute.name %>
+<% end -%>
+        -#%td= link_to t('Show'), <%= path_with_namespace %>
+        td= link_to t('Edit'), edit_<%= singular_table_name %>_path(<%= singular_name %>)
+        td= link_to t('Destroy'), <%= path_with_namespace %>, :confirm => I18n.t('confirm_delete'), :method => :delete
+
+br
+= link_to t('New'), new_<%= singular_table_name %>_path, class: "btn btn-primary"
