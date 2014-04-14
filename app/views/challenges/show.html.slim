@@ -1,6 +1,20 @@
-p#notice = notice
+h1
+  ' Challenge:
+  =@challenge.title
+
+p
+  - if @challenge.running?
+    span.label.label-success> Running
+  span.label.label-default #{@challenge.users.count} Participants
+  span.label.label-default< #{@challenge.participations.sum('goal_hours')} total hours learned
+
+- if @challenge.users.include?(current_user)
+  p You are taking part.
+- else
+  = link_to [:new, @challenge, :participation], class: 'btn btn-primary btn-large' do
+    ' Enroll!
 
 
-= link_to 'Edit', edit_challenge_path(@challenge)
-'|
-= link_to 'Back', challenges_path
+
+
+

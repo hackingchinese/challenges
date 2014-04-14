@@ -1,0 +1,73 @@
+//= depend_on_asset "bootstrap/glyphicons-halflings-regular.eot"
+//= depend_on_asset "bootstrap/glyphicons-halflings-regular.svg"
+//= depend_on_asset "bootstrap/glyphicons-halflings-regular.ttf"
+//= depend_on_asset "bootstrap/glyphicons-halflings-regular.woff"
+@import bootswatch-scss/flatly/variables
+@import bootstrap
+@import bootswatch-scss/flatly/bootswatch
+
+main > .container
+  margin-top: 30px
+
+img
+  @extend .img-responsive
+  margin: 0 auto
+
+.navbar-brand
+  font-size: inherit
+
+.column
+  @extend .col-md-6
+  @extend .text-center
+
+.form
+  @extend .col-md-6
+
+.form-centered
+  @extend .col-md-6
+  @extend .text-center
+
+.submit
+  @extend .btn
+  @extend .btn-primary
+  @extend .btn-lg
+
+main
+  @extend .container
+  background-color: #eee
+  padding-bottom: 80px
+  width: 100%
+  margin-top: 51px // accommodate the navbar
+
+section
+  @extend .row
+  margin-top: 20px
+
+
+.authform form
+  @extend .well
+  @extend .well-lg
+  padding-bottom: 40px
+
+.authform .right
+  float: right !important
+
+.authform .button
+  @extend .btn
+  @extend .btn-primary
+
+.authform fieldset
+  @extend .well
+
+#error_explanation
+  @extend .alert
+  @extend .alert-danger
+
+#error_explanation h2
+  font-size: 16px
+
+.button-xs
+  @extend .btn
+  @extend .btn-primary
+  @extend .btn-xs
+

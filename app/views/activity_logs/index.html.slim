@@ -1,0 +1,17 @@
+
+
+h1 = t('activity_logs.index.title', default: "Activity logs")
+
+table.table.table-striped
+  thead
+    tr
+      th colspan="3"
+ %tbody
+    - for activity_log in @activity_logs
+      tr[class=(cycle(:odd, :even))]
+        -#%td= link_to t('Show'), activity_log
+        td= link_to t('Edit'), edit_activity_log_path(activity_log)
+        td= link_to t('Destroy'), activity_log, :confirm => I18n.t('confirm_delete'), :method => :delete
+
+br
+= link_to t('New'), new_activity_log_path, class: "btn btn-primary"

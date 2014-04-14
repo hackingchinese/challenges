@@ -1,0 +1,9 @@
+= simple_form_for([@challenge, @participation]) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :goal_hours
+    = f.input :goal_units
+
+  .form-actions
+    = f.button :submit

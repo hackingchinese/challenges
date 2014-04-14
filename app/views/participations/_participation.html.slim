@@ -1,0 +1,10 @@
+- activity_log ||= ActivityLog.new
+= simple_form_for [ participation.challenge, participation, activity_log] do |f|
+  = f.input :hours_spent
+  - if participation.challenge.is_a? IntensiveChallenge
+    = f.input :hours_measure
+  = f.input :units_accomplished
+  - if participation.challenge.is_a? IntensiveChallenge
+    = f.input :units_measure
+  = f.input :comment
+  = f.submit 'Log', class: 'btn btn-primary'

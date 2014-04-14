@@ -1,5 +1,5 @@
 / navigation styled for Bootstrap 3.0
-nav.navbar.navbar-inverse.navbar-fixed-top
+nav.navbar.navbar-fixed-top.navbar-default
   .container
     .navbar-header
       button.navbar-toggle[type="button" data-toggle="collapse" data-target=".navbar-collapse"]
@@ -10,4 +10,19 @@ nav.navbar.navbar-inverse.navbar-fixed-top
       = link_to 'Home', root_path, class: 'navbar-brand'
     .collapse.navbar-collapse
       ul.nav.navbar-nav
-        == render 'layouts/navigation_links'
+        - if current_user
+          li= link_to 'Edit account', edit_user_registration_path
+          li= link_to 'Logout', destroy_user_session_path, :method=>'delete'
+          - if can? :create, Challenge
+            li.dropdown
+              a.dropdown-toggle data-toggle='dropdown' href='#'
+                | Admin
+                b.caret<
+              ul.dropdown-menu
+                li
+                  = link_to 'Challenges', [:challenges]
+
+
+        - else
+          li= link_to 'Login', new_user_session_path
+          li= link_to 'Sign up', new_user_registration_path

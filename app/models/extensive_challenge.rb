@@ -1,2 +1,2 @@
-class ExtensiveChallenge < ActiveRecord::Base
+class ExtensiveChallenge < Challenge
 end

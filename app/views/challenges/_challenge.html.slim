@@ -1,0 +1,18 @@
+.col-lg-6
+  h2
+    ' Challenge:
+    =challenge.title
+
+  p
+    - if challenge.running?
+      span.label.label-success> Running
+    span.label.label-default #{challenge.users.count} Participants
+    span.label.label-default< #{challenge.participations.sum('goal_hours')} total hours learned
+
+  - if challenge.users.include?(current_user)
+    p You are taking part.
+    - participation = challenge.participations.where(user_id: current_user.id).first!
+    = render participation
+  - else
+    = link_to [:new, challenge, :participation], class: 'btn btn-primary btn-large' do
+      ' Enroll!

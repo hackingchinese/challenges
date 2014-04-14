@@ -1,1 +1,2 @@
-class IntensiveChallenge < ActiveRecord::Base
+class IntensiveChallenge < Challenge
+end
