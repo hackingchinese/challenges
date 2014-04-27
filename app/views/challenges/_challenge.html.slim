@@ -1,18 +1,26 @@
 .col-lg-6
   h2
-    ' Challenge:
     =challenge.title
-
   p
+    - if challenge.users.include?(current_user)
+      span.label.label-success> Enrolled
     - if challenge.running?
-      span.label.label-success> Running
-    span.label.label-default #{challenge.users.count} Participants
-    span.label.label-default< #{challenge.participations.sum('goal_hours')} total hours learned
+      span.label.label-success> Running (#{l challenge.from_date, format: :short} to #{l challenge.to_date, format: :short})
+      span.label.label-default> #{challenge.days_left} Days left
+    - if challenge.upcomming?
+      span.label.label-success> Upcomming
 
   - if challenge.users.include?(current_user)
-    p You are taking part.
     - participation = challenge.participations.where(user_id: current_user.id).first!
-    = render participation
-  - else
+    span>
+      = link_to [:new, challenge, participation, :activity_log], class: 'btn btn-primary' do
+        | Report progress
+    span>
+      = link_to [challenge, participation], class: 'btn btn-default' do
+        | View your statistics
+    span>
+      = link_to challenge, class: 'btn btn-default' do
+        | Details
+  - elsif can? :create, Participation, challenge_id: challenge.id
     = link_to [:new, challenge, :participation], class: 'btn btn-primary btn-large' do
       ' Enroll!

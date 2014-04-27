@@ -8,6 +8,10 @@ require 'rspec/autorun'
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
+ActiveRecord::Migration.maintain_test_schema!
+require 'capybara/poltergeist'
+Capybara.javascript_driver = :poltergeist
+Capybara.default_driver = :poltergeist
 
 RSpec.configure do |config|
   config.include(EmailSpec::Helpers)
@@ -26,7 +30,6 @@ RSpec.configure do |config|
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
-  config.use_transactional_fixtures = true
 
   # If true, the base class of anonymous controllers will be inferred
   # automatically. This will be the default behavior in future versions of
@@ -38,14 +41,38 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
-  
+
+  config.use_transactional_fixtures = false
   config.before(:suite) do
-    DatabaseCleaner.strategy = :truncation
+    DatabaseCleaner.clean_with(:truncation)
   end
-  config.before(:each) do
+
+  config.before(:each) do |example|
+    ex = defined?(example.example) ? example.example : example
+    DatabaseCleaner.strategy = ex.metadata[:js] ? :deletion : :transaction
     DatabaseCleaner.start
   end
-  config.after(:each) do
+  config.after :each do |example|
     DatabaseCleaner.clean
+  end
+  def login(username, password)
+    visit '/'
+    within 'main' do
+      click_on 'Sign In'
+    end
+    fill_in 'Email', with: username
+    fill_in 'Password', with: password
+    click_on 'Sign in'
+    page.should have_content 'successfully'
+  end
+end
+RSpec.configure do |config|
+  config.after :each, js: true do |example|
+    ex = defined?(example.example) ? example.example : example # rspec 2.14...
+    exception = ex.exception
+    if exception.present?
+      puts "made screenshot to /error.jpg (#{exception.inspect})"
+      save_screenshot "public/error.jpg", full: true
+    end
   end
 end

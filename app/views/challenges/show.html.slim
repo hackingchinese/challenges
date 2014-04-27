@@ -1,20 +1,13 @@
-h1
-  ' Challenge:
-  =@challenge.title
+.row
+  = render @challenge
 
-p
-  - if @challenge.running?
-    span.label.label-success> Running
-  span.label.label-default #{@challenge.users.count} Participants
-  span.label.label-default< #{@challenge.participations.sum('goal_hours')} total hours learned
+.row
+  .col-lg-12
+    = markdown @challenge.description
 
-- if @challenge.users.include?(current_user)
-  p You are taking part.
-- else
-  = link_to [:new, @challenge, :participation], class: 'btn btn-primary btn-large' do
-    ' Enroll!
-
-
-
+.row
+  .col-lg-12
+    h3 Overall statistics
+    p blablabla
 
 

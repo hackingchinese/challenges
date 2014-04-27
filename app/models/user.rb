@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
 
   after_create :generate_random_image
   def generate_random_image
-    image_file = RandomImageGenerator.generate user.email
+    image_file = RandomImageGenerator.generate email
     self.avatar = image_file
     self.save! validate: false
   end

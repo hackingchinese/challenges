@@ -22,6 +22,8 @@ gem 'cancancan', '~> 1.7'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'quilt'
+gem 'rmagick'
+gem 'redcarpet'
 
 group :development do
   gem 'spring'
@@ -42,6 +44,7 @@ group :development, :test do
 end
 group :test do
   gem 'capybara'
+  gem 'poltergeist'
   gem 'database_cleaner', '1.0.1'
   gem 'email_spec'
 end

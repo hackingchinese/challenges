@@ -3,6 +3,7 @@
 
   .form-inputs
     = f.input :title
+    = f.input :description
     = f.input :from_date, as: :string
     = f.input :to_date, as: :string
     = f.input :type, as: :select, collection: [['Extensive', ExtensiveChallenge], ['Intensive', IntensiveChallenge]], include_blank: false

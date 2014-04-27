@@ -4,7 +4,7 @@ class ParticipationsController < InheritedResources::Base
 
   def permitted_params
     {
-      participation: params.require(:participation).
+      participation: params.permit(:participation).
       merge(user_id: @participation.try(:user_id) || current_user.id).
       permit(:goal_hours, :goal_units, :user_id)
     }
