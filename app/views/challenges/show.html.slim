@@ -47,7 +47,7 @@ table.table.table-striped.table-bordered
           = participation.score.to_i
       td
         - percent = (participation.score || 0).to_i * 100 / @max.to_i
-        = render 'layouts/progress_bar', title: "Score relative to leader: #{percent}%", percent: percent
+        = progress_bar percent: percent, title: "Score relative to leader: #{percent}%", inside_text: ''
 
 = paginate @leaderboard
 
