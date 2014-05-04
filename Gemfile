@@ -51,6 +51,7 @@ group :development, :test do
   gem 'thin'
 end
 group :test do
+  gem 'simplecov', require: false
   gem 'capybara'
   gem 'poltergeist'
   gem 'database_cleaner', '1.0.1'
