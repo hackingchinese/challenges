@@ -1,13 +1,52 @@
-.row
-  = render @challenge
+- @title = @challenge.title
+- content_for :sidebar do
+  table.table-striped.table.table-bordered
+    - if @challenge.running?
+      tr.active
+        th Days left
+        td = @challenge.days_left
+    tr
+      th style='width: 120px' Participants
+      td = @challenge.participations.count
+    - if @challenge.goal_unit?
+      tr
+        th = @challenge.unit_detail[:action]
+        td = @challenge.activity_logs.sum(:units_accomplished)
 
-.row
-  .col-lg-12
-    = markdown @challenge.description
+    tr
+      th Hours reported
+      td = @challenge.activity_logs.sum(:hours_spent)
 
-.row
-  .col-lg-12
-    h3 Overall statistics
-    p blablabla
+    tr
+      th Duration
+      td
+        #{@challenge.from_date.to_s :long} to <br> #{@challenge.to_date.to_s :long} (#{@challenge.duration_days} days)
 
+
+
+
+
+
+.stand-out
+  = markdown @challenge.description
+= render 'challenge_actions', challenge: @challenge, participation: @challenge.participations.where(user_id: current_user.try(:id)).first
+
+hr
+h2 Leaderboard
+
+table.table.table-striped.table-bordered
+  - @leaderboard.each_with_index do |participation, index|
+    - position = index + 1 + @offset
+    tr
+      td style='width: 30px' #{position}.
+      td style='width: 30px' = image_tag participation.user.avatar.url(:thumb)
+      td = participation.user.name
+      td
+        = link_to [@challenge, participation] do
+          = participation.score.to_i
+      td
+        - percent = (participation.score || 0).to_i * 100 / @max.to_i
+        = render 'layouts/progress_bar', title: "Score relative to leader: #{percent}%", percent: percent
+
+= paginate @leaderboard
 

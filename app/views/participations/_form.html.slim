@@ -2,8 +2,10 @@
   = f.error_notification
 
   .form-inputs
-    = f.input :goal_hours
-    = f.input :goal_units
+    - if @challenge.goal_time?
+      = f.input :goal_hours, label: 'How many hours do you want to spent during that time?'
+    - else
+      = f.input :goal_units, label: "How many #{@challenge.unit.pluralize} do you want to complete?"
 
   .form-actions
-    = f.button :submit
+    = f.button :submit, 'Take part'

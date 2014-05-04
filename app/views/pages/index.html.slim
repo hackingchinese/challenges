@@ -4,11 +4,14 @@ h1 Hackingchinese Challenges
 p Welcome to the Chinese language challenge engine – building skills through daily practice.
 
 .row
-  = render Challenge.upcomming_or_running.visible
+  - Challenge.upcomming_or_running.visible.each do |c|
+    .col-xs-12 = render c
 
 - if !current_user
-  .row.text-center
-    .col-md-6
-      a.btn.btn-lg.btn-primary href=(new_user_session_path) Sign In
-    .col-md-6
-      a.btn.btn-lg.btn-primary href=(new_user_registration_path) Sign Up
+  hr
+  a.btn.btn-lg.btn-primary> href=(new_user_registration_path)
+    i.fa.fa-pencil-square-o.fa-fw>
+    | Sign Up
+  a.btn.btn-lg.btn-primary> href=(new_user_session_path)
+    i.fa.fa-sign-in.fa-fw>
+    | Sign In

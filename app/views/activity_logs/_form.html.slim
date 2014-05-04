@@ -1,11 +1,21 @@
 = simple_form_for [ participation.challenge, participation, activity_log] do |f|
   = f.error :base
-  = f.input :hours_spent
 
-  - if participation.challenge.is_a? IntensiveChallenge
-    = f.input :hours_measure
-  = f.input :units_accomplished
-  - if participation.challenge.is_a? IntensiveChallenge
-    = f.input :units_measure
+  - if participation.challenge.goal_unit?
+    = f.input :units_accomplished, label: "How many #{participation.challenge.unit.pluralize} did you accomplish?"
+    - if participation.challenge.is_a? IntensiveChallenge
+      = f.input :units_measure
+    p: small
+      a href='#time' data-toggle='collapse'
+        | Optional: Also report the time you spent on doing that (not scored)
+
+
+  #time.collapse class="#{participation.challenge.goal_time? && 'in'}"
+    p How long did you learn?
+    = f.input :minutes
+    - if participation.challenge.is_a? IntensiveChallenge
+      = f.input :hours_measure
+
+
   = f.input :comment
   = f.submit 'Log', class: 'btn btn-primary'

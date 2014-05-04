@@ -25,7 +25,13 @@ gem 'quilt'
 gem 'rmagick'
 gem 'redcarpet'
 
+gem 'font-awesome-rails'
+gem 'stringex'
+gem 'kaminari-bootstrap', '~> 3.0.1'
+gem "highcharts-rails", "~> 3.0.0"
+
 group :development do
+  gem 'faker'
   gem 'spring'
   gem 'capistrano', '~> 3.0.1'
   gem 'capistrano-bundler'

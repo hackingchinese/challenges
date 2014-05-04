@@ -1,0 +1,14 @@
+- if participation and current_user
+  - if can? :create, ActivityLog, participation_id: participation.id
+    span>
+      = link_to [:new, challenge, participation, :activity_log], class: 'btn btn-primary' do
+        | Report progress
+  span>
+    = link_to [challenge, participation], class: 'btn btn-default' do
+      | View your statistics
+  span>
+    = link_to challenge, class: 'btn btn-default' do
+      | Details
+- elsif can? :create, Participation, challenge_id: challenge.id
+  = link_to [:new, challenge, :participation], class: 'btn btn-primary btn-large' do
+    ' Enroll!

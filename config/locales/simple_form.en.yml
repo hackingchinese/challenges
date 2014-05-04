@@ -13,6 +13,15 @@ en:
     hints:
       challenge:
         description: Describe Rules. Markdown allowed.
+        unit: Only required, if goal type is 'unit'
+        visible: If not visible, the challenge is in Draft Mode
+        comment: How was it? What did you do? (Optional)
+        type: Intensive = User has to quantify his/her activities
+    options:
+      challenge:
+        goal_type:
+          goal_time: 'Time spent'
+          goal_unit: 'Units accomplished'
     # Labels and hints examples
     # labels:
     #   defaults:

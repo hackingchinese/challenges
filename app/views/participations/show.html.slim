@@ -1,3 +1,75 @@
-p#notice = notice
+- content_for :sidebar do
+  .text-center
+    h2 = @participation.user.name
+    = image_tag @participation.user.avatar.url(:display)
+  hr
+  table.table
+    tr
+      th Score
+      td = @participation.score
+    tr
+      th Current rank
+      td = @participation.rank.try(:ordinalize)
 
+    - if @participation.goal_unit?
+      tr
+        th = @participation.unit_detail[:action]
+        td = @participation.activity_logs.sum(:units_accomplished)
+    tr
+      th Hours reported
+      td = @challenge.activity_logs.sum(:hours_spent)
+    tr
+      th Profile
+      td = link_to @participation.user.profile_link, rel: 'nofollow'
+    tr
+      th Goal
+      td = @participation.goal
+
+- @title = " Participation of #{@participation.user.name} in <br> #{@participation.challenge.title}".html_safe
+- if @participation.activity_logs.count == 0
+  p No reported activity yet.
+
+- else
+
+  table.table
+    tr
+      th Challenge time progress:
+      td = progress_bar percent: @participation.challenge.time_progress, outside_text: " #{@participation.challenge.days_left} Days left"
+    tr
+      th Goal progress:
+      td = progress_bar percent: @participation.goal_progress
+
+
+
+
+
+
+  table.table.table-bordered.table-striped
+    thead
+      tr
+        th Day
+        th Hours spent
+        th Units accomplished
+        th Score
+    tbody
+      - @participation.activity_logs.order('created_at desc').each do |log|
+        tr
+          td=l log.created_at.to_date, format: :short
+          td= log.hours_spent
+          td= log.units_accomplished
+          td= log.score
+          - if can? :update, log
+            td
+              = link_to [:edit, log.challenge, log.participation, log] do
+                | edit
+          - if log.comment.present?
+            td
+              span.fa.fa-question-circle.js-tooltip title="Comment: #{log.comment}" data-toggle='tooltip' data-placement="left"
+
+
+
+- if can? :create, ActivityLog, participation_id: @participation.id
+  span>
+    = link_to [:new, @participation.challenge, @participation, :activity_log], class: 'btn btn-primary' do
+      | Report progress
 

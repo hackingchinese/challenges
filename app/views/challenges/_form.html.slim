@@ -4,10 +4,15 @@
   .form-inputs
     = f.input :title
     = f.input :description
-    = f.input :from_date, as: :string
-    = f.input :to_date, as: :string
-    = f.input :type, as: :select, collection: [['Extensive', ExtensiveChallenge], ['Intensive', IntensiveChallenge]], include_blank: false
-    = f.input :visible, as: :boolean
+    = field_set_tag 'Visibility' do
+      p Only between From and To date (including those) users can log track activities.
+      = f.input :from_date, as: :string
+      = f.input :to_date, as: :string
+      = f.input :visible, as: :boolean
+    = field_set_tag 'Challenge Type' do
+      = f.input :type, as: :select, collection: [['Extensive', ExtensiveChallenge], ['Intensive', IntensiveChallenge]], include_blank: false
+      = f.input :goal_type, as: :radio_buttons, collection: Challenge.goal_types.keys.map(&:to_sym)
+      = f.input :unit, as: :select, collection: t('goal_types')
 
   .form-actions
     = f.button :submit

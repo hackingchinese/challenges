@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140427172955) do
+ActiveRecord::Schema.define(version: 20140504160329) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20140427172955) do
     t.float    "score"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "minutes"
   end
 
   add_index "activity_logs", ["participation_id"], name: "index_activity_logs_on_participation_id", using: :btree
@@ -41,8 +42,11 @@ ActiveRecord::Schema.define(version: 20140427172955) do
     t.datetime "updated_at"
     t.boolean  "visible"
     t.text     "description"
+    t.integer  "goal_type"
+    t.string   "unit"
   end
 
+  add_index "challenges", ["goal_type"], name: "index_challenges_on_goal_type", using: :btree
   add_index "challenges", ["type"], name: "index_challenges_on_type", using: :btree
 
   create_table "participations", force: true do |t|
@@ -52,9 +56,11 @@ ActiveRecord::Schema.define(version: 20140427172955) do
     t.integer  "goal_units"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "score",        precision: 8, scale: 3
   end
 
   add_index "participations", ["challenge_id"], name: "index_participations_on_challenge_id", using: :btree
+  add_index "participations", ["score"], name: "index_participations_on_score", using: :btree
   add_index "participations", ["user_id"], name: "index_participations_on_user_id", using: :btree
 
   create_table "users", force: true do |t|

@@ -14,4 +14,16 @@ html
     main[role="main"]
       .container
         == render 'layouts/messages'
-        == yield
+        - if @title
+          .row: .col-xs-12: h1 = @title
+          br
+        - if content_for?(:sidebar)
+          .row
+            .col-sm-8
+              == yield
+            .col-sm-4.sidebar
+              == content_for(:sidebar)
+        - else
+          .row
+            .col-sm-12
+              == yield

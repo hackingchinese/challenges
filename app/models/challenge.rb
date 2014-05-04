@@ -1,7 +1,10 @@
 class Challenge < ActiveRecord::Base
-  validates :title, presence: true
-  validates :from_date, presence: true
-  validates :to_date, presence: true
+  enum goal_type: [ :goal_time, :goal_unit ]
+
+
+  has_many :participations
+  has_many :users, through: :participations
+  has_many :activity_logs, through: :participations
 
   scope :visible, -> {where visible: true }
   scope :running, -> { where 'from_date <= :date and to_date >= :date', date: Date.today}
@@ -9,18 +12,42 @@ class Challenge < ActiveRecord::Base
     where 'to_date >= :date', date: Date.today
   }
 
-  has_many :participations
-  has_many :users, through: :participations
+  validates :title, presence: true
+  validates :from_date, presence: true
+  validates :to_date, presence: true
+  validates :unit, presence: true, if: :goal_unit?
+
 
   def running?
     from_date <= Date.today and Date.today <=to_date
   end
+
+  def to_param
+    "#{id}-#{title.to_url}"
+  end
+
+  def duration_days
+    (to_date - from_date).to_i
+  end
+
+  def leaderboard
+    participations.leaderboard
+  end
+
+  def time_progress
+    days_left * 100 / duration_days
+  end
+
+  def unit_detail
+    I18n.t("units.#{unit}")
+  end
+
   def upcomming?
     from_date >= Date.today
   end
 
   def days_left
-    (to_date - from_date).to_i
+    (to_date - Date.today).to_i
   end
 
   def self.model_name
