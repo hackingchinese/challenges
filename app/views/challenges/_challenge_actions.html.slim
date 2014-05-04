@@ -1,5 +1,5 @@
 - if participation and current_user
-  - if can? :create, ActivityLog, participation_id: participation.id
+  - if can? :create, participation_id: participation.id
     span>
       = link_to [:new, challenge, participation, :activity_log], class: 'btn btn-primary' do
         | Report progress

@@ -9,14 +9,11 @@ class Ability
       can :manage, :all
     else
       challenges = Challenge.upcomming_or_running.visible
-      can :read, Challenge, id: Challenge.visible
-      can :create, Participation, challenge_id: challenges
+      can :read, Challenge, id: Challenge.visible.pluck(:id)
+      can :create, Participation, challenge_id: challenges.pluck(:id)
       can :manage, Participation, user_id: user.id
-      can :new, ActivityLog
-      can :create, ActivityLog do |log|
-        user.participations.where(challenge_id: challenges).pluck('participations.id').include?(log.participation.id) && log.user_id == user.id && log.challenge.running?
-      end
-      can :manage, Participation, user_id: user.id, challenge_id: Challenge.upcomming_or_running.visible
+      can :create, ActivityLog, participation_id: Participation.where(challenge_id: Challenge.running, user_id: user.id).pluck(:id)
+      can :manage, Participation, user_id: user.id
       cannot [:edit, :update], ActivityLog do |log|
         log.created_at < 1.day.ago
       end

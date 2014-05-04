@@ -64,4 +64,18 @@ describe 'Challenge', js: true do
     click_on 'View your statistics'
     page.should have_content '10%'
   end
+
+  specify 'Can participate in a challenge that is not started yet, but cant log anything' do
+    challenge = Fabricate :reading_challenge, title: 'Spring break II', from_date: 7.days.from_now, to_date: 27.days.from_now
+    Challenge.upcomming_or_running.should include challenge
+    challenge.should_not be_running
+
+    login user.email, 'password123'
+
+    click_on 'Enroll!'
+    fill_in 'pages', with: 50
+    click_on 'Take part'
+
+    page.should_not have_content 'Report progress'
+  end
 end
