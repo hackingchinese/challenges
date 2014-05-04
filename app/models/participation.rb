@@ -63,13 +63,4 @@ class Participation < ActiveRecord::Base
   def update_score
     self.update_column :score,  activity_logs.sum(:score)
   end
-
-  def stats
-    @_stats ||= {
-      spent_hours:  s1= activity_logs.sum(:hours_spent) ,
-      spent_units:  s2= activity_logs.sum(:units_accomplished) ,
-      progress_hours: s1 * 100 / goal_hours,
-      progress_units: s2 * 100 / goal_units
-    }
-  end
 end
