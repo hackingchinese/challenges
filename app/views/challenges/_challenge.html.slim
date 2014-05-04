@@ -10,4 +10,5 @@ p
   - if challenge.upcomming?
     span.label.label-success> Upcomming
 
+br
 = render 'challenges/challenge_actions', challenge: challenge, participation: current_user && challenge.participations.where(user_id: current_user.id).first

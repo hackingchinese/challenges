@@ -29,6 +29,7 @@
 
 .stand-out
   = markdown @challenge.description
+br
 = render 'challenge_actions', challenge: @challenge, participation: @challenge.participations.where(user_id: current_user.try(:id)).first
 
 hr

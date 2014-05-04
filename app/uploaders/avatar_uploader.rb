@@ -25,6 +25,10 @@ class AvatarUploader < CarrierWave::Uploader::Base
     "avatar.jpg" if original_filename
   end
 
+  def url(options={})
+    super.split("?v=")[0]+"?v=#{model.updated_at.to_time.to_i}" rescue super
+  end
+
   def get_version_dimensions
     if !file
       [0, 0]

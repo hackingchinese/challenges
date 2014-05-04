@@ -17,12 +17,12 @@
         td = @participation.activity_logs.sum(:units_accomplished)
     tr
       th Hours reported
-      td = @challenge.activity_logs.sum(:hours_spent)
+      td = @participation.activity_logs.sum(:hours_spent)
     - if @participation.user.profile_link?
       tr
         th Profile
         td = link_to @participation.user.profile_link, rel: 'nofollow'
-    tr
+    tr.active
       th Goal
       td = @participation.goal
 

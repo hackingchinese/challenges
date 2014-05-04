@@ -5,7 +5,9 @@ p Welcome to the Chinese language challenge engine – building skills through d
 
 .row
   - Challenge.upcomming_or_running.visible.each do |c|
-    .col-xs-12 = render c
+    .col-xs-12
+      = render c
+
 
 - if !current_user
   hr
