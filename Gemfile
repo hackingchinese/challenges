@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 source 'https://rails-assets.org'
 ruby '2.1.1'
-gem 'rails', '4.1.0.rc2'
+gem 'rails', '4.1.0'
 gem 'sass-rails', '~> 4.0.2'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
@@ -29,6 +29,7 @@ gem 'font-awesome-rails'
 gem 'stringex'
 gem 'kaminari-bootstrap', '~> 3.0.1'
 gem "highcharts-rails", "~> 3.0.0"
+gem 'simple_captcha2', '~> 0.3.0', require: 'simple_captcha'
 
 group :development do
   gem 'faker'

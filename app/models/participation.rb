@@ -24,12 +24,24 @@ class Participation < ActiveRecord::Base
     end
   end
 
-  def goal_progress
+  def challenge_goal
     if goal_unit?
-      goal_units * 100 / activity_logs.sum(:units_accomplished)
+      goal_units
     else
-      goal_hours * 100 / activity_logs.sum(:hours_spent)
+      goal_hours
     end
+  end
+
+  def activity_column
+    if goal_unit?
+      :units_accomplished
+    else
+      :hours_spent
+    end
+  end
+
+  def goal_progress
+    activity_logs.sum(activity_column) * 100 / challenge_goal
   end
 
   def rank

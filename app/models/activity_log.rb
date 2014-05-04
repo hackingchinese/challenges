@@ -14,12 +14,8 @@ class ActivityLog < ActiveRecord::Base
   end
 
   def set_score
+    self.score = self.send(participation.activity_column)
     # TODO Extensive/Intensive
-    if self.challenge.goal_unit?
-      self.score = self.units_accomplished
-    else
-      self.score = self.units_hours
-    end
   end
 
   def minutes=(value)

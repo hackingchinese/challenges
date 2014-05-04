@@ -10,4 +10,4 @@ p
   - if challenge.upcomming?
     span.label.label-success> Upcomming
 
-= render 'challenge_actions', challenge: challenge, participation: challenge.participations.where(user_id: current_user.id).first
+= render 'challenges/challenge_actions', challenge: challenge, participation: current_user && challenge.participations.where(user_id: current_user.id).first
