@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   has_many :challenges, through: :participations
   has_many :activity_logs
 
+  validates :name, presence: true, uniqueness: true
+
   after_create :generate_random_image
   def generate_random_image
     image_file = RandomImageGenerator.generate email

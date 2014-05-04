@@ -6,5 +6,7 @@ h2 Sign up
   = f.input :email, :required => true
   = f.input :password, :required => true
   = f.input :password_confirmation, :required => true
+  = show_simple_captcha(input_html: { class: 'form-control'})
+
   = f.button :submit, 'Sign up', :class => 'btn-primary'
 = render "devise/shared/links"

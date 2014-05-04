@@ -13,6 +13,10 @@ nav.navbar.navbar-fixed-top.navbar-default
         - if current_user
           li= link_to 'Edit account', edit_user_registration_path
           li= link_to 'Logout', destroy_user_session_path, :method=>'delete'
+          .navbar-text
+            div
+              = image_tag current_user.avatar.url(:thumb), style: 'display: inline-block'
+              span<= current_user.name
           - if can? :create, Challenge
             li.dropdown
               a.dropdown-toggle data-toggle='dropdown' href='#'

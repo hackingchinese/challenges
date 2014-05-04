@@ -4,7 +4,7 @@ class ActivityLog < ActiveRecord::Base
   has_one :challenge, through: :participation
   validates_presence_of :user_id, :participation_id
   validates :units_accomplished, numericality: { greater_than: 0 }, if: ->(r){r.challenge.goal_unit? }
-  validates :units_hours, numericality: { greater_than: 0 }, if: ->(r){r.challenge.goal_time? }
+  validates :minutes, numericality: { greater_than: 0 }, if: ->(r){r.challenge.goal_time? }
 
   before_save :set_score
   after_save :update_participation_score

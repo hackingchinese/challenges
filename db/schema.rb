@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140504160329) do
+ActiveRecord::Schema.define(version: 20140504212328) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,15 @@ ActiveRecord::Schema.define(version: 20140504160329) do
   add_index "participations", ["score"], name: "index_participations_on_score", using: :btree
   add_index "participations", ["user_id"], name: "index_participations_on_user_id", using: :btree
 
+  create_table "simple_captcha_data", force: true do |t|
+    t.string   "key",        limit: 40
+    t.string   "value",      limit: 6
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "simple_captcha_data", ["key"], name: "idx_key", using: :btree
+
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -90,6 +99,7 @@ ActiveRecord::Schema.define(version: 20140504160329) do
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["name"], name: "index_users_on_name", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

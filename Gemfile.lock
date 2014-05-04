@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/twbs/bootstrap-sass.git
+  revision: a1b7455f85a55914b615c0b7937371e1ec736916
+  specs:
+    bootstrap-sass (3.1.1.1)
+      sass (~> 3.2)
+
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
@@ -31,8 +38,6 @@ GEM
     addressable (2.3.6)
     arel (5.0.1.20140414130214)
     bcrypt (3.1.7)
-    bootstrap-sass (3.1.1.0)
-      sass (~> 3.2)
     builder (3.2.2)
     cancancan (1.7.1)
     capistrano (3.0.1)
@@ -87,7 +92,7 @@ GEM
     fabrication (2.11.0)
     faker (1.2.0)
       i18n (~> 0.5)
-    font-awesome-rails (4.0.3.1)
+    font-awesome-rails (4.0.3.2)
       railties (>= 3.2, < 5.0)
     has_scope (0.6.0.rc)
       actionpack (>= 3.2, < 5)
@@ -253,7 +258,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bootstrap-sass
+  bootstrap-sass!
   cancancan (~> 1.7)
   capistrano (~> 3.0.1)
   capistrano-bundler

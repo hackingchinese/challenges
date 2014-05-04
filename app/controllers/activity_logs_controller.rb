@@ -8,6 +8,7 @@ class ActivityLogsController < InheritedResources::Base
     user_id = @activity_log.try(:user_id) || current_user.id
     if para[:activity_log]
       para[:activity_log].merge!(user_id: user_id)
+      para[:activity_log].merge!(participation_id: params[:participation_id])
     else
       para.merge! user_id: user_id
     end
