@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140602153650) do
+ActiveRecord::Schema.define(version: 20140603123146) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,10 +45,14 @@ ActiveRecord::Schema.define(version: 20140602153650) do
     t.integer  "goal_type"
     t.string   "unit"
     t.string   "link"
+    t.integer  "time_quality_table_id"
+    t.integer  "unit_quality_table_id"
   end
 
   add_index "challenges", ["goal_type"], name: "index_challenges_on_goal_type", using: :btree
+  add_index "challenges", ["time_quality_table_id"], name: "index_challenges_on_time_quality_table_id", using: :btree
   add_index "challenges", ["type"], name: "index_challenges_on_type", using: :btree
+  add_index "challenges", ["unit_quality_table_id"], name: "index_challenges_on_unit_quality_table_id", using: :btree
 
   create_table "participations", force: true do |t|
     t.integer  "user_id"
@@ -63,6 +67,13 @@ ActiveRecord::Schema.define(version: 20140602153650) do
   add_index "participations", ["challenge_id"], name: "index_participations_on_challenge_id", using: :btree
   add_index "participations", ["score"], name: "index_participations_on_score", using: :btree
   add_index "participations", ["user_id"], name: "index_participations_on_user_id", using: :btree
+
+  create_table "quality_tables", force: true do |t|
+    t.string   "name"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "simple_captcha_data", force: true do |t|
     t.string   "key",        limit: 40

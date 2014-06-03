@@ -27,4 +27,11 @@ class ActivityLog < ActiveRecord::Base
     super
   end
 
+  def share_text
+    if challenge.goal_time?
+      I18n.t('participations.show.twitter_share_text_time', minutes: minutes)
+    else
+      I18n.t('participations.show.twitter_share_text', past: participation.unit_detail[:past].gsub('#{count}', units_accomplished.to_s))
+    end
+  end
 end

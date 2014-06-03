@@ -8,20 +8,24 @@ module Charts
       carry +=  log.send(column).to_f
       list << [ log.created_at.to_date.to_time.to_i * 1000, carry]
     end
-    {
-      chart: {},
-      title: { text: 'Performance Chart' },
-      xAxis: {
-        type: 'datetime',
-        plotBands: [
-          participation.challenge.running? && {
+    if participation.challenge.running?
+      plotBands = [{
             from: Time.zone.now.to_i * 1000,
             to: participation.challenge.to_date.to_time.to_i * 1000,
             color: 'rgba(68, 170, 213, .2)',
             label: {
               text: 'Future'
-            }
-        }]
+            }}
+      ]
+    else
+      plotBands = []
+    end
+    {
+      chart: {},
+      title: { text: 'Performance Chart' },
+      xAxis: {
+        type: 'datetime',
+        plotBands: plotBands
       },
       plotOptions: {
         line: {

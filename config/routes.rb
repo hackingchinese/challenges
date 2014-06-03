@@ -7,6 +7,7 @@ HnChallenge::Application.routes.draw do
   end
   namespace :admin do
     resources :users
+    resources :quality_tables
   end
 
   devise_for :users, :controllers => { :registrations => "registrations" }

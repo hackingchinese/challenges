@@ -66,8 +66,10 @@
           td= log.score
           - if can? :update, log
             td
-              = link_to [:edit, log.challenge, log.participation, log] do
-                | edit
+              = link_to [:edit, log.challenge, log.participation, log], title: 'Edit' do
+                i.fa.fa-edit.fa-fw
+              a<> href='#{twitter_share_url(text:log.share_text)}' title='Tweet about it'
+                i.fa.fa-twitter.fa.fw
           - if log.comment.present?
             td
               span.fa.fa-question-circle.js-tooltip title="Comment: #{log.comment}" data-toggle='tooltip' data-placement="left"

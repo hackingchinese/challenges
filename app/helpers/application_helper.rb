@@ -25,4 +25,7 @@ module ApplicationHelper
     end
   end
 
+  def twitter_share_url(text: '', url: request.url)
+    "https://twitter.com/share?#{{ text: text, url: url}.to_query}"
+  end
 end

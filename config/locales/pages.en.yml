@@ -7,19 +7,29 @@ en:
     pages:
       action: 'Pages read'
       goal: 'Read #{count} pages'
+      past: 'read #{count} pages'
     articles:
       action: 'Articles read'
       goal: 'Read #{count} articles'
+      past: 'read #{count} articles'
     movies:
       action: 'Movies watched'
       goal: 'Watch #{count} movies'
+      past: 'watched #{count} movies'
     episodes:
       action: 'Episodes watched/listened'
       goal: 'Watch/listen to #{count} episodes'
+      past: 'watched/listened to #{count} episodes'
     units:
       action: 'Units accomplished'
       goal: 'Complete #{count} units'
+      past: 'accomplished #{count} units'
   participations:
+    show:
+      twitter_share_text: 'I just %{past}!'
+      twitter_share_text_time:
+        one: 'I just spent %{count} minute on learning Chinese!'
+        other: 'I just spent %{count} minutes on learning Chinese!'
     new:
       welcome_text: 'We are happy that you want to take part at the challenge. Please think about your personal goals in agreement with the challenge rules. You can adjust your goals later.'
 

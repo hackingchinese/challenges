@@ -1,5 +1,5 @@
 / navigation styled for Bootstrap 3.0
-nav.navbar.navbar-fixed-top.navbar-default
+nav.navbar.navbar-default
   .container
     .navbar-header
       button.navbar-toggle[type="button" data-toggle="collapse" data-target=".navbar-collapse"]
@@ -7,7 +7,8 @@ nav.navbar.navbar-fixed-top.navbar-default
         span.icon-bar
         span.icon-bar
         span.icon-bar
-      = link_to 'Home', root_path, class: 'navbar-brand'
+      = link_to 'HC', '//www.hackingchinese.com', class: 'navbar-brand'
+      = link_to 'Challenge', root_path, class: 'navbar-brand'
     .collapse.navbar-collapse
       ul.nav.navbar-nav
 
@@ -31,6 +32,8 @@ nav.navbar.navbar-fixed-top.navbar-default
                   | Challenges
                 li = link_to [:admin, :users] do
                   | Users
+                li = link_to [:admin, :quality_tables] do
+                  | Quality Tables
 
         - else
           li= link_to 'Login', new_user_session_path

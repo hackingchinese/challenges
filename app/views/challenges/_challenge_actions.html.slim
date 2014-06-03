@@ -9,7 +9,7 @@
       | View your statistics
   span>
     = link_to challenge, class: klasses.('challenges') do
-      | Challenge
+      | Learderboard
 - elsif can? :create, Participation, challenge_id: challenge.id
   = link_to [:new, challenge, :participation], class: 'btn btn-primary btn-large navbar-btn' do
     ' Enroll!

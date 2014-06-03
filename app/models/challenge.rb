@@ -23,7 +23,7 @@ class Challenge < ActiveRecord::Base
 
 
   def running?
-    from_date <= Date.today and Date.today <=to_date
+    from_date and from_date <= Date.today and Date.today <=to_date
   end
 
   def to_param

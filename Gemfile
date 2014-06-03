@@ -13,6 +13,7 @@ gem 'devise'
 gem 'pg'
 gem 'simple_form', '~>3.1.0rc1'
 gem 'slim-rails'
+gem 'compass-rails'
 
 gem 'inherited_resources'
 gem 'responders'
