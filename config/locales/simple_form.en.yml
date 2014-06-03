@@ -26,7 +26,7 @@ en:
         link: External blog post about this challenge
         type: Intensive = User has to quantify his/her activities
       activity_log:
-        comment: "What did you do? How does it went?"
+        comment: "What did you do? How did it go?"
         minutes: How many minutes did you spend?
     options:
       challenge:
