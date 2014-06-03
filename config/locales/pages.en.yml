@@ -36,7 +36,7 @@ en:
   activity_logs:
     new:
       title: 'Log activity on "%{challenge}"'
-      optional_time_logging: 'Optional: Also report the time you spent on doing that (not scored)'
+      optional_time_logging: 'Optional: Please report how much time you spent (not scored)'
       submit: 'Log activity'
   pages:
     index:
