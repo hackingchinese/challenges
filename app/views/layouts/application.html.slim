@@ -29,3 +29,5 @@ html
           .row
             .col-sm-12
               == yield
+      - if Rails.env.production?
+        = render 'layouts/tracking'
