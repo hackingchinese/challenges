@@ -1,14 +1,15 @@
+- klasses = ->(page) { "btn btn-default navbar-btn #{controller_name == page ? 'active' : ''}" }
 - if participation and current_user
   - if can? :create, participation_id: participation.id
     span>
-      = link_to [:new, challenge, participation, :activity_log], class: 'btn btn-primary' do
+      = link_to [:new, challenge, participation, :activity_log], class: klasses.('activity_logs') do
         | Report progress
   span>
-    = link_to [challenge, participation], class: 'btn btn-default' do
+    = link_to [challenge, participation], class: klasses.('participations') do
       | View your statistics
   span>
-    = link_to challenge, class: 'btn btn-default' do
-      | Details
+    = link_to challenge, class: klasses.('challenges') do
+      | Challenge
 - elsif can? :create, Participation, challenge_id: challenge.id
-  = link_to [:new, challenge, :participation], class: 'btn btn-primary btn-large' do
+  = link_to [:new, challenge, :participation], class: 'btn btn-primary btn-large navbar-btn' do
     ' Enroll!

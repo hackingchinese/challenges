@@ -31,8 +31,8 @@
   p No reported activity yet.
 
 - else
-
   .js-chart-raw style='width: 100%; height: 400px' data-options=(Charts.goal_chart(@participation).to_json)
+  br
   br
 
   table.table
@@ -44,6 +44,8 @@
       td = progress_bar percent: @participation.goal_progress
 
 
+  br
+  br
 
 
 
@@ -70,10 +72,7 @@
             td
               span.fa.fa-question-circle.js-tooltip title="Comment: #{log.comment}" data-toggle='tooltip' data-placement="left"
 
+  br
+  br
 
-
-- if can? :create, ActivityLog.new(participation_id: @participation.id, user_id: @participation.user_id)
-  span>
-    = link_to [:new, @participation.challenge, @participation, :activity_log], class: 'btn btn-primary' do
-      | Report progress
 

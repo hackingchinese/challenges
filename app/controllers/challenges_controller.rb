@@ -6,7 +6,7 @@ class ChallengesController < InheritedResources::Base
     super do
       @leaderboard = @challenge.leaderboard.page(params[:page]).per(20)
       @offset = ( @leaderboard.current_page - 1 ) * 20
-      @max = [ 1 ,@challenge.participations.maximum('score') ].max
+      @max = [ 1 ,@challenge.participations.maximum('score') || 0 ].max
     end
   end
 

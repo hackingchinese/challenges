@@ -1,6 +1,12 @@
 - @title = @challenge.title
 - content_for :sidebar do
   table.table-striped.table.table-bordered
+    - if @challenge.link?
+      tr
+        td Link
+        td
+          = link_to @challenge.link do
+            = truncate @challenge.link
     - if @challenge.running?
       tr.active
         th Days left
@@ -30,7 +36,6 @@
 .stand-out
   = markdown @challenge.description
 br
-= render 'challenge_actions', challenge: @challenge, participation: @challenge.participations.where(user_id: current_user.try(:id)).first
 
 hr
 h2 Leaderboard

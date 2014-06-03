@@ -20,3 +20,21 @@ en:
     new:
       welcome_text: 'We are happy that you want to take part at the challenge. Please think about your personal goals in agreement with the challenge rules. You can adjust your goals later.'
 
+  activity_logs:
+    new:
+      title: 'Log activity on "%{challenge}"'
+      optional_time_logging: 'Optional: Also report the time you spent on doing that (not scored)'
+      submit: 'Log activity'
+  pages:
+    index:
+      title: HackingChinese Challenges
+      intro: 'Welcome to the Chinese language challenge engine – building skills through daily practice.'
+      current_headline: Current challenge
+      upcoming_headline: Upcoming challenges
+      archive_headline: Challenge Archive
+    about:
+      content_markdown: '
+        This is a description...
+
+        With paragraphs and markdown.
+        '

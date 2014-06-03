@@ -8,9 +8,13 @@ class Challenge < ActiveRecord::Base
 
   scope :visible, -> {where visible: true }
   scope :running, -> { where 'from_date <= :date and to_date >= :date', date: Date.today}
-  scope :upcomming_or_running, -> {
+  scope :upcoming_or_running, -> {
     where 'to_date >= :date', date: Date.today
   }
+  scope :upcoming, -> {
+    where('from_date > :date', date: Date.today)
+  }
+  scope :sorted, -> { order(:from_date) }
 
   validates :title, presence: true
   validates :from_date, presence: true
@@ -42,7 +46,7 @@ class Challenge < ActiveRecord::Base
     I18n.t("units.#{unit}")
   end
 
-  def upcomming?
+  def upcoming?
     from_date >= Date.today
   end
 

@@ -67,7 +67,7 @@ describe 'Challenge', js: true do
 
   specify 'Can participate in a challenge that is not started yet, but cant log anything' do
     challenge = Fabricate :reading_challenge, title: 'Spring break II', from_date: 7.days.from_now, to_date: 27.days.from_now
-    Challenge.upcomming_or_running.should include challenge
+    Challenge.upcoming_or_running.should include challenge
     challenge.should_not be_running
 
     login user.email, 'password123'

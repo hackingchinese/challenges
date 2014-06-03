@@ -1,12 +1,35 @@
-h1 Hackingchinese Challenges
+h1 = t 'pages.index.title'
+
+p = t 'pages.index.intro'
+p: a(href='/about') More
 
 
-p Welcome to the Chinese language challenge engine – building skills through daily practice.
 
-.row
-  - Challenge.upcomming_or_running.visible.each do |c|
-    .col-xs-12
-      = render c
+- if @running.count > 0
+  h2 = t 'pages.index.current_headline'
+  - @running.each do |c|
+    .row
+      .col-xs-12
+        = render c
+hr
+
+- if @upcoming.count > 0
+  h2 = t 'pages.index.upcoming_headline'
+  - @upcoming.each do |c|
+    .row
+      .col-xs-12
+        = render c
+hr
+
+- if @archive.count > 0
+  h3 = t 'pages.index.archive_headline'
+  - @archive.each do |c|
+    .row
+      .col-xs-12
+        h5 = link_to c do
+          = c.title
+
+
 
 
 - if !current_user

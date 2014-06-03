@@ -1,14 +1,16 @@
-h2
-  = link_to challenge do
-    =challenge.title
-p
-  - if challenge.users.include?(current_user)
-    span.label.label-success> Enrolled
-  - if challenge.running?
-    span.label.label-success> Running (#{l challenge.from_date, format: :short} to #{l challenge.to_date, format: :short})
-    span.label.label-default> #{challenge.days_left} Days left
-  - if challenge.upcomming?
-    span.label.label-success> Upcomming
-
-br
-= render 'challenges/challenge_actions', challenge: challenge, participation: current_user && challenge.participations.where(user_id: current_user.id).first
+.challenge
+  h3
+    = link_to challenge do
+      =challenge.title
+  p
+    - if challenge.users.include?(current_user)
+      span.label.label-success> Enrolled
+    - if challenge.running?
+      span.label.label-success> Running (#{l challenge.from_date, format: :short} to #{l challenge.to_date, format: :short})
+      span.label.label-default> #{challenge.days_left} Days left
+    - if challenge.upcoming?
+      span.label.label-success> Upcoming (#{l challenge.from_date, format: :short} to #{l challenge.to_date, format: :short})
+    - if challenge.link?
+      span.label.label-default>
+        a href='#{challenge.link}' Link
+  p = truncate challenge.description, length: 400

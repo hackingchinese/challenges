@@ -25,7 +25,7 @@ describe Ability do
       ability.cannot?(:create, ActivityLog.new(participation_id: participation.id)).should be_true
     end
 
-    specify 'cannot create upcomming challenge' do
+    specify 'cannot create upcoming challenge' do
       participation.challenge.update_attributes! from_date: 7.days.from_now, to_date: 27.days.from_now
       cannot?(:create, ActivityLog.new(participation_id: participation.id)).should be_true
     end
@@ -35,7 +35,7 @@ describe Ability do
     end
   end
 
-  specify 'Can participate in upcomming challenges' do
+  specify 'Can participate in upcoming challenges' do
     challenge = Fabricate :challenge, from_date: 7.days.from_now, to_date: 27.days.from_now
     can! :create, Participation.new(challenge_id: challenge.id)
   end

@@ -1,3 +1,3 @@
-h1 = t('activity_log.new.title', default: "Log activity")
+h1 = t('activity_logs.new.title', challenge: @participation.challenge.title)
 
 = render 'form', participation: @participation, activity_log: @activity_log

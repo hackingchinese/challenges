@@ -2,20 +2,19 @@
   = f.error :base
 
   - if participation.challenge.goal_unit?
-    = f.input :units_accomplished, label: "How many #{participation.challenge.unit.pluralize} did you accomplish?"
+    = f.input :units_accomplished, label: t('simple_form.labels.activity_log.units_accomplished', units: participation.challenge.unit.pluralize)
     - if participation.challenge.is_a? IntensiveChallenge
       = f.input :units_measure
     p: small
       a href='#time' data-toggle='collapse'
-        | Optional: Also report the time you spent on doing that (not scored)
+        = t 'activity_logs.new.optional_time_logging'
 
 
   #time.collapse class="#{participation.challenge.goal_time? && 'in'}"
-    p How long did you learn?
     = f.input :minutes
     - if participation.challenge.is_a? IntensiveChallenge
       = f.input :hours_measure
 
 
   = f.input :comment
-  = f.submit 'Log', class: 'btn btn-primary'
+  = f.submit t('activity_logs.new.submit'), class: 'btn btn-primary'

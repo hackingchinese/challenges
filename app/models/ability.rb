@@ -8,7 +8,7 @@ class Ability
     if user.role == 'admin'
       can :manage, :all
     else
-      challenges = Challenge.upcomming_or_running.visible
+      challenges = Challenge.upcoming_or_running.visible
       can :read, Challenge, id: Challenge.visible.pluck(:id)
       can :create, Participation, challenge_id: challenges.pluck(:id)
       can :manage, Participation, user_id: user.id
