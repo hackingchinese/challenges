@@ -8,7 +8,7 @@ nav.navbar.navbar-default
         span.icon-bar
         span.icon-bar
       = link_to 'HC', '//www.hackingchinese.com', class: 'navbar-brand'
-      = link_to 'Challenge', root_path, class: 'navbar-brand'
+      = link_to 'Challenges', root_path, class: 'navbar-brand'
     .collapse.navbar-collapse
       ul.nav.navbar-nav
 
@@ -40,4 +40,3 @@ nav.navbar.navbar-default
           li= link_to 'Sign up', new_user_registration_path
       - if c = (@challenge || @participation.try(:challenge)) and c.running?
         = render 'challenges/challenge_actions', challenge: c, participation: c.participations.where(user_id: current_user.try(:id)).first
-
