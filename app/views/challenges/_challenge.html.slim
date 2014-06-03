@@ -14,3 +14,6 @@
       span.label.label-default>
         a href='#{challenge.link}' Link
   p = truncate challenge.description, length: 400
+  - if current_user and challenge.participations.where(user_id: current_user.id).count == 0
+    = link_to [:new, challenge, :participation], class: 'btn btn-primary btn-large' do
+      = t 'challenges.challenge.enroll'

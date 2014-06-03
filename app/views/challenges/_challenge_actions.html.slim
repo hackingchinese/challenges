@@ -1,6 +1,6 @@
 - klasses = ->(page) { "btn btn-default navbar-btn #{controller_name == page ? 'active' : ''}" }
 - if participation and current_user
-  - if can? :create, participation_id: participation.id
+  - if can? :create, ActivityLog, participation_id: participation.id
     span>
       = link_to [:new, challenge, participation, :activity_log], class: klasses.('activity_logs') do
         | Report progress

@@ -14,4 +14,14 @@ class ActivityLogsController < InheritedResources::Base
     end
     para
   end
+
+  def create
+    create! {  url_for [@activity_log.challenge, @activity_log.participation] }
+  end
+  def update
+    update! {  url_for [@activity_log.challenge, @activity_log.participation] }
+  end
+  def destroy
+    destroy! {  url_for [@activity_log.challenge, @activity_log.participation] }
+  end
 end

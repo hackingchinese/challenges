@@ -28,7 +28,6 @@ describe 'Challenge', js: true do
       al.challenge.should == challenge
     end
 
-
     click_on 'View your statistics'
     page.should have_content '20.0%'
 
@@ -40,6 +39,7 @@ describe 'Challenge', js: true do
 
   specify 'Participate - Unit Challenge' do
     challenge = Fabricate :reading_challenge, title: 'Spring break II'
+    challenge.running?.should be_true
     login user.email, 'password123'
     click_on 'Enroll!'
     fill_in 'pages', with: 50

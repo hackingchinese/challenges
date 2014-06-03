@@ -1,5 +1,8 @@
 en:
   goal_types:  [ 'pages', 'articles', 'movies', 'episodes', 'units']
+  challenges:
+    challenge:
+      enroll: Enroll!
   units:
     pages:
       action: 'Pages read'
