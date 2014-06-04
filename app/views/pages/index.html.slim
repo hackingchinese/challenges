@@ -1,7 +1,9 @@
 h1 = t 'pages.index.title'
 
 p = t 'pages.index.intro'
-p: a(href='/about') More
+p: a(href='#about' data-toggle='collapse') More
+#about.collapse
+  = markdown t 'pages.about.content_markdown'
 
 
 

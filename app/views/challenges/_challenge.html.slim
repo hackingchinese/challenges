@@ -4,12 +4,12 @@
       =challenge.title
   p
     - if challenge.users.include?(current_user)
-      span.label.label-success> Enrolled
+      span.label.label-primary> Enrolled
     - if challenge.running?
-      span.label.label-success> Running (#{l challenge.from_date, format: :long} to #{l challenge.to_date, format: :long})
+      span.label.label-primary> Running (#{l challenge.from_date, format: :long} to #{l challenge.to_date, format: :long})
       span.label.label-default> #{challenge.days_left} Days left
     - if challenge.upcoming?
-      span.label.label-success> Upcoming (#{l challenge.from_date, format: :long} to #{l challenge.to_date, format: :long})
+      span.label.label-primary> Upcoming (#{l challenge.from_date, format: :long} to #{l challenge.to_date, format: :long})
     - if challenge.link?
       span.label.label-default>
         a href='#{challenge.link}' Link

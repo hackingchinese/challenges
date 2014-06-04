@@ -1,5 +1,11 @@
-/ navigation styled for Bootstrap 3.0
-nav.navbar.navbar-default
+nav.navbar.navbar-default.top-nav
+  .container
+    ul.nav.navbar-nav
+      li: a href='//www.hackingchinese.com' Welcome!
+      li: a href='//www.hackingchinese.com/blog' Recent Articles!
+      li: a href='//www.hackingchinese.com/archive-2' Archive
+      li.active: a href='/' Challenges
+nav.navbar.navbar-default.bottom-nav
   .container
     .navbar-header
       button.navbar-toggle[type="button" data-toggle="collapse" data-target=".navbar-collapse"]
@@ -7,8 +13,6 @@ nav.navbar.navbar-default
         span.icon-bar
         span.icon-bar
         span.icon-bar
-      = link_to 'HC', '//www.hackingchinese.com', class: 'navbar-brand'
-      = link_to 'Challenge', root_path, class: 'navbar-brand'
     .collapse.navbar-collapse
       ul.nav.navbar-nav
 

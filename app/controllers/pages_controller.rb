@@ -6,7 +6,5 @@ class PagesController < ApplicationController
     @archive = Challenge.visible.sorted.where('to_date < ?', Date.today)
   end
 
-  def about
-  end
 
 end

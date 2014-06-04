@@ -1,5 +1,4 @@
 HnChallenge::Application.routes.draw do
-  get 'about' => 'pages#about'
   resources :challenges do
     resources :participations do
       resources :activity_logs
