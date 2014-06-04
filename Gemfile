@@ -25,6 +25,7 @@ gem 'mini_magick'
 gem 'quilt'
 gem 'rmagick'
 gem 'redcarpet'
+gem 'whenever'
 
 gem 'font-awesome-rails'
 gem 'stringex'
