@@ -36,15 +36,15 @@ en:
   activity_logs:
     new:
       title: 'Log activity on "%{challenge}"'
-      optional_time_logging: 'Optional: Also report the time you spent on doing that (not scored)'
+      optional_time_logging: 'Optional: Please report how much time you spent (not scored)'
       submit: 'Log activity'
   pages:
     index:
-      title: HackingChinese Challenges
-      intro: 'Welcome to the Chinese language challenge engine – building skills through daily practice.'
+      title: Hacking Chinese Challenges
+      intro: 'Welcome to the Hacking Chinese Challenge Engine – building language skills through daily practice and friendly competition!'
       current_headline: Current challenge
       upcoming_headline: Upcoming challenges
-      archive_headline: Challenge Archive
+      archive_headline: Challenge archive
     about:
       content_markdown: '
       <p>The Hacking Chinese Challenge Engine was created to stimulate and encourage language learning by allowing you to set personal goals and strive to achieve them alongside fellow students. With a clear goal in sight and a defined period of time, procrastination is kept to a minimum and focus remains high. The challenges here are meant to be cooperative where we strive towards similar goals together, providing each other with moral support and inspiration. Any competitive element should be friendly in nature!</p>
@@ -52,5 +52,9 @@ en:
       <p>Read more about how the challenge engine works <a href="http://www.hackingchinese.com/###">here</a>.<br>
       Read more about the ideas behind the challenges <a href="http://www.hackingchinese.com/###">here</a>.</p>
 
-      <p>The Challenge Engine was created for <a href="http://www.hackingchinese.com">Hacking Chinese</a> by <a href="http://www.stefanwienert.de">Stefan Wienert</a>  (coding), <a href="http://www.hackingchinese.com">Olle Linge</a> (product development and testing) and <a href="http://www.marcopoloproject.org">Julien Leyre</a> (product development and testing). Inspiration from <a href="http://www.readmod.wordpress.com">Andre Smith</a>.</p>
+      <p>The Challenge Engine was created for <a href="http://www.hackingchinese.com">Hacking Chinese</a> by:
+      <a href="http://www.stefanwienert.de">Stefan Wienert</a>  (coding)
+      <a href="http://www.hackingchinese.com">Olle Linge</a> (product development and testing)
+      <a href="http://www.marcopoloproject.org">Julien Leyre</a> (product development and testing)
+      Inspiration from <a href="http://www.readmod.wordpress.com">Andre Smith</a></p>
         '
