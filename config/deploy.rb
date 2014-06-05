@@ -48,7 +48,7 @@ end
 desc 'ping server for passenger restart'
 task :ping_restart do
   run_locally do
-    execute 'curl --silent http://challenge.hackingchinese.com'
+    execute 'curl --silent http://challenges.hackingchinese.com'
   end
 end
 
