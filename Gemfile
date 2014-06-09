@@ -33,6 +33,10 @@ gem 'kaminari-bootstrap', '~> 3.0.1'
 gem "highcharts-rails", "~> 3.0.0"
 gem 'simple_captcha2', '~> 0.3.0', require: 'simple_captcha'
 
+gem 'omniauth'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+
 group :production do
   gem 'exception_notification'
 end

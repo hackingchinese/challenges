@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_many :participations
   has_many :challenges, through: :participations
   has_many :activity_logs
+  has_many :account_connections
 
   validates :name, presence: true, uniqueness: true
 

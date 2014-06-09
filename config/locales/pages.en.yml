@@ -58,3 +58,6 @@ en:
       <a href="http://www.marcopoloproject.org">Julien Leyre</a> (product development and testing)
       Inspiration from <a href="http://www.readmod.wordpress.com">Andre Smith</a></p>
         '
+  sessions:
+    new:
+      intro: "Login via E-Mail/Passwort or use your Twitter/Facebook account to sign in (We won't access your data or post anything)"

@@ -1,4 +1,17 @@
 h2 Sign in
+
+.stand-out
+  p
+    = t 'sessions.new.intro'
+  p
+    a.btn.btn-primary.btn-large href='/auth/twitter'
+      i.fa.fa-twitter.fa-2x.fa-fw
+    = ' '
+    a.btn.btn-primary.btn-large href='/auth/facebook'
+      i.fa.fa-facebook.fa-2x.fa-fw
+
+
+
 = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-vertical' }) do |f|
   = f.input :email, :autofocus => true
   = f.input :password
