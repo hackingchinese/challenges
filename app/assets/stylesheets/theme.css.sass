@@ -1,17 +1,5 @@
-@import bootswatch-scss/readable/variables
-$icon-font-path: 'bootstrap/'
-$link-color: rgb(123,0,0)
-$brand-primary: $link-color
-$btn-primary-bg: $link-color
-$label-primary-bg: $link-color
-.label-default a
-  color: lighten($link-color, 20%)
-@import bootstrap
-@import bootswatch-scss/readable/bootswatch
+@import hackingchinese
 
-img
-  @extend .img-responsive
-  margin: 0 auto
 
 .navbar-brand
   font-size: inherit
@@ -78,11 +66,6 @@ section
   .form-control
     height: auto
     width: auto
-fieldset
-  margin: 10px -10px
-  border: 1px solid #aaa
-  padding: 10px
-
 .stand-out
   padding: 15px
   margin-left: -15px
@@ -90,53 +73,10 @@ fieldset
   background: #f4f4f4
   color: #555
 
-.pagination > li > a, .pagination > li > span
-  color: white
-
-.table > thead > tr > td.active, .table > thead > tr > th.active, .table > thead > tr.active > td, .table > thead > tr.active > th, .table > tbody > tr > td.active, .table > tbody > tr > th.active, .table > tbody > tr.active > td, .table > tbody > tr.active > th, .table > tfoot > tr > td.active, .table > tfoot > tr > th.active, .table > tfoot > tr.active > td, .table > tfoot > tr.active > th
-  background-color: $btn-primary-bg
-  color: $btn-primary-color
-
-.sidebar
-  border-left: 2px solid #ddd
 td > .progress
   height: 20px
   margin: 0
 
-
-hr
-  border-bottom: 1px solid #ccc
-
-.banner
-  background-image: image-url('banner.png')
-  max-width: 100%
-  height: image-height('banner.png')
-  background-repeat: no-repeat
-  background-color: white
-  margin: 40px 0
-
-.space-bottom
-  margin-bottom: 30px
-
 .challenge
   @extend .space-bottom
 
-
-body
-  font-family: Georgia,"Times New Roman",Times,serif
-nav
-  font-family: "Lucida Grande","Lucida Sans","Lucida Sans Unicode",sans-serif
-h1,h2,h3,h4,h5,h6
-  font-family: Georgia,"Times New Roman",Times,serif
-  font-weight: normal
-.top-nav
-  margin-bottom: 0
-  border-bottom: 0
-  border-radius: 0
-  .active > a
-    background: #ccc !important
-
-.bottom-nav
-  background: #ccc
-  border-top: 0
-  border-radius: 0
