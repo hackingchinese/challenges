@@ -7,7 +7,6 @@ class AccountConnectionsController < ApplicationController
     link.token = data.credentials.slice('token','secret').values.join(':')
     if link.user.nil?
       user = link.build_user
-      user.remote_avatar_url = data.info['image']
 
       original_name = data.info['nickname'] || data.info['name']
       name = original_name
@@ -18,8 +17,12 @@ class AccountConnectionsController < ApplicationController
         name = original_name + (i + 2).to_s
       end
       user.name = name
+      user.email = data['info']['email'] || name + '@changeme.com'
       user.save validate: false
       link.save
+
+      user.remote_avatar_url = data.info['image']
+      user.save
     end
     sign_in link.user
     redirect_to '/', notice: 'Sign in successful.'
