@@ -5,10 +5,10 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :lockable
   mount_uploader :avatar, AvatarUploader
 
-  has_many :participations
+  has_many :participations, dependent: :destroy
   has_many :challenges, through: :participations
-  has_many :activity_logs
-  has_many :account_connections
+  has_many :activity_logs, dependent: :destroy
+  has_many :account_connections, dependent: :destroy
 
   validates :name, presence: true, uniqueness: true
 
