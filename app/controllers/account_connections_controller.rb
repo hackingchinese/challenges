@@ -25,6 +25,6 @@ class AccountConnectionsController < ApplicationController
       user.save
     end
     sign_in link.user
-    redirect_to '/', notice: 'Sign in successful.'
+    redirect_to '/', notice: 'Log in successful.'
   end
 end
