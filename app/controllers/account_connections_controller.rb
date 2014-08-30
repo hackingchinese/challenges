@@ -22,7 +22,7 @@ class AccountConnectionsController < ApplicationController
       link.save
 
       user.remote_avatar_url = data.info['image']
-      user.save
+      user.save validate: false
     end
     sign_in link.user
     redirect_to '/', notice: 'Log in successful.'

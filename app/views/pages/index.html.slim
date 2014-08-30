@@ -13,7 +13,7 @@ p: a(href='#about' data-toggle='collapse') More about the challenge engine...
     .row
       .col-xs-12
         = render c
-hr
+  hr
 
 - if @upcoming.count > 0
   h2 = t 'pages.index.upcoming_headline'
@@ -21,7 +21,7 @@ hr
     .row
       .col-xs-12
         = render c
-hr
+  hr
 
 - if @archive.count > 0
   h3 = t 'pages.index.archive_headline'
