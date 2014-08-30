@@ -47,7 +47,7 @@ describe 'Challenge', js: true do
     click_on 'Report progress'
 
     fill_in 'pages', with: '5'
-    click_on 'Optional'
+    click_on 'Optional: Please report'
     fill_in 'Minutes', with: 60
     fill_in 'Comment', with: 'Very good!'
     click_on 'Log'
@@ -62,7 +62,7 @@ describe 'Challenge', js: true do
       al.challenge.should == challenge
     end
     click_on 'View your statistics'
-    page.should have_content '10%'
+    page.should have_content '10.0%'
   end
 
   specify 'Can participate in a challenge that is not started yet, but cant log anything' do

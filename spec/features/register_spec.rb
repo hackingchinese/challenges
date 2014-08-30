@@ -57,7 +57,7 @@ describe 'Registration', js: true do
 
   def logout!
     click_on 'Stefan'
-    page.should have_content 'Logout'
+    page.should have_content 'LOGOUT'
     page.should have_content 'successfully'
 
   end
