@@ -25,6 +25,12 @@
     tr.active
       th Goal
       td = @participation.goal
+    - if can? :update, @participation
+      tr
+        td
+        td: small
+          = link_to [:edit, @challenge, @participation] do
+            | update goal
 
 - @title = " Participation of #{@participation.user.name} in <br> #{@participation.challenge.title}".html_safe
 - if @participation.activity_logs.count == 0
