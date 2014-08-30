@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140609215413) do
+ActiveRecord::Schema.define(version: 20140830111245) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20140609215413) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "minutes"
+    t.date     "date"
   end
 
   add_index "activity_logs", ["participation_id"], name: "index_activity_logs_on_participation_id", using: :btree

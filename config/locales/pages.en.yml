@@ -45,6 +45,7 @@ en:
     new:
       title: 'Log activity on "%{challenge}"'
       optional_time_logging: 'Optional: Please report how much time you spent (not scored)'
+      optional_date_logging: 'Optional: When did you do the activity? (Default: Now)'
       submit: 'Log activity'
   pages:
     index:

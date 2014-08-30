@@ -64,9 +64,9 @@
         th Units accomplished
         th Score
     tbody
-      - @participation.activity_logs.order('created_at desc').each do |log|
+      - @participation.activity_logs.order('date desc').each do |log|
         tr
-          td=l log.created_at.to_date, format: :short
+          td=l log.date, format: :short
           td= log.hours_spent
           td= log.units_accomplished
           td= log.score

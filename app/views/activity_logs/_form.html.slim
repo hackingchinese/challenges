@@ -15,6 +15,11 @@
     - if participation.challenge.is_a? IntensiveChallenge
       = f.input :hour_measure
 
+  p: small
+    a href='#date' data-toggle='collapse'
+      = t 'activity_logs.new.optional_date_logging'
+  #date.collapse class="#{activity_log.errors[:date].present? && 'in'}"
+    = f.input :date, as: :string
 
   = f.input :comment
   = f.submit t('activity_logs.new.submit'), class: 'btn btn-primary'

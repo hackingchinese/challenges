@@ -4,9 +4,9 @@ module Charts
     list = []
     carry = 0
     column = participation.activity_column
-    participation.activity_logs.order('created_at asc').each do |log|
+    participation.activity_logs.order('date asc').each do |log|
       carry +=  log.send(column).to_f
-      list << [ log.created_at.to_date.to_time.to_i * 1000, carry]
+      list << [ log.date.to_time.to_i * 1000, carry]
     end
     if participation.challenge.running?
       plotBands = [{

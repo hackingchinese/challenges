@@ -6,8 +6,22 @@ class ActivityLog < ActiveRecord::Base
   validates :units_accomplished, numericality: { greater_than: 0 }, if: ->(r){r.challenge.goal_unit? }
   validates :minutes, numericality: { greater_than: 0 }, if: ->(r){r.challenge.goal_time? }
 
+  validate :date_valid
+
   before_save :set_score
   after_save :update_participation_score
+
+  def date_valid
+    if date_changed? and date.present?
+
+      if date < 7.days.ago.to_date or date > Time.zone.now.to_date
+        errors.add :date, "The date can't be less than a week ago nor in the future"
+      end
+      if date < challenge.from_date or date > challenge.to_date
+        errors.add :date, "The date is outside of the challenge's timeframe"
+      end
+    end
+  end
 
   def update_participation_score
     participation.update_score
@@ -16,6 +30,8 @@ class ActivityLog < ActiveRecord::Base
   def set_score
     self.score = self.send(participation.activity_column)
     # TODO Extensive/Intensive
+
+    self.date ||= Time.zone.now.to_date
   end
 
   def minutes=(value)
