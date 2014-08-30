@@ -8,6 +8,10 @@ en:
       action: 'Pages read'
       goal: 'Read #{count} pages'
       past: 'read #{count} pages'
+    haiku:
+      action: 'Haikus read'
+      goal: 'Read #{count} haikus'
+      past: 'Read #{count} haikus'
     articles:
       action: 'Articles read'
       goal: 'Read #{count} articles'
