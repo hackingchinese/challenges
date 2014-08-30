@@ -12,6 +12,10 @@ en:
       action: 'Haikus read'
       goal: 'Read #{count} haikus'
       past: 'Read #{count} haikus'
+    characters:
+      action: 'Characters learned'
+      goal: 'learn %{count} characters'
+      goal: 'learned %{count} characters'
     articles:
       action: 'Articles read'
       goal: 'Read #{count} articles'
