@@ -39,7 +39,7 @@ en:
         one: 'I just spent %{count} minute on learning Chinese!'
         other: 'I just spent %{count} minutes on learning Chinese!'
     new:
-      welcome_text: 'We are happy that you want to take part at the challenge. Please think about your personal goals in agreement with the challenge rules. You can adjust your goals later.'
+      welcome_text: 'We are happy that you want to take part in the challenge. Please set a reasonable goal which is not too easy, but not so hard that you might give up. You can adjust your goal later.'
 
   activity_logs:
     new:
