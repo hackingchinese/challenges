@@ -41,7 +41,7 @@ class Participation < ActiveRecord::Base
   end
 
   def goal_progress
-    activity_logs.sum(activity_column) * 100 / challenge_goal
+    activity_logs.sum(activity_column) * 100 / challenge_goal rescue 0
   end
 
   def rank
