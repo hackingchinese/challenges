@@ -17,7 +17,7 @@ class Ability
 
       can :destroy, Participation, user_id: user.id
       can :update, Participation, active_participations do |p|
-        p.created_at > 7.days.ago
+        p.created_at > 7.days.ago && p.user_id == user.id
       end
 
       cannot [:edit, :update], ActivityLog do |log|
