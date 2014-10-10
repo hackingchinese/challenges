@@ -5,7 +5,7 @@ class ActivityLogsController < InheritedResources::Base
   def permitted_params
     para = params.permit( :challenge_id, :participation_id, { activity_log: [:minutes, :units_accomplished, :date, :units_measure, :comment, :hours_measure]})
 
-    user_id = @activity_log.try(:user_id) || current_user.id
+    user_id = @activity_log.try(:user_id) || current_user.try(:id)
     if para[:activity_log]
       para[:activity_log].merge!(user_id: user_id)
       para[:activity_log].merge!(participation_id: params[:participation_id])
