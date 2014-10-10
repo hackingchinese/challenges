@@ -18,7 +18,10 @@ class AccountConnectionsController < ApplicationController
       end
       user.name = name
       user.email = data['info']['email'] || name + '@changeme.com'
-      user.save validate: false
+      if !user.save
+        user.email = "#{name}@changeme.com"
+        user.save
+      end
       link.save
 
       user.remote_avatar_url = data.info['image']
