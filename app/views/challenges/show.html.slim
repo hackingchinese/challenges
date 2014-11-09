@@ -30,9 +30,6 @@
 
 
 
-
-
-
 .stand-out
   = markdown @challenge.description
 br
@@ -49,7 +46,7 @@ table.table.table-striped.table-bordered
       td = participation.user.name
       td
         = link_to [@challenge, participation] do
-          = participation.score.to_i
+          = participation.score.round(2)
       td
         - percent = (participation.score || 0).to_i * 100 / @max.to_i
         = progress_bar percent: percent, title: "Score relative to leader: #{percent}%", inside_text: ''

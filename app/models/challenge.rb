@@ -39,7 +39,7 @@ class Challenge < ActiveRecord::Base
   end
 
   def time_progress
-    100 - days_left * 100 / duration_days
+    [100 - days_left * 100 / duration_days, 100].min
   end
 
   def unit_detail
