@@ -43,5 +43,5 @@ nav.navbar.navbar-default.bottom-nav
         - else
           li= link_to 'Login', new_user_session_path
           li= link_to 'Sign up', new_user_registration_path
-      - if c = (@challenge || @participation.try(:challenge)) and c.running?
+      - if c = (@challenge || @participation.try(:challenge)) and c.running_or_just_ended?
         = render 'challenges/challenge_actions', challenge: c, participation: c.participations.where(user_id: current_user.try(:id)).first

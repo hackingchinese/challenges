@@ -1,7 +1,6 @@
 class Challenge < ActiveRecord::Base
   enum goal_type: [ :goal_time, :goal_unit ]
 
-
   has_many :participations
   has_many :users, through: :participations
   has_many :activity_logs, through: :participations
@@ -14,6 +13,11 @@ class Challenge < ActiveRecord::Base
   scope :upcoming, -> {
     where('from_date > :date', date: Date.today)
   }
+  scope :running_or_just_ended, -> {
+    where 'from_date <= :date and :yesterday <= to_date',
+      date: Date.today,
+      yesterday: 1.day.ago.to_date
+  }
   scope :sorted, -> { order(:from_date) }
 
   validates :title, presence: true
@@ -24,6 +28,10 @@ class Challenge < ActiveRecord::Base
 
   def running?
     from_date and from_date <= Date.today and Date.today <=to_date
+  end
+
+  def running_or_just_ended?
+    running? or to_date == Date.yesterday
   end
 
   def to_param

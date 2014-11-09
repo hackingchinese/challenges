@@ -8,11 +8,12 @@ class Ability
     if user.role == 'admin'
       can :manage, :all
     else
-      challenges = Challenge.upcoming_or_running.visible
-      can :read, Challenge, id: Challenge.visible.pluck(:id)
 
-      active_participations = Participation.where(challenge_id: Challenge.running).where(user_id: user.id)
-      can :create, Participation, challenge_id: challenges.pluck(:id)
+      can :read, Challenge, id: Challenge.visible.pluck(:id)
+      challenges_loggable = Challenge.running_or_just_ended.visible
+      active_participations = Participation.where(challenge_id: challenges_loggable ).where(user_id: user.id)
+      challenges_participateble = Challenge.upcoming_or_running.visible
+      can :create, Participation, challenge_id: challenges_participateble.pluck(:id)
       can :create, ActivityLog, participation_id: active_participations.pluck(:id)
 
       can :destroy, Participation, user_id: user.id

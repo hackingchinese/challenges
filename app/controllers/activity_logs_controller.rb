@@ -17,7 +17,11 @@ class ActivityLogsController < InheritedResources::Base
 
   def new
     super do
-      @activity_log.date = Time.zone.now.to_date
+      date = Time.zone.now.to_date
+      if date > @participation.challenge.to_date
+        date = @participation.challenge.to_date
+      end
+      @activity_log.date = date
     end
   end
 
