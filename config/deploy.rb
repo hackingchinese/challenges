@@ -1,5 +1,5 @@
 set :application, 'challenge'
-set :repo_url, 'git@git.stefanwienert.de:hackingchinese/challenge.git'
+set :repo_url, 'git@github.com:hackingchinese/challenges.git'
 set :rvm_ruby_version, '2.1.1'
 set :rvm_type, :user
 
