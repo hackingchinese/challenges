@@ -2,7 +2,7 @@ language: ruby
 rvm: [ 2.1.2]
 # services: [ redis ]
 branches:
-only: [master]
+  only: [master]
 before_script:
 - psql -c 'create database hn_challenge_test' -U postgres
 - "bundle exec rake db:schema:load RAILS_ENV=test"
