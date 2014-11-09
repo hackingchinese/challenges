@@ -18,6 +18,8 @@ rails server -p 3000
 
 ## Contributing
 
+[![Build Status](https://travis-ci.org/hackingchinese/challenges.svg)](https://travis-ci.org/hackingchinese/challenges)
+
 Problems/new Ideas:
 * Create an issue
 
