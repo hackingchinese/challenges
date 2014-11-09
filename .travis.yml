@@ -6,6 +6,7 @@ branches:
   only: [master]
 before_script:
 - psql -c 'create database hn_challenge_test' -U postgres
+- cp config/database.travis.yml config/database.yml
 - "bundle exec rake db:schema:load RAILS_ENV=test"
 script:
 - bundle exec rspec
