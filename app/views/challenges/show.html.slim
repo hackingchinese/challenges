@@ -43,7 +43,9 @@ table.table.table-striped.table-bordered
     tr
       td style='width: 30px' #{position}.
       td style='width: 30px' = image_tag participation.user.avatar.url(:thumb)
-      td = participation.user.name
+      td
+        = link_to [@challenge, participation] do
+          = participation.user.name
       td
         = link_to [@challenge, participation] do
           = participation.score.round(2)

@@ -61,14 +61,17 @@
       tr
         th Day
         th Hours spent
-        th Units accomplished
+        - if @participation.goal_unit?
+          th Units accomplished
         th Score
+        th Comment
     tbody
       - @participation.activity_logs.order('date desc').each do |log|
         tr
           td=l log.date, format: :short
           td= log.hours_spent
-          td= log.units_accomplished
+          - if @participation.goal_unit?
+            td= log.units_accomplished
           td= log.score
           - if can? :update, log
             td
