@@ -45,6 +45,7 @@ group :development do
   gem 'spring'
   gem 'spring-commands-rspec'
   gem 'capistrano', '~> 3.0.1'
+  gem 'highline'
   gem 'capistrano-bundler'
   gem 'capistrano-rails', '~> 1.1.0'
   gem 'capistrano-rails-console'
