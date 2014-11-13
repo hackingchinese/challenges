@@ -81,9 +81,23 @@
                 i.fa.fa-twitter.fa.fw
           - if log.comment.present?
             td
-              span.fa.fa-question-circle.js-tooltip title="Comment: #{log.comment}" data-toggle='tooltip' data-placement="left"
+              a.fa.fa-question-circle.js-modal.js-tooltip title="Comment: #{log.comment}" data-toggle='tooltip' data-placement="left" data-modal='##{dom_id(log, 'modal')}'
+              .modal.fade id="#{dom_id(log, 'modal')}"
+                .modal-dialog
+                  .modal-content
+                    .modal-header
+                      button.close data-dismiss="modal" type="button"
+                        span aria-hidden="true"  &times;
+                        span.sr-only Close
+                      h4.modal-title Comment details
+                    .modal-body
+                      = log.comment
+
+
+
+
+
 
   br
   br
-
 
