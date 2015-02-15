@@ -22,10 +22,10 @@ class AccountConnectionsController < ApplicationController
         user.email = "#{name}@changeme.com"
         user.save
       end
-      link.save
 
       user.remote_avatar_url = data.info['image']
       user.save validate: false
+      link.save
     end
     sign_in link.user
     redirect_to '/', notice: 'Log in successful.'

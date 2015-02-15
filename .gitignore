@@ -81,3 +81,4 @@ pickle-email-*.html
 .powenv
 public/*jpg
 public/uploads
+config/secrets.yml
