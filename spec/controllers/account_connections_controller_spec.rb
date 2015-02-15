@@ -51,7 +51,7 @@ describe AccountConnectionsController do
       "provider"=>"facebook",
       "uid"=>"100001844680649",
       "info"=> {
-        "nickname"=>"stwienert",
+        "nickname"=>"Hzg Castaño",
         "email"=>"stwienert@gmail.com",
         "name"=>"Stefan Wienert",
         "first_name"=>"Stefan",
@@ -69,6 +69,12 @@ describe AccountConnectionsController do
     })
     request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:facebook]
 
+    get :omniauth, provider: :facebook
+    expect(response).to be_redirect
+    expect(AccountConnection.count).to eql 1
+    expect(AccountConnection.first.user).to be_present
+
+    session.clear()
     get :omniauth, provider: :facebook
     expect(response).to be_redirect
     expect(AccountConnection.count).to eql 1
