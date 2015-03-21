@@ -5,7 +5,7 @@ SimpleCov.start 'rails'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'email_spec'
-require 'rspec/autorun'
+require 'capybara/rspec'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -28,6 +28,7 @@ RSpec.configure do |config|
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  config.infer_spec_type_from_file_location!
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
@@ -68,13 +69,13 @@ RSpec.configure do |config|
     page.should have_content 'successfully'
   end
 end
-RSpec.configure do |config|
-  config.after :each, js: true do |example|
-    ex = defined?(example.example) ? example.example : example # rspec 2.14...
-    exception = ex.exception
-    if exception.present?
-      puts "made screenshot to /error.jpg (#{exception.inspect})"
-      save_screenshot "public/error.jpg", full: true
-    end
-  end
-end
+# RSpec.configure do |config|
+#   config.after :each, js: true do |example|
+#     ex = defined?(example.example) ? example.example : example # rspec 2.14...
+#     exception = ex.exception
+#     if exception.present?
+#       puts "made screenshot to /error.jpg (#{exception.inspect})"
+#       save_screenshot "public/error.jpg", full: true
+#     end
+#   end
+# end

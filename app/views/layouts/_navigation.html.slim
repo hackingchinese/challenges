@@ -20,7 +20,7 @@ nav.navbar.navbar-default.bottom-nav
         - if current_user
           li.dropdown
             a.dropdown-toggle href='#' data-toggle='dropdown'
-              #{image_tag current_user.avatar.url(:thumb), style: 'display: inline-block'}&nbsp;#{current_user.name}<b class='caret'></b>
+              |#{image_tag current_user.avatar.url(:thumb), style: 'display: inline-block'}&nbsp;#{current_user.name}<b class='caret'></b>
             ul.dropdown-menu
               li= link_to 'Edit account', edit_user_registration_path
               li.divider
