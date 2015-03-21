@@ -15,14 +15,13 @@ en:
       default_message: "Please review the problems below:"
     labels:
       user:
-        no_mails: Stop sending me e-mails
+        no_mails: Check to disable challenge reminders via e-mail
       activity_log:
         units_accomplished: "How many %{units} did you finish?"
         minutes: Minutes
     hints:
       user:
         email: We will only use the e-mail in case you forget a password and for sending you reminder of new challenges
-        no_mails: Check this, if you want to further challenge reminder via email
       challenge:
         description: Describe Rules. Markdown allowed.
         unit: Only required, if goal type is 'unit'
