@@ -1,5 +1,5 @@
 class ChallengeMailer < ActionMailer::Base
-  default from: 'noreply@challenges.hackingchinese.com'
+  default from: 'challenges@hackingchinese.com'
 
   def starts_soon(challenge, user)
     @challenge = challenge
