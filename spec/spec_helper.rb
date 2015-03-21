@@ -66,7 +66,7 @@ RSpec.configure do |config|
     fill_in 'Email', with: username
     fill_in 'Password', with: password
     click_on 'Log in'
-    page.should have_content 'successfully'
+    expect(page).to have_content 'successfully'
   end
 end
 # RSpec.configure do |config|
