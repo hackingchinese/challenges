@@ -4,34 +4,37 @@ describe Ability do
   let(:ability) { Ability.new(user) }
   delegate :can?, :cannot?, to: :ability
   def can!(*args)
-    expect(can?(*args)).to be_true
+    expect(can?(*args)).to eql true
   end
   def cannot!(*args)
-    expect(cannot?(*args)).to be_true
+    expect(cannot?(*args)).to eql true
   end
-  describe 'Activity Log' do
 
+  describe 'Activity Log' do
     let(:participation) { Fabricate :participation }
     let(:user) { participation.user }
     let(:other_user) { Fabricate :generated_user }
 
-
     specify 'can create own' do
-      can?(:create, ActivityLog.new(participation_id: participation.id)).should be_true
+      expect(can?(:create, ActivityLog.new(participation_id: participation.id))).to eql true
     end
 
     specify 'cannot create for other' do
       ability = Ability.new(other_user)
-      ability.cannot?(:create, ActivityLog.new(participation_id: participation.id)).should be_true
+      expect(
+        ability.cannot?(:create, ActivityLog.new(participation_id: participation.id))
+      ).to eql true
     end
 
     specify 'cannot create upcoming challenge' do
       participation.challenge.update_attributes! from_date: 7.days.from_now, to_date: 27.days.from_now
-      cannot?(:create, ActivityLog.new(participation_id: participation.id)).should be_true
+      expect(
+        cannot?(:create, ActivityLog.new(participation_id: participation.id))
+      ).to eql true
     end
     specify 'cannot create for old challenge' do
       participation.challenge.update_attributes! from_date:  27.days.ago, to_date: 7.days.ago
-      cannot?(:create, ActivityLog.new(participation_id: participation.id)).should be_true
+      expect(cannot?(:create, ActivityLog.new(participation_id: participation.id))).to eql true
     end
   end
 

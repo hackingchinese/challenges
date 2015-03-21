@@ -11,13 +11,13 @@ describe 'Registration', js: true do
     fill_in 'user[password]', with: 'password123'
     fill_in 'Password confirmation', with: 'password123'
     click_button 'Sign up'
-    page.should have_content 'successfully'
+    expect(page).to have_content 'successfully'
 
-    User.count.should == 1
+    expect(User.count).to eql 1
     User.first.tap do |user|
-      user.email.should == 'info@stefanwienert.de'
-      user.role.should be_nil
-      user.avatar.should be_present
+      expect(user.email).to eql 'info@stefanwienert.de'
+      expect(user.role).to be_nil
+      expect(user.avatar).to be_present
     end
 
     logout!
@@ -26,7 +26,7 @@ describe 'Registration', js: true do
   specify 'Login' do
     Fabricate :user, email: 'info@foobar.com', password: 'password123'
     login 'info@foobar.com', 'password123'
-    page.should have_content 'successfully'
+    expect(page).to have_content 'successfully'
 
     logout!
   end
@@ -38,8 +38,8 @@ describe 'Registration', js: true do
     click_on 'Edit account'
     fill_in 'Profile link', with: 'http://www.stefanwienert.de'
     click_on 'Update'
-    page.should have_content 'successfully'
-    User.first.profile_link.should == 'http://www.stefanwienert.de'
+    expect(page).to have_content 'successfully'
+    expect(User.first.profile_link).to eql 'http://www.stefanwienert.de'
   end
 
   specify 'change password' do
@@ -51,14 +51,14 @@ describe 'Registration', js: true do
     fill_in 'user[password]', with: 'newpassword'
     fill_in 'user[password_confirmation]', with: 'newpassword'
     click_on 'Update'
-    page.should have_content 'successfully'
-    User.first.valid_password?('newpassword').should == true
+    expect(page).to have_content 'successfully'
+    expect(User.first.valid_password?('newpassword')).to eql true
   end
 
   def logout!
     click_on 'Stefan'
-    page.should have_content 'LOGOUT'
-    page.should have_content 'successfully'
+    expect(page).to have_content 'LOGOUT'
+    expect(page).to have_content 'successfully'
 
   end
 
