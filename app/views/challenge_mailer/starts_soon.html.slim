@@ -1,0 +1,15 @@
+p Hi #{@user.name},
+
+p
+  | I just want to let you know that this month's language challenge is starting in three days. If you want to know more about the challenge,
+  a< href='#{@challenge.link}'
+    |please read this blog post
+  |. I will send you another reminder when the challenge starts, but you can
+  a< href='#{challenge_url(@challenge)}'
+    |join right now if you want to
+  |. Good luck and happy studying!
+
+p Best wishes,
+
+p Olle
+

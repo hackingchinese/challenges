@@ -13,6 +13,14 @@ class User < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
 
   after_create :generate_random_image
+
+  scope :with_email, -> { where('no_mails = ?', false).where('email not like ?', '%@changeme.com') }
+
+
+  def fake_email?
+    !email || email[/@changeme/]
+  end
+
   def generate_random_image
     image_file = RandomImageGenerator.generate email
     self.avatar = image_file

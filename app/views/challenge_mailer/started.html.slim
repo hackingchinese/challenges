@@ -1,0 +1,15 @@
+p Hi #{@user.name},
+
+p
+  |This month's language challenge starts today! If you haven't joined already,
+  a< href='#{challenge_url(@challenge)}'
+    |you can do so here
+  |. If you want to read more about the challenge,
+  a< href='#{@challenge.link}'
+    |please read this blog post
+  |. If you're too busy right now, you're welcome to join later or wait for next month's challenge. Good luck!
+
+p Best wishes,
+
+p Olle
+

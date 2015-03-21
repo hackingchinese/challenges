@@ -18,3 +18,10 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
+
+set :output, "/var/www/challenges.hackingchinese.com/shared/log/cron.log"
+job_type :runner, "cd :path && bin/rails runner -e :environment ':task' :output"
+
+every 1.day, at: '7pm' do
+  runner 'ChallengeMailing.cronjob'
+end
