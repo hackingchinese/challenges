@@ -25,6 +25,7 @@ html
               == yield
             .col-sm-4.sidebar
               == content_for(:sidebar)
+              = render 'layouts/affiliate'
         - else
           .row
             .col-sm-12

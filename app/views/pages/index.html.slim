@@ -24,12 +24,16 @@ p: a(href='#about' data-toggle='collapse') More about the challenge engine...
   hr
 
 - if @archive.count > 0
-  h3 = t 'pages.index.archive_headline'
-  - @archive.each do |c|
-    .row
-      .col-xs-12
-        h5 = link_to c do
-          = c.title
+  .row
+    .col-sm-6.col-lg-8
+      h3 = t 'pages.index.archive_headline'
+      - @archive.each do |c|
+        .row
+          .col-xs-12
+            h5 = link_to c do
+              = c.title
+    .col-sm-6.col-lg-4
+      = render 'layouts/affiliate'
 
 
 
