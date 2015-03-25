@@ -38,6 +38,12 @@ hr
 h2 Leaderboard
 
 table.table.table-striped.table-bordered
+  thead
+    tr
+      td Rank
+      td colspan='2'
+      td Score
+      td Personal goal progress
   - @leaderboard.each_with_index do |participation, index|
     - position = index + 1 + @offset
     tr
@@ -50,8 +56,9 @@ table.table.table-striped.table-bordered
         = link_to [@challenge, participation] do
           = participation.score.round(2)
       td
-        - percent = (participation.score || 0).to_i * 100 / @max.to_i
-        = progress_bar percent: percent, title: "Score relative to leader: #{percent}%", inside_text: ''
+        = progress_bar percent: participation.goal_progress, title: 'Personal goal progress in percent', inside_text: "#{participation.goal_progress.to_i}% "
+        /* - percent = (participation.score || 0).to_i * 100 / @max.to_i */
+        /* = progress_bar percent: percent, title: "Score relative to leader: #{percent}%", inside_text: '' */
 
 = paginate @leaderboard
 
