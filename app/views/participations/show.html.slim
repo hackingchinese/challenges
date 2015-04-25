@@ -73,12 +73,6 @@
           - if @participation.goal_unit?
             td= log.units_accomplished
           td= log.score
-          - if can? :update, log
-            td
-              = link_to [:edit, log.challenge, log.participation, log], title: 'Edit' do
-                i.fa.fa-edit.fa-fw
-              a<> href='#{twitter_share_url(text:log.share_text)}' title='Tweet about it'
-                i.fa.fa-twitter.fa.fw
           - if log.comment.present?
             td
               a.fa.fa-question-circle.js-modal.js-tooltip title="Comment: #{log.comment}" data-toggle='tooltip' data-placement="left" data-modal='##{dom_id(log, 'modal')}'
@@ -92,6 +86,12 @@
                       h4.modal-title Comment details
                     .modal-body
                       = log.comment
+          - if can? :update, log
+            td
+              = link_to [:edit, log.challenge, log.participation, log], title: 'Edit' do
+                i.fa.fa-edit.fa-fw
+              a<> href='#{twitter_share_url(text:log.share_text)}' title='Tweet about it'
+                i.fa.fa-twitter.fa.fw
 
 
 

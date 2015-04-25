@@ -21,6 +21,7 @@ class Ability
         p.user_id == user.id
       end
 
+      can [:edit, :update], ActivityLog, participation_id: active_participations.pluck('id')
       cannot [:edit, :update], ActivityLog do |log|
         log.created_at < 1.day.ago
       end
