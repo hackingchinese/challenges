@@ -39,7 +39,7 @@ class Challenge < ActiveRecord::Base
   end
 
   def duration_days
-    (to_date - from_date).to_i
+    (to_date - from_date).to_i + 1
   end
 
   def leaderboard
