@@ -41,6 +41,7 @@ class Participation < ActiveRecord::Base
   end
 
   def goal_progress
+    return 0 if challenge_goal == 0
     activity_logs.sum(activity_column) * 100 / challenge_goal rescue 0
   end
 
