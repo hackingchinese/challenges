@@ -1,0 +1,13 @@
+@font-face {
+  font-family: 'icomoon2';
+  src: asset-url('icomoon.eot?-kdd615');
+  src: asset-url('icomoon.eot?#iefix-kdd615') format('embedded-opentype'),
+    asset-url('icomoon.ttf?-kdd615') format('truetype'),
+    asset-url('icomoon.woff?-kdd615') format('woff'),
+    asset-url('icomoon.svg?-kdd615#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+.icon {
+  font-family: 'icomoon2';
+}

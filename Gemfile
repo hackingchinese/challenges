@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-source 'https://rails-assets.org'
 gem 'rails', '~> 4.1.0'
 gem 'sass-rails'
 gem 'uglifier', '>= 1.3.0'
@@ -7,12 +6,14 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'bootstrap-sass', '~> 3.1.1'
-gem 'rails-assets-bootswatch-scss', '~> 3.0.3'
 gem 'devise'
 gem 'pg'
 gem 'simple_form', '~>3.1.0rc1'
 gem 'slim-rails'
 gem 'compass-rails'
+source 'https://rails-assets.org' do
+  gem 'rails-assets-pure'
+end
 
 gem 'inherited_resources'
 gem 'responders'
@@ -26,11 +27,12 @@ gem 'rmagick'
 gem 'redcarpet'
 gem 'whenever'
 
-gem 'font-awesome-rails'
-gem 'stringex'
-gem 'kaminari-bootstrap', '~> 3.0.1'
+gem "font-awesome-rails"
+gem "stringex"
+gem "kaminari-bootstrap", '~> 3.0.1'
 gem "highcharts-rails", "~> 3.0.0"
-gem 'simple_captcha2', '~> 0.3.0', require: 'simple_captcha'
+gem "simple_captcha2", '~> 0.3.0', require: 'simple_captcha'
+gem "autoprefixer-rails"
 
 gem 'omniauth'
 gem 'omniauth-twitter'
@@ -41,8 +43,6 @@ group :production do
 end
 
 group :development do
-  gem 'spring'
-  gem 'spring-commands-rspec'
   gem 'quiet_assets'
   gem 'rails_layout'
 end

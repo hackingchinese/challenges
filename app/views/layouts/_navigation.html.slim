@@ -1,47 +1,52 @@
-nav.navbar.navbar-default.top-nav
-  .container
+a.pure-g.site-header href="http://www.hackingchinese.com"
+  .pure-u-1.pure-u-sm-1-6.pure-u-md-1-8
+    .header-logo.icon.icon-zhongwen-jiemi
+  .pure-u-1.pure-u-sm-5-6.pure-u-md-7-8.site-titles
+    h2.site-title Hacking Chinese
+    h3.site-subtitle A better way of learning Mandarin
+button class="menu-button pure-button" id="menu-button" Menu
+
+#menu-collapse.menu-collapse
+  .menu-top-nav-container
+    ul#top-nav-menu.top-menu
+      li.menu-item.menu-item-type-custom.menu-item-object-custom
+        a href="//www.hackingchinese.com/blog/"  Blog
+      li.menu-item.menu-item-type-custom.menu-item-object-custom
+        a href="//www.hackingchinese.com/archive-2/"  Categories
+      li.menu-item.menu-item-type-post_type.menu-item-object-page
+        a href="//www.hackingchinese.com/resources/"  Resources
+      li.menu-item.menu-item-type-post_type.menu-item-object-page.current_menu-item
+        a href="/"  Challenges
+      li.menu-item.menu-item-type-post_type.menu-item-object-page
+        a href="//www.hackingchinese.com/about/practical-guide-to-learning-mandarin/"  Course
+      li.menu-item.menu-item-type-custom.menu-item-object-custom
+        a href="//www.hackingchinese.com/about/"  About
+
     ul.nav.navbar-nav
-      li: a href='//www.hackingchinese.com' Welcome!
-      li: a href='//www.hackingchinese.com/blog' Recent Articles
-      li: a href='//www.hackingchinese.com/archive-2' Archive
-      li: a href='//resources.hackingchinese.com' Resources
-      li.active: a href='/' Challenges
-nav.navbar.navbar-default.bottom-nav
-  .container
-    .navbar-header
-      button.navbar-toggle[type="button" data-toggle="collapse" data-target=".navbar-collapse"]
-        span.sr-only Toggle navigation
-        span.icon-bar
-        span.icon-bar
-        span.icon-bar
-    .collapse.navbar-collapse
-      ul.nav.navbar-nav
-
-        - if current_user
+      - if current_user
+        li.dropdown
+          a.dropdown-toggle href='#' data-toggle='dropdown'
+            |#{image_tag current_user.avatar.url(:thumb), style: 'display: inline-block'}&nbsp;#{current_user.name}<b class='caret'></b>
+          ul.dropdown-menu
+            li= link_to 'Edit account', edit_user_registration_path
+            li.divider
+            li= link_to 'Logout', destroy_user_session_path, :method=>'delete'
+        .navbar-text
+          div
+        - if can? :create, Challenge
           li.dropdown
-            a.dropdown-toggle href='#' data-toggle='dropdown'
-              |#{image_tag current_user.avatar.url(:thumb), style: 'display: inline-block'}&nbsp;#{current_user.name}<b class='caret'></b>
+            a.dropdown-toggle data-toggle='dropdown' href='#'
+              | Admin
+              b.caret<
             ul.dropdown-menu
-              li= link_to 'Edit account', edit_user_registration_path
-              li.divider
-              li= link_to 'Logout', destroy_user_session_path, :method=>'delete'
-          .navbar-text
-            div
-          - if can? :create, Challenge
-            li.dropdown
-              a.dropdown-toggle data-toggle='dropdown' href='#'
-                | Admin
-                b.caret<
-              ul.dropdown-menu
-                li = link_to :challenges do
-                  | Challenges
-                li = link_to [:admin, :users] do
-                  | Users
-                li = link_to [:admin, :quality_tables] do
-                  | Quality Tables
-
-        - else
-          li= link_to 'Login', new_user_session_path
-          li= link_to 'Sign up', new_user_registration_path
+              li = link_to :challenges do
+                | Challenges
+              li = link_to [:admin, :users] do
+                | Users
+              li = link_to [:admin, :quality_tables] do
+                | Quality Tables
+      - else
+        li= link_to 'Login', new_user_session_path
+        li= link_to 'Sign up', new_user_registration_path
       - if c = (@challenge || @participation.try(:challenge)) and c.running_or_just_ended?
         = render 'challenges/challenge_actions', challenge: c, participation: c.participations.where(user_id: current_user.try(:id)).first

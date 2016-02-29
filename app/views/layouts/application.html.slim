@@ -5,30 +5,23 @@ html
     title
       = content_for?(:title) ? yield(:title) : 'Hacking Chinese Challenges'
     meta name="description" content="#{content_for?(:description) ? yield(:description) : 'Hacking Chinese Challenges - building language skills through daily practice and friendly competition!'}"
-    == stylesheet_link_tag "application", :media => 'all', 'data-turbolinks-track' => true
+
+
+    link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css"
+    == stylesheet_link_tag "application", media: 'all', 'data-turbolinks-track' => true
     == javascript_include_tag 'application', 'data-turbolinks-track' => true
     == csrf_meta_tags
   body
-    header
-      .container
-        .banner
-      == render 'layouts/navigation'
-    main[role="main"]
-      .container
+    == render 'layouts/navigation'
+    .pure-g.layout
+      #content.content.pure-u-1.pure-u-lg-2-3
         == render 'layouts/messages'
         - if @title
           .row: .col-xs-12: h1 = @title
-          br
-        - if content_for?(:sidebar)
-          .row
-            .col-sm-8
-              == yield
-            .col-sm-4.sidebar
-              == content_for(:sidebar)
-              = render 'layouts/affiliate'
-        - else
-          .row
-            .col-sm-12
-              == yield
+        == yield
+
+    == render 'layouts/footer'
     - if Rails.env.production?
       = render 'layouts/tracking'
+    link href='//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Montserrat' title='Google Fonts Server' rel='stylesheet' type='text/css'
+    link href='//fonts.useso.com/css?family=Droid+Serif:400,700,400italic|Montserrat' title='China Fonts Server' rel='alternate stylesheet' type='text/css'
