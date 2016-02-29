@@ -10,6 +10,8 @@ Stack: Ruby on Rails + Postgresql
 git clone https://github.com/hackingchinese/challenges
 cd challenges
 bundle
+cp config/database.yml.example config/database.yml
+cp secrets.yml.example secrets.yml
 rake db:create
 rake db:migrate
 rails server -p 3000

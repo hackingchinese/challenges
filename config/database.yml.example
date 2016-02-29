@@ -1,0 +1,15 @@
+development:
+  adapter:  postgresql
+  host:     localhost
+  encoding: unicode
+  database: hn_challenge_development
+  pool:     5
+  template: template0
+
+test:
+  adapter:  postgresql
+  host:     localhost
+  encoding: unicode
+  database: hn_challenge_test
+  pool:     5
+  template: template0
