@@ -1,52 +1,52 @@
-a.pure-g.site-header href="http://www.hackingchinese.com"
-  .pure-u-1.pure-u-sm-1-6.pure-u-md-1-8
+a.row.site-header href="http://www.hackingchinese.com"
+  .col-sm-2
     .header-logo.icon.icon-zhongwen-jiemi
-  .pure-u-1.pure-u-sm-5-6.pure-u-md-7-8.site-titles
-    h2.site-title Hacking Chinese
-    h3.site-subtitle A better way of learning Mandarin
-button class="menu-button pure-button" id="menu-button" Menu
+  .col-sm-10
+    .site-titles
+      h2.site-title Hacking Chinese
+      h3.site-subtitle A better way of learning Mandarin
 
-#menu-collapse.menu-collapse
+nav: #menu-collapse.menu-collapse: .container
   .menu-top-nav-container
-    ul#top-nav-menu.top-menu
-      li.menu-item.menu-item-type-custom.menu-item-object-custom
+    ul.nav.nav-pills.main-menu
+      li
         a href="//www.hackingchinese.com/blog/"  Blog
-      li.menu-item.menu-item-type-custom.menu-item-object-custom
+      li
         a href="//www.hackingchinese.com/archive-2/"  Categories
-      li.menu-item.menu-item-type-post_type.menu-item-object-page
+      li
         a href="//www.hackingchinese.com/resources/"  Resources
-      li.menu-item.menu-item-type-post_type.menu-item-object-page.current_menu-item
+      li.active
         a href="/"  Challenges
-      li.menu-item.menu-item-type-post_type.menu-item-object-page
+      li
         a href="//www.hackingchinese.com/about/practical-guide-to-learning-mandarin/"  Course
-      li.menu-item.menu-item-type-custom.menu-item-object-custom
+      li
         a href="//www.hackingchinese.com/about/"  About
 
-    ul.nav.navbar-nav
-      - if current_user
+  ul.nav.nav-pills.subnav
+    - if current_user
+      li.menu-item
+        a.dropdown-toggle href='#' data-toggle='dropdown'
+          |#{image_tag current_user.avatar.url(:thumb), style: 'display: inline-block'}&nbsp;#{current_user.name}<b class='caret'></b>
+        ul.dropdown-menu
+          li= link_to 'Edit account', edit_user_registration_path
+          li.divider
+          li= link_to 'Logout', destroy_user_session_path, :method=>'delete'
+      .navbar-text
+        div
+      - if can? :create, Challenge
         li.dropdown
-          a.dropdown-toggle href='#' data-toggle='dropdown'
-            |#{image_tag current_user.avatar.url(:thumb), style: 'display: inline-block'}&nbsp;#{current_user.name}<b class='caret'></b>
+          a.dropdown-toggle data-toggle='dropdown' href='#'
+            | Admin
+            b.caret<
           ul.dropdown-menu
-            li= link_to 'Edit account', edit_user_registration_path
-            li.divider
-            li= link_to 'Logout', destroy_user_session_path, :method=>'delete'
-        .navbar-text
-          div
-        - if can? :create, Challenge
-          li.dropdown
-            a.dropdown-toggle data-toggle='dropdown' href='#'
-              | Admin
-              b.caret<
-            ul.dropdown-menu
-              li = link_to :challenges do
-                | Challenges
-              li = link_to [:admin, :users] do
-                | Users
-              li = link_to [:admin, :quality_tables] do
-                | Quality Tables
-      - else
-        li= link_to 'Login', new_user_session_path
-        li= link_to 'Sign up', new_user_registration_path
-      - if c = (@challenge || @participation.try(:challenge)) and c.running_or_just_ended?
-        = render 'challenges/challenge_actions', challenge: c, participation: c.participations.where(user_id: current_user.try(:id)).first
+            li = link_to :challenges do
+              | Challenges
+            li = link_to [:admin, :users] do
+              | Users
+            li = link_to [:admin, :quality_tables] do
+              | Quality Tables
+    - else
+      li.menu-item = link_to 'Login', new_user_session_path
+      li.menu-item = link_to 'Sign up', new_user_registration_path
+    - if c = (@challenge || @participation.try(:challenge)) and c.running_or_just_ended?
+      = render 'challenges/challenge_actions', challenge: c, participation: c.participations.where(user_id: current_user.try(:id)).first

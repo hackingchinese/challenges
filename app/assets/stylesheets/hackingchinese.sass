@@ -1,140 +1,29 @@
-@import bootswatch-scss/readable/variables
 $icon-font-path: 'bootstrap/'
-$link-color: rgb(123,0,0)
-$brand-primary: $link-color
-$btn-primary-bg: $link-color
-$label-primary-bg: $link-color
+$brand-primary: #b6100a
+$border-radius-base:        0
+$border-radius-large:       0
+$border-radius-small:       0
+// $link-color: rgb(123,0,0)
 $tooltip-max-width: 400px
-$container-lg-desktop: ((976px +  $grid-gutter-width))
-$container-large-desktop: ((976px + $grid-gutter-width))
 $screen-lg-min:  976px
 $screen-md-min:  976px
+$font-family-serif: Montserrat,"Helvetica Neue",Helvetica,Arial,STKaiti,"AR PL Ukai HK",UKai,sans-serif
+$font-family-sans-serif: "Droid Serif",Georgia,"Times New Roman",Times,STKaiti,"AR PL Ukai TW",UKai,serif
+$font-size-base: 18px
+@import bootswatch/readable/variables
+$container-lg-desktop: ((976px +  $grid-gutter-width))
+$container-large-desktop: ((976px + $grid-gutter-width))
 .label-default a
   color: lighten($link-color, 20%)
 @import bootstrap
-@import bootswatch-scss/readable/bootswatch
+@import bootswatch/readable/bootswatch
 
-body
-  font-family: Georgia,"Times New Roman",Times,serif
-  font-style: normal
-  font-variant: normal
-  font-weight: normal
-  letter-spacing: 0
-  text-transform: none
-  background: white
-  color: rgb(51, 51, 51)
-#local-header
-  margin: 20px 0
 
-.stories a:visited
-  color: #784f4f !important
-a.tag.active
-  font-weight: bold
-
-div#story_box input#story_url
-  width: 100%
-
-table#tagtable
-  td
-    padding-bottom: 10px
-    vertical-align: middle
-
-  a.tag
-    vertical-align: top
-  a.tag-tier-0, a.tag-tier-1, a.tag-tier-2, a.tag-tier-3
-    background: #ffe1e0
-    border-color: desaturate(darken(#ffe1e0, 10%), 30%)
-    padding: 2px 5px
-    display: inline-block
-
-  .question
-    strong
-      padding: 2px 0
-      display: block
-    width: 110px
-.help-tag
-  background-color: white
-  font-style: normal
-  border: 1px solid #D5D458
-  border-radius: 10px
-  color: #555
-  font-size: 7.5pt
-  margin-left: 0.25em
-  padding: 0px 0.5em 1px
-  text-decoration: none
-  vertical-align: middle
-
-form .boxline
-  input[type=text]
-    width: 100%
-  label
-    display: block
-    margin-bottom: 0
-
-div#story_box div.markdown_help_toggler
-  margin-left: 0
-
-.story-image
-  float: right
-  margin-left: 5px
-.box .help-text
-  font-size: 80%
-  color: rgb(50,50,50)
-  padding-top: 0
-  margin-top: 0
-  line-height: 1.2
-
-body
-  font-family: Georgia,"Times New Roman",Times,serif
-nav
-  font-family: "Lucida Grande","Lucida Sans","Lucida Sans Unicode",sans-serif
-  text-transform: uppercase
-  font-size: 18px
-  font-weight: 400
-  color: rgb(119, 119, 119)
-h1,h2,h3,h4,h5,h6
-  font-family: Georgia,"Times New Roman",Times,serif
-  font-weight: normal
-.top-nav
-  background: none repeat scroll 0 0 #f7f7f7
-  border-top: 0
-  margin-bottom: 0
-  border-bottom: 0
-  border-radius: 0
-  min-height: 35px
-  .active > a
-    background: #ccc !important
-  .navbar-nav > li > a
-    padding-top: 5px
-    padding-bottom: 5px
-    line-height: 27px
-
-.bottom-nav
-  background: #ccc
-  border-top: 0
-  border-radius: 0
-  .navbar-btn
-    margin-top: 7px
-    margin-left: 5px
-.banner
-  background-image: image-url('banner.png')
-  max-width: 100%
-  height: image-height('banner.png')
-  background-repeat: no-repeat
-  background-color: white
-  margin: 10px 0
-.table > thead > tr > td.active, .table > thead > tr > th.active, .table > thead > tr.active > td, .table > thead > tr.active > th, .table > tbody > tr > td.active, .table > tbody > tr > th.active, .table > tbody > tr.active > td, .table > tbody > tr.active > th, .table > tfoot > tr > td.active, .table > tfoot > tr > th.active, .table > tfoot > tr.active > td, .table > tfoot > tr.active > th
-  background-color: $btn-primary-bg
-  color: $btn-primary-color
-
-.pagination > li > a, .pagination > li > span
-  color: white
-
+/// Adaption to pure theme
 
 img
   @extend .img-responsive
   margin: 0 auto
-
 
 hr
   border-bottom: 1px solid #ccc
@@ -153,4 +42,69 @@ fieldset
 .navbar-toggle
   background-color: white
 
+.site-header
+  display: block
+  background: 0 0
+  color: #555
+  margin: auto
+  max-width: 70em
+  padding: .5em 1.7em
+  transition: color .5s ease,background .5s ease
+  &:hover
+    color: #b6100a
+h2
+  font-size: 2.19615em
 
+.site-subtitle
+  font-size: 1.5em
+  margin: auto
+.site-title
+  margin: auto
+.site-titles
+  padding-top: 1.9em
+
+.header-logo
+  color: #b6100a
+  font-size: 6em
+  text-align: left
+
+.icon
+  font-family: icomoon
+
+h1, h2, h3, h4, h5, h6
+  font-family: $font-family-serif
+  font-weight: 400
+.icon-zhongwen-jiemi::before
+  content: "\e600"
+
+nav
+  background: #e3e3e3
+  li
+    width: 31.25
+    > a
+      color: #616161
+      font-size: 1em
+      font-family: $font-family-serif
+      background: transparent
+
+      &:hover
+        background: #a3a3a3
+        color: #fff
+  .main-menu li
+    font-weight: bolder
+  .sub-menu li
+    font-weight: 100
+    color: lighten(#616161, 15%)
+p, article
+  font-family: $font-family-sans-serif
+
+
+footer
+  background: #3b3b3b
+  padding: 1em
+  color: #fff
+  text-align: center
+  a
+    color: #fff
+  h2
+    font-size: 2.19615em

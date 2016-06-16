@@ -1,24 +1,15 @@
 doctype html
 html
   head
-    meta[name="viewport" content="width=device-width, initial-scale=1.0"]
-    title
-      = content_for?(:title) ? yield(:title) : 'Hacking Chinese Challenges'
-    meta name="description" content="#{content_for?(:description) ? yield(:description) : 'Hacking Chinese Challenges - building language skills through daily practice and friendly competition!'}"
-
-
-    link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css"
-    == stylesheet_link_tag "application", media: 'all', 'data-turbolinks-track' => true
-    == javascript_include_tag 'application', 'data-turbolinks-track' => true
-    == csrf_meta_tags
+    = render "layouts/head"
   body
     == render 'layouts/navigation'
-    .pure-g.layout
-      #content.content.pure-u-1.pure-u-lg-2-3
-        == render 'layouts/messages'
-        - if @title
-          .row: .col-xs-12: h1 = @title
-        == yield
+    - @container_class ||= 'container'
+    main class=@container_class
+      == render 'layouts/messages'
+      - if @title
+        .row: .col-xs-12: h1 = @title
+      == yield
 
     == render 'layouts/footer'
     - if Rails.env.production?
