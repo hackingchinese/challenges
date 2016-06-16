@@ -1,0 +1,23 @@
+.card
+  .card-block
+    h5.card-title
+      | #{activity_log.minutes} minutes
+      - if activity_log.participation.goal_unit?
+        span<> &ndash;
+        = activity_log.units_accomplished
+      .pull-right
+        small.text-muted<>
+          |#{activity_log.hours_spent}h
+
+    - if activity_log.comment.present?
+      .card-text
+        .row
+          .col-xs-10
+            = simple_format activity_log.comment
+          .col-xs-2
+            = image_tag activity_log.user.avatar.url(:display), title: activity_log.user.name
+
+
+    small.text-xs-center.text-muted
+      = l activity_log.date, format: "%A, %b %d"
+

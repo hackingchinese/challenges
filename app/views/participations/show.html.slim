@@ -32,7 +32,7 @@
           = link_to [:edit, @challenge, @participation] do
             | update goal
 
-- @title = " Participation of #{@participation.user.name} in <br> #{@participation.challenge.title}".html_safe
+- @title = " #{@participation.user.name} <br/><small class='text-muted'>@ #{@participation.challenge.title}</small>".html_safe
 - if @participation.activity_logs.count == 0
   p No reported activity yet.
 
@@ -56,7 +56,8 @@
 
 
 
-  table.table.table-bordered.table-striped
+  = render @participation.activity_logs.order('date desc')
+  /* table.table.table-bordered.table-striped */
     thead
       tr
         th Day
@@ -92,11 +93,6 @@
                 i.fa.fa-edit.fa-fw
               a<> href='#{twitter_share_url(text:log.share_text)}' title='Tweet about it'
                 i.fa.fa-twitter.fa.fw
-
-
-
-
-
 
   br
   br

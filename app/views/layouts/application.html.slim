@@ -9,7 +9,12 @@ html
       == render 'layouts/messages'
       - if @title
         .row: .col-xs-12: h1 = @title
-      == yield
+      - if content_for?(:sidebar)
+        .row
+          .col-md-9
+            == yield
+          .col-md-3
+            = yield(:sidebar)
 
     == render 'layouts/footer'
     - if Rails.env.production?
