@@ -27,9 +27,6 @@ p: a(href='#about' data-toggle='collapse') More about the challenge engine...
     - @archive.each do |c|
       = render c
 
-
-
-
 - if !current_user
   hr
   a.btn.btn-lg.btn-primary> href=(new_user_registration_path)
