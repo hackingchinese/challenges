@@ -1,0 +1,6 @@
+.row
+  - challenges.each_with_index do |c,i|
+    - if i % 2 == 0 && i > 0
+      .clearfix
+    .col-md-6
+      = render c

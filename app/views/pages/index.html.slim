@@ -5,27 +5,17 @@ p: a(href='#about' data-toggle='collapse') More about the challenge engine...
 #about.collapse
   = markdown t 'pages.about.content_markdown'
 
-
-
 - if @running.count > 0
   h2 = t 'pages.index.current_headline'
-  .row
-    - @running.each do |c|
-      .col-sm-6
-        = render c
-  hr
+  = render "challenges/challenge_list", challenges: @running
 
 - if @upcoming.count > 0
   h2 = t 'pages.index.upcoming_headline'
-  - @upcoming.each do |c|
-    = render c
-  hr
+  = render "challenges/challenge_list", challenges: @upcoming
 
 - if @archive.count > 0
   h3 = t 'pages.index.archive_headline'
-  .card-columns
-    - @archive.each do |c|
-      = render c
+  = render "challenges/challenge_list", challenges: @archive
 
 - if !current_user
   hr
