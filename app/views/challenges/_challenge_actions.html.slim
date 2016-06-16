@@ -1,4 +1,4 @@
-- klasses = ->(page) { "btn btn-default navbar-btn #{controller_name == page ? 'active' : ''}" }
+- klasses = ->(page) { "btn btn-secondary navbar-btn #{controller_name == page ? 'active' : ''}" }
 - if participation and current_user
   - if can? :create, ActivityLog, participation_id: participation.id
     span>

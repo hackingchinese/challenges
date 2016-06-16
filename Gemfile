@@ -25,9 +25,13 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
-gem 'bootstrap-sass', '~> 3.1.1'
-gem 'bootswatch-rails'
-gem 'compass-rails'
+# gem 'bootstrap-sass', '~> 3.1.1'
+gem 'bootstrap', '~> 4.0.0.alpha3'
+source 'https://rails-assets.org' do
+  gem 'rails-assets-tether', '>= 1.1.0'
+end
+
+# gem 'bootswatch-rails'
 gem "font-awesome-rails"
 gem "highcharts-rails", "~> 3.0.0"
 

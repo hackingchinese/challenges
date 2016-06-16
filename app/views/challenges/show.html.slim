@@ -48,7 +48,7 @@ table.table.table-striped.table-bordered
     - position = index + 1 + @offset
     tr
       td style='width: 30px' #{position}.
-      td style='width: 30px' = image_tag participation.user.avatar.url(:thumb)
+      td style='width: 30px' = image_tag participation.user.avatar.url(:thumb), style: 'min-width: 30px'
       td
         = link_to [@challenge, participation] do
           = participation.user.name

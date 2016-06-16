@@ -4,63 +4,34 @@
 .navbar-brand
   font-size: inherit
 
-.column
-  @extend .col-md-6
-  @extend .text-center
-
 .form
   @extend .col-md-6
 
 .form-centered
   @extend .col-md-6
-  @extend .text-center
+  @extend .text-xs-center
 
 .submit
   @extend .btn
   @extend .btn-primary
   @extend .btn-lg
 
-main
-  @extend .container
-  padding-bottom: 80px
-  width: 100%
-
-section
-  @extend .row
-  margin-top: 20px
-
-
-.authform form
-  @extend .well
-  @extend .well-lg
-  padding-bottom: 40px
-
-.authform .right
-  float: right !important
-
-.authform .button
-  @extend .btn
-  @extend .btn-primary
-
-.authform fieldset
-  @extend .well
-
-#error_explanation
-  @extend .alert
-  @extend .alert-danger
-
-#error_explanation h2
-  font-size: 16px
-
 .button-xs
   @extend .btn
   @extend .btn-primary
-  @extend .btn-xs
+  @extend .btn-sm
+
+// Migration BS4
+.btn-xs
+  @extend .btn-sm
 
 .progress
   border: 1px solid #2c3e50
   font-family: sans-serif
   font-size: 12px
+
+main
+  @extend .m-y-3
 .progress-bar
   max-width: 100% !important
 
@@ -90,3 +61,15 @@ td > .progress
 
 
 
++media-breakpoint-up(sm)
+  .card-columns
+    column-count: 1
+
++media-breakpoint-up(md)
+  .card-columns
+    column-count: 2
+
++media-breakpoint-up(lg)
+  .card-columns
+    column-count: 3
+    column-gap: 1.25rem

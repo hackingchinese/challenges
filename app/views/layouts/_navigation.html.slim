@@ -1,26 +1,27 @@
-a.row.site-header href="http://www.hackingchinese.com"
-  .col-sm-2
-    .header-logo.icon.icon-zhongwen-jiemi
-  .col-sm-10
-    .site-titles
-      h2.site-title Hacking Chinese
-      h3.site-subtitle A better way of learning Mandarin
+.container
+  a.site-header href="http://www.hackingchinese.com"
+    .col-sm-2
+      .header-logo.icon.icon-zhongwen-jiemi
+    .col-sm-10
+      .site-titles
+        h2.site-title Hacking Chinese
+        h3.site-subtitle A better way of learning Mandarin
 
 nav: #menu-collapse.menu-collapse: .container
   .menu-top-nav-container
     ul.nav.nav-pills.main-menu
-      li
-        a href="//www.hackingchinese.com/blog/"  Blog
-      li
-        a href="//www.hackingchinese.com/archive-2/"  Categories
-      li
-        a href="//www.hackingchinese.com/resources/"  Resources
-      li.active
-        a href="/"  Challenges
-      li
-        a href="//www.hackingchinese.com/about/practical-guide-to-learning-mandarin/"  Course
-      li
-        a href="//www.hackingchinese.com/about/"  About
+      li.nav-item
+        a.nav-link href="//www.hackingchinese.com/blog/"  Blog
+      li.nav-item
+        a.nav-link href="//www.hackingchinese.com/archive-2/"  Categories
+      li.nav-item
+        a.nav-link href="//www.hackingchinese.com/resources/"  Resources
+      li.nav-item
+        a.nav-link.active href="/"  Challenges
+      li.nav-item
+        a.nav-link href="//www.hackingchinese.com/about/practical-guide-to-learning-mandarin/"  Course
+      li.nav-item
+        a.nav-link href="//www.hackingchinese.com/about/"  About
 
   ul.nav.nav-pills.subnav
     - if current_user
@@ -46,7 +47,7 @@ nav: #menu-collapse.menu-collapse: .container
             li = link_to [:admin, :quality_tables] do
               | Quality Tables
     - else
-      li.menu-item = link_to 'Login', new_user_session_path
-      li.menu-item = link_to 'Sign up', new_user_registration_path
+      li.nav-item = link_to 'Login', new_user_session_path, class: 'nav-link'
+      li.nav-item = link_to 'Sign up', new_user_registration_path, class: 'nav-link'
     - if c = (@challenge || @participation.try(:challenge)) and c.running_or_just_ended?
       = render 'challenges/challenge_actions', challenge: c, participation: c.participations.where(user_id: current_user.try(:id)).first

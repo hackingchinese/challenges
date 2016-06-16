@@ -9,31 +9,23 @@ p: a(href='#about' data-toggle='collapse') More about the challenge engine...
 
 - if @running.count > 0
   h2 = t 'pages.index.current_headline'
-  - @running.each do |c|
-    .row
-      .col-xs-12
+  .row
+    - @running.each do |c|
+      .col-sm-6
         = render c
   hr
 
 - if @upcoming.count > 0
   h2 = t 'pages.index.upcoming_headline'
   - @upcoming.each do |c|
-    .row
-      .col-xs-12
-        = render c
+    = render c
   hr
 
 - if @archive.count > 0
-  .row
-    .col-sm-6.col-lg-8
-      h3 = t 'pages.index.archive_headline'
-      - @archive.each do |c|
-        .row
-          .col-xs-12
-            h5 = link_to c do
-              = c.title
-    .col-sm-6.col-lg-4
-      /* = render 'layouts/affiliate' */
+  h3 = t 'pages.index.archive_headline'
+  .card-columns
+    - @archive.each do |c|
+      = render c
 
 
 

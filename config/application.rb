@@ -20,6 +20,7 @@ module HnChallenge
     config.assets.paths << Rails.root.join('vendor/hc-theme/design/scss').to_s
     config.assets.paths << Rails.root.join('vendor/hc-theme/wp-content/themes/hc-2015/fonts').to_s
 
+    config.assets.precompile += %w( icomoon.eot icomoon.svg icomoon.ttf icomoon.woff)
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

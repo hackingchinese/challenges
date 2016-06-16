@@ -1,7 +1,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require bootstrap
+//= require tether
+//= require bootstrap-sprockets
 //= require highcharts
 //= require_tree .
 

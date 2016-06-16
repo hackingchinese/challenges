@@ -1,19 +1,26 @@
-.challenge
-  h3
-    = link_to challenge do
-      =challenge.title
-  p
-    - if challenge.users.include?(current_user)
-      span.label.label-primary> Enrolled
-    - if challenge.running?
-      span.label.label-primary> Running (#{l challenge.from_date, format: :long} to #{l challenge.to_date, format: :long})
-      span.label.label-default> #{challenge.days_left} Days left
-    - if challenge.upcoming?
-      span.label.label-primary> Upcoming (#{l challenge.from_date, format: :long} to #{l challenge.to_date, format: :long})
+.card
+  .card-block
+    h3.card-title
+      = link_to challenge do
+        = challenge.title
+    small.text-muted
+      |#{l challenge.from_date, format: :long} &ndash; #{l challenge.to_date, format: :long}
+  .card-block
+    p
+      - if challenge.users.include?(current_user)
+        span.label.label-primary> Enrolled
+      - if challenge.running?
+        span.label.label-primary> Running (#{l challenge.from_date, format: :long} to #{l challenge.to_date, format: :long})
+        span.label.label-default> #{challenge.days_left} Days left
+      - if challenge.upcoming?
+        span.label.label-primary> Upcoming (#{l challenge.from_date, format: :long} to #{l challenge.to_date, format: :long})
+    p = truncate challenge.description, length: 400
+  .card-block
+    a.btn.btn-primary> href=challenge_path(challenge)
+      | Leaderboard
+
     - if challenge.link?
-      span.label.label-default>
-        a href='#{challenge.link}' Link
-  p = truncate challenge.description, length: 400
-  - if current_user and challenge.participations.where(user_id: current_user.id).count == 0
-    = link_to [:new, challenge, :participation], class: 'btn btn-primary btn-large' do
-      = t 'challenges.challenge.enroll'
+      a.btn.btn-secondary href=challenge.link Blog post
+    - if current_user and challenge.participations.where(user_id: current_user.id).count == 0
+      = link_to [:new, challenge, :participation], class: 'btn btn-primary btn-large' do
+        = t 'challenges.challenge.enroll'
