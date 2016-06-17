@@ -12,6 +12,25 @@ class ActivityLogsController < InheritedResources::Base
     end
   end
 
+  def toggle_like
+    authorize! :like, @activity_log
+    existing = @activity_log.likes.where(user_id: current_user.id).first_or_initialize
+    if existing.new_record?
+      ActivityLogMailer.liked(@activity_log, current_user).deliver
+      existing.save
+    else
+      existing.destroy
+    end
+    respond_to do |f|
+      f.html {
+        redirect_to [@activity_log.challenge, @activity_log.participation]
+      }
+      f.js {
+        @body = render_to_string partial: @activity_log, format: 'html'
+      }
+    end
+  end
+
   def create
     create! {  url_for [@activity_log.challenge, @activity_log.participation] }
   end

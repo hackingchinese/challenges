@@ -1,7 +1,12 @@
 HnChallenge::Application.routes.draw do
   resources :challenges do
     resources :participations do
-      resources :activity_logs
+      resources :activity_logs do
+        member do
+          post :toggle_like
+        end
+        resources :comments, only: [:new, :create]
+      end
     end
   end
   namespace :admin do

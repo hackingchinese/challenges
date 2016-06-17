@@ -1,4 +1,4 @@
-.card
+.card id='#{dom_id(activity_log)}'
   .card-block
     h5.card-title
       | #{activity_log.minutes} minutes
@@ -20,10 +20,14 @@
 
       - if can? :update, activity_log
         .clearfix.m-t-1
+          - if can? :like, activity_log
+            a.btn.btn-secondary.btn-xs> data-remote='true' data-method='post' href='#{url_for([:toggle_like, activity_log.challenge, activity_log.participation, activity_log])}'
+              - if activity_log.liked_by.include?(current_user)
+                i.fa.fa-fw.fa-heart
+              - else
+                i.fa.fa-fw.fa-heart-o
           - if can? :comment, activity_log
-            a.btn.btn-secondary
-              i.fa.fa-fw.fa-heart-o
-            a.btn.btn-primary
+            a.btn.btn-primary.btn-xs
               i.fa.fa-fw.fa-commenting-o
           .pull-right
             = link_to [:edit, activity_log.challenge, activity_log.participation, activity_log], title: 'Edit', class: 'btn btn-secondary btn-xs' do

@@ -8,6 +8,9 @@ class ActivityLog < ActiveRecord::Base
 
   validate :date_valid
 
+  has_many :likes, class_name: 'ActivityLog::Like'
+  has_many :liked_by, class_name: 'User', through: :likes, source: :user
+
   before_save :set_score
   after_save :update_participation_score
 

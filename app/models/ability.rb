@@ -27,7 +27,9 @@ class Ability
         log.created_at < 1.day.ago
       end
       can :comment, ActivityLog
+      can :like, ActivityLog
     end
+    cannot :like, ActivityLog, user_id: user.id
 
     can :enroll, Challenge do |challenge|
       challenges_participateble.include?(challenge) && active_participations.where(challenge_id: challenge.id).none?

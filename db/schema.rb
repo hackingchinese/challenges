@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150321203549) do
+ActiveRecord::Schema.define(version: 20160617022513) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,17 @@ ActiveRecord::Schema.define(version: 20150321203549) do
   end
 
   add_index "account_connections", ["user_id"], name: "index_account_connections_on_user_id", using: :btree
+
+  create_table "activity_log_likes", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "activity_log_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "activity_log_likes", ["activity_log_id"], name: "index_activity_log_likes_on_activity_log_id", using: :btree
+  add_index "activity_log_likes", ["user_id", "activity_log_id"], name: "index_activity_log_likes_on_user_id_and_activity_log_id", unique: true, using: :btree
+  add_index "activity_log_likes", ["user_id"], name: "index_activity_log_likes_on_user_id", using: :btree
 
   create_table "activity_logs", force: true do |t|
     t.integer  "user_id"
@@ -121,6 +132,7 @@ ActiveRecord::Schema.define(version: 20150321203549) do
     t.string   "profile_link"
     t.string   "avatar"
     t.boolean  "no_mails",               default: false
+    t.json     "mail_preferences"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
