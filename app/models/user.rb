@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
   has_many :activity_logs, dependent: :destroy
   has_many :account_connections, dependent: :destroy
 
+  has_one :mail_preference
+
   validates :name, presence: true, uniqueness: true
 
   after_create :generate_random_image

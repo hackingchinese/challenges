@@ -14,6 +14,12 @@ en:
     error_notification:
       default_message: "Please review the problems below:"
     labels:
+      mail_preference:
+        liked_disabled: "You receive a notification if someone liked one of your activities"
+        commented_disabled: "You receive a notification if someone commented on one of your activities"
+        comment_on_watched_thread_disabled: "You receive an reply to a comment you made on someone else's activity"
+        challenge_starts_soon_disabled: "You receive an information if a new challenge will start soon"
+        challenge_started: "You receive an information if a new challenge just started and is open for activity tracking"
       user:
         no_mails: Check to disable challenge reminders via e-mail
       activity_log:

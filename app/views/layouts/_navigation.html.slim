@@ -28,6 +28,7 @@ nav.navbar.bg-faded.navbar-fixed-top
             |#{image_tag current_user.avatar.url(:thumb), class: 'navbar-avatar'}&nbsp;#{current_user.name}<b class='caret'></b>
           ul.dropdown-menu aria-labelledby="user-menu"
             li.dropdown-item= link_to 'Edit account', edit_user_registration_path
+            li.dropdown-item= link_to 'Mail preferences', '/mail_preference'
             li.dropdown-item= link_to 'Logout', destroy_user_session_path, :method=>'delete'
 
       - if can? :create, Challenge

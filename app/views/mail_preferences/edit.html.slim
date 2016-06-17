@@ -1,0 +1,12 @@
+h1 Mail preferences
+
+p You can disable different kind of notifications by this application.
+
+p <strong>Disable</strong> any of the following mails:
+
+= simple_form_for @mail_preference, url: '', method: :post do |f|
+  - MailPreference::MAILS.each do |mail|
+    = f.input mail, as: :boolean
+  = f.submit "Save", class: 'btn btn-primary'
+
+

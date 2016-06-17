@@ -14,6 +14,9 @@ HnChallenge::Application.routes.draw do
     resources :quality_tables
   end
 
+  get 'mail_preference' => 'mail_preferences#edit'
+  post 'mail_preference' => 'mail_preferences#update'
+
   devise_for :users, :controllers => { :registrations => "registrations" }
   get '/auth/:provider/callback', to: 'account_connections#omniauth'
   root to: 'pages#index'

@@ -16,6 +16,7 @@ class Ability
 
       can :read, Challenge, id: Challenge.visible.pluck(:id)
       can :create, ActivityLog, participation_id: active_participations.pluck(:id)
+      can :update, :mail_preference
 
       can :destroy, Participation, user_id: user.id
       can :update, Participation, active_participations do |p|

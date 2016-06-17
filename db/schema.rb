@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160617031730) do
+ActiveRecord::Schema.define(version: 20160617150831) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,6 +88,15 @@ ActiveRecord::Schema.define(version: 20160617031730) do
   add_index "challenges", ["type"], name: "index_challenges_on_type", using: :btree
   add_index "challenges", ["unit_quality_table_id"], name: "index_challenges_on_unit_quality_table_id", using: :btree
 
+  create_table "mail_preferences", force: true do |t|
+    t.integer  "user_id"
+    t.json     "mails_disabled"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "mail_preferences", ["user_id"], name: "index_mail_preferences_on_user_id", using: :btree
+
   create_table "participations", force: true do |t|
     t.integer  "user_id"
     t.integer  "challenge_id"
@@ -143,7 +152,6 @@ ActiveRecord::Schema.define(version: 20160617031730) do
     t.string   "profile_link"
     t.string   "avatar"
     t.boolean  "no_mails",               default: false
-    t.json     "mail_preferences"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

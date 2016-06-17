@@ -1,4 +1,7 @@
 # Use this setup block to configure all options available in SimpleForm.
+class SimpleForm::Inputs::FileHackInput < SimpleForm::Inputs::FileInput
+end
+
 SimpleForm.setup do |config|
   config.button_class = 'btn btn-secondary'
   config.boolean_label_class = nil
@@ -14,6 +17,13 @@ SimpleForm.setup do |config|
       ba.use :hint,  wrap_with: { tag: 'div', class: 'text-muted' }
     end
   end
+  config.wrapper_mappings = {
+    # check_boxes: :horizontal_radio_and_checkboxes,
+            # radio_buttons: :horizontal_radio_and_checkboxes,
+    file: :vertical_file_input,
+    file_hack: :vertical_file_input,
+    boolean: :vertical_boolean
+  }
 
   config.wrappers :vertical_file_input, tag: 'fieldset', class: 'form-group', error_class: 'has-error' do |b|
     b.use :html5
@@ -21,7 +31,7 @@ SimpleForm.setup do |config|
     b.use :label, class: 'control-label'
 
     b.wrapper tag: 'div' do |ba|
-      ba.use :input
+      ba.use :input, class: 'form-control-file'
       ba.use :error, wrap_with: { tag: 'span', class: 'help-block' }
       ba.use :hint,  wrap_with: { tag: 'div', class: 'text-muted' }
     end

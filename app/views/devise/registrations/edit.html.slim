@@ -4,19 +4,23 @@ h2
 = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => 'form-vertical' }) do |f|
   = f.error_notification
   = display_base_errors resource
-  = f.input :name, :autofocus => true
+  = f.input :name, autofocus: true
   = f.input :profile_link
-  = f.input :email, :required => true
-  = f.input :no_mails
-  = f.input :avatar
+  = f.input :email, required: true
+  a.btn.btn-secondary.btn-xs.m-t-1 href='#password' data-toggle='collapse'
+    i.fa.fa-arrow-circle-o-down.fa-fw>
+    | Change password
 
-  div: a.btn.btn-link href='#password' data-toggle='collapse' Change password
-
-  #password.collapse
+  #password.collapse.m-y-1
     = f.input :password, :autocomplete => "off", :hint => "leave it blank if you don't want to change it", :required => false
     = f.input :password_confirmation, :required => false
   /* = f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true */
-  = f.button :submit, 'Update', :class => 'btn-primary'
+  br
+  br
+  = f.input :no_mails, wrapper: :vertical_boolean
+  = f.input :avatar, as: :file_hack
+
+  = f.submit 'Save', :class => 'btn btn-primary'
 
 - if false
   h3 Cancel my account
