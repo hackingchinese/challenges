@@ -35,14 +35,6 @@ hr
 .sidebar
   border-left: 2px solid #ddd
 
-fieldset
-  margin: 10px -10px
-  border: 1px solid #aaa
-  padding: 10px
-
-.navbar-toggle
-  background-color: white
-
 .site-header
   display: block
   background: 0 0
@@ -75,31 +67,9 @@ h2
 h1, h2, h3, h4, h5, h6
   font-family: $font-family-serif
   font-weight: 400
-.icon-zhongwen-jiemi::before
-  content: "\e600"
-
-nav
-  background: #e3e3e3
-  li
-    width: 31.25
-    > a
-      color: #616161
-      font-size: 1em
-      font-family: $font-family-serif
-      background: transparent
-
-      &:hover
-        background: #a3a3a3
-        color: #fff
-  .main-menu li
-    font-weight: bolder
-  .sub-menu li
-    font-weight: 100
-    color: lighten(#616161, 15%)
 
 p, article
   font-family: $font-family-sans-serif
-
 
 footer
   background: #3b3b3b
@@ -110,3 +80,6 @@ footer
     color: #fff
   h2
     font-size: 2.19615em
+
+.checkbox label input:only-child
+  position: absolute

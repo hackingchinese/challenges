@@ -6,16 +6,17 @@ html
     == render 'layouts/navigation'
     - @container_class ||= 'container'
     main class=@container_class
-      == render 'layouts/messages'
-      - if @title
-        .row: .col-xs-12: h1 = @title
       - if content_for?(:sidebar)
         .row
-          .col-md-9
+          .col-md-8
+            h1 = @title if @title
+            == render 'layouts/messages'
             == yield
-          .col-md-3
+          .col-md-4
             = yield(:sidebar)
       - else
+        h1 = @title if @title
+        == render 'layouts/messages'
         = yield
 
     == render 'layouts/footer'

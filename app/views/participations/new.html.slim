@@ -2,12 +2,6 @@ h1
   | Joining #{@challenge.title}
 
 
-table.table.table-bordered
-  tbody
-    tr
-      td style='background-color: #fff; font-size: 90%'
-        = markdown @challenge.description
-
 p = t 'participations.new.welcome_text'
 
 = render 'form'

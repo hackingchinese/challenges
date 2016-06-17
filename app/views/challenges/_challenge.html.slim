@@ -5,21 +5,23 @@
         = challenge.title
     small.text-muted
       |#{l challenge.from_date, format: :long} &ndash; #{l challenge.to_date, format: :long}
+      - if challenge.running?
+        span.label.label-default<> #{challenge.days_left} Days left
     .card-text
       p
         - if challenge.users.include?(current_user)
           span.label.label-primary> Enrolled
         - if challenge.running?
-          span.label.label-primary> Running (#{l challenge.from_date, format: :long} to #{l challenge.to_date, format: :long})
-          span.label.label-default> #{challenge.days_left} Days left
+          span.label.label-primary> Running
         - if challenge.upcoming?
-          span.label.label-primary> Upcoming (#{l challenge.from_date, format: :long} to #{l challenge.to_date, format: :long})
+          span.label.label-primary> Upcoming
       p = truncate challenge.description, length: 400
     .card-text
       a.btn.btn-primary> href=challenge_path(challenge)
-        | Leaderboard
-      - if challenge.link?
-        a.btn.btn-secondary href=challenge.link Blog post
-      - if current_user and challenge.participations.where(user_id: current_user.id).count == 0
-        = link_to [:new, challenge, :participation], class: 'btn btn-primary btn-large' do
+        i.fa.fa-fw.fa-list-ol> title='Leaderboard'
+      - if challenge.link? and challenge.link.starts_with?("http")
+        a.btn.btn-secondary<> href=challenge.link
+          i.fa.fa-fw.fa-search title='Blog post'
+      - if can?(:enroll, challenge)
+        = link_to [:new, challenge, :participation], class: 'btn btn-primary' do
           = t 'challenges.challenge.enroll'

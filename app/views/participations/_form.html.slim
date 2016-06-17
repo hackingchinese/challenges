@@ -1,5 +1,4 @@
-= render @challenge
-= simple_form_for([@challenge, @participation]) do |f|
+= simple_form_for([@challenge, @participation], html: { class: 'form-inline'}) do |f|
   = f.error_notification
 
   .form-inputs
@@ -8,5 +7,7 @@
     - else
       = f.input :goal_units, label: "How many #{@challenge.unit.pluralize} do you want to complete?"
 
-  .form-actions
-    = f.button :submit, 'Take part'
+  .form-actions.m-b-2.m-t-1
+    = f.submit 'Take part', class: 'btn btn-primary'
+
+= render @challenge

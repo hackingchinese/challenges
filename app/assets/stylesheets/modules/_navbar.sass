@@ -1,0 +1,51 @@
+
+.icon-zhongwen-jiemi::before
+  content: "\e600"
+
+nav
+  background: #e3e3e3
+  li:hover
+    background: #a3a3a3
+    color: #f2f2f2
+  li > a
+    color: #616161
+    font-size: 1em
+    font-family: $font-family-serif
+    background: transparent
+    padding-left: 5px
+    padding-right: 5px
+    // &:hover
+    //   background:
+    &.active
+      color: mix($brand-primary, #616161)
+  .main-menu li
+    font-weight: bolder
+  .sub-menu li
+    font-weight: 100
+    color: lighten(#616161, 15%)
+  .sub-menu
+    float: none
+    font-size: 0.9rem
+    line-height: 1
+
+.navbar-brand
+  position: absolute
+  font-size: inherit
+
+.navbar-avatar
+  display: inline-block
+  max-width: 14px
+
+#navbar-collapse
+  margin-left: 65px
+
+.navbar .dropdown-item
+  font-size: 0.9rem
+
+main
+  margin-top: 120px
+  margin-bottom: 50px
+
+.navbar-btn
+  padding: 4px 14px
+  font-size: 0.8rem

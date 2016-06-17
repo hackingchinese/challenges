@@ -5,15 +5,16 @@ class Ability
     can :show, Challenge.visible
     can :show, Participation
     return if user.blank?
+
+    challenges_participateble = Challenge.upcoming_or_running.visible
+    challenges_loggable = Challenge.running_or_just_ended.visible
+    active_participations = Participation.where(challenge_id: challenges_loggable ).where(user_id: user.id)
+
     if user.role == 'admin'
       can :manage, :all
     else
 
       can :read, Challenge, id: Challenge.visible.pluck(:id)
-      challenges_loggable = Challenge.running_or_just_ended.visible
-      active_participations = Participation.where(challenge_id: challenges_loggable ).where(user_id: user.id)
-      challenges_participateble = Challenge.upcoming_or_running.visible
-      can :create, Participation, challenge_id: challenges_participateble.pluck(:id)
       can :create, ActivityLog, participation_id: active_participations.pluck(:id)
 
       can :destroy, Participation, user_id: user.id
@@ -25,6 +26,15 @@ class Ability
       cannot [:edit, :update], ActivityLog do |log|
         log.created_at < 1.day.ago
       end
+      can :comment, ActivityLog
     end
+
+    can :enroll, Challenge do |challenge|
+      challenges_participateble.include?(challenge) && active_participations.where(challenge_id: challenge.id).none?
+    end
+    cannot :enroll, Challenge do |c|
+      c.to_date < Date.today
+    end
+    can :create, Participation, challenge_id: challenges_participateble.pluck(:id)
   end
 end

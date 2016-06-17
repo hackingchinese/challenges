@@ -1,5 +1,13 @@
 module ApplicationHelper
 
+  def nav_link(text, path)
+    active = request.path == path ? 'active' : ''
+
+    content_tag :li, class: 'nav-item' do
+      link_to text, path, class: "nav-link #{active}"
+    end
+  end
+
   def display_base_errors resource
     return '' if (resource.errors.empty?) or (resource.errors[:base].empty?)
     messages = resource.errors[:base].map { |msg| content_tag(:p, msg) }.join

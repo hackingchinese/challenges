@@ -9,8 +9,8 @@
         small.text-muted<>
           |#{activity_log.hours_spent}h
 
-    - if activity_log.comment.present?
-      .card-text
+    .card-text
+      - if activity_log.comment.present?
         .row
           .col-xs-10
             = simple_format activity_log.comment
@@ -18,6 +18,19 @@
             = image_tag activity_log.user.avatar.url(:display), title: activity_log.user.name
 
 
+      - if can? :update, activity_log
+        .clearfix.m-t-1
+          - if can? :comment, activity_log
+            a.btn.btn-secondary
+              i.fa.fa-fw.fa-heart-o
+            a.btn.btn-primary
+              i.fa.fa-fw.fa-commenting-o
+          .pull-right
+            = link_to [:edit, activity_log.challenge, activity_log.participation, activity_log], title: 'Edit', class: 'btn btn-secondary btn-xs' do
+              i.fa.fa-edit.fa-fw
+            a<> href='#{twitter_share_url(text: activity_log.share_text)}' title='Tweet about it' class='btn btn-secondary btn-xs'
+              i.fa.fa-twitter.fa.fw
+  .card-footer
     small.text-xs-center.text-muted
       = l activity_log.date, format: "%A, %b %d"
 

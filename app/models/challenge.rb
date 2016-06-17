@@ -5,7 +5,7 @@ class Challenge < ActiveRecord::Base
   has_many :users, through: :participations
   has_many :activity_logs, through: :participations
 
-  scope :visible, -> {where visible: true }
+  scope :visible, -> { where visible: true }
   scope :running, -> { where 'from_date <= :date and to_date >= :date', date: Date.today}
   scope :upcoming_or_running, -> {
     where 'to_date >= :date', date: Date.today
