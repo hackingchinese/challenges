@@ -10,12 +10,20 @@ class ActivityLogMailer < ActionMailer::Base
   end
 
   def commented(activity_log, comment)
-    return if comment.user == activity_log.user
     @comment = comment
     @activity_log = activity_log
     @user = activity_log.user
 
     mail to: @user.email,
       subject: "[Hackingchinese] one of your activities was commented by #{comment.user.name}"
+  end
+
+  def comment_on_watched_thread(comment, user)
+    @comment = comment
+    @activity_log = comment.activity_log
+    @user = activity_log.user
+
+    mail to: @user.email,
+      subject: "[Hackingchinese] one of your comments was replied to by #{comment.user.name}"
   end
 end

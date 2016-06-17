@@ -15,24 +15,25 @@ div id='#{dom_id(activity_log)}'
           = simple_format activity_log.comment
 
 
-        - if can? :update, activity_log
-          .clearfix.m-t-1
+        .clearfix.m-t-1
+          - if can? :update, activity_log
+            = link_to [:edit, activity_log.challenge, activity_log.participation, activity_log], title: 'Edit', class: 'btn btn-secondary btn-xs' do
+              i.fa.fa-edit.fa-fw
+
+            a<> href='#{twitter_share_url(text: activity_log.share_text)}' title='Tweet about it' class='btn btn-secondary btn-xs'
+              i.fa.fa-twitter.fa.fw
+
+          .pull-right
             - if can? :like, activity_log
               a.btn.btn-secondary.btn-xs> data-remote='true' data-method='post' href='#{url_for([:toggle_like, activity_log.challenge, activity_log.participation, activity_log])}'
                 - if activity_log.liked_by.include?(current_user)
-                  i.fa.fa-fw.fa-heart
+                  i.fa.fa-fw.fa-heart style='color: #aa2222' title='Unlike'
                 - else
-                  i.fa.fa-fw.fa-heart-o
+                  i.fa.fa-fw.fa-heart-o title='Like this activity!'
             - if can? :comment, activity_log
               a.btn.btn-primary.btn-xs data-toggle='collapse' href="##{d=dom_id(activity_log, 'comment')}"
                 i.fa.fa-fw.fa-commenting-o
 
-
-            .pull-right
-              = link_to [:edit, activity_log.challenge, activity_log.participation, activity_log], title: 'Edit', class: 'btn btn-secondary btn-xs' do
-                i.fa.fa-edit.fa-fw
-              a<> href='#{twitter_share_url(text: activity_log.share_text)}' title='Tweet about it' class='btn btn-secondary btn-xs'
-                i.fa.fa-twitter.fa.fw
             - if can? :comment, activity_log
               .collapse.m-t-1 id=d
                 - comment = ActivityLog::Comment.new
@@ -43,9 +44,16 @@ div id='#{dom_id(activity_log)}'
                     .col-sm-4
                       button.btn.btn-secondary type='submit'
                         | Send
-                  .form-group
+
     .card-footer
       small.text-xs-center.text-muted
         = l activity_log.date, format: "%A, %b %d"
+      - if activity_log.liked_by.any?
+        .pull-right: small.text-muted
+          i.fa.fa-fw.fa-heart style='color: #aa2222'
+          i<> Liked by:
+          - activity_log.liked_by.each do |user|
+            span<= image_tag user.avatar.url(:thumb), style: 'max-width: 20px; display: inline-block', title: user.name
+
 
   = render partial: 'activity_logs/comment', collection: activity_log.comments.sorted

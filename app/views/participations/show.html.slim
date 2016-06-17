@@ -1,68 +1,82 @@
-- content_for :sidebar do
-  br
-  .text-xs-center
-    h2
-      = image_tag @participation.user.avatar.url(:display), style: 'max-width: 50px'
-      = @participation.user.name
-  br
-  table.table.user-table
-    tr
-      th Score
-      td = @participation.score
-    tr
-      th Rank
-      td = @participation.rank.try(:ordinalize) || "n/a"
+.row
+  .col-sm-8
+    h3
+      |Participation
+      br
+      small.text-muted
+        |in #{@participation.challenge.title}
+  .col-sm-4.text-xs-center
+    = image_tag @participation.user.avatar.url(:display), style: 'max-width: 50px'
+    = @participation.user.name
 
-    - if @participation.goal_unit?
-      tr
-        th = @participation.unit_detail[:action]
-        td = @participation.activity_logs.sum(:units_accomplished)
-    tr
-      th Hours reported
-      td = @participation.activity_logs.sum(:hours_spent)
-    - if @participation.user.profile_link?
-      tr
-        th Profile
-        td = link_to @participation.user.profile_link, rel: 'nofollow'
-    tr.active
-      th Goal
-      td = @participation.goal
-    - if can? :update, @participation
-      tr
-        td
-        td: small
-          = link_to [:edit, @challenge, @participation] do
-            | update goal
 
-h3
-  |Participation
-  br
-  small.text-muted
-    |in #{@participation.challenge.title}
-- if current_user && can?(:create, ActivityLog, participation_id: @participation.id)
-  = link_to [:new, @challenge, @participation, :activity_log], class: 'btn btn-primary m-y-1' do
-    i.fa.fa-fw.fa-plus>
-    | Report progress
-- if @participation.activity_logs.count == 0
-  p No reported activity yet.
+ul class="nav nav-tabs" role="tablist"
+  li.nav-item
+    a.active.nav-link data-toggle="tab" href="#logs" role="tab"
+      | Activities
+  li.nav-item
+    a.nav-link data-toggle="tab" href="#statistics" role="tab"
+      | Statistics
 
-- else
-  .js-chart-raw style='width: 100%; height: 400px' data-options=(Charts.goal_chart(@participation).to_json)
-  br
-  br
+.tab-content
+  .tab-pane.active id='logs' role="tabpanel"
+    - if current_user && can?(:create, ActivityLog, participation_id: @participation.id)
+      = link_to [:new, @challenge, @participation, :activity_log], class: 'btn btn-primary m-y-1' do
+        i.fa.fa-fw.fa-plus>
+        | Report progress
+    - if @participation.activity_logs.count == 0
+      p No reported activity yet.
 
-  table.table
-    tr
-      th Challenge time progress:
-      td = progress_bar percent: @participation.challenge.time_progress, outside_text: " #{@participation.challenge.days_left} Days left"
-    tr
-      th Goal progress:
-      td = progress_bar percent: @participation.goal_progress
+    - else
+      br
+      br
 
 
 
-  = render @participation.activity_logs.order('date desc')
 
-  br
-  br
+      = render @participation.activity_logs.order('date desc')
+
+  .tab-pane id='statistics' role="tabpanel"
+    .js-chart-raw style='width: 100%; height: 400px' data-options=(Charts.goal_chart(@participation).to_json)
+    br
+    br
+    .row
+      .col-sm-8
+        br
+        table.table
+          tr
+            th Challenge time progress:
+            td = progress_bar percent: @participation.challenge.time_progress, outside_text: " #{@participation.challenge.days_left} Days left"
+          tr
+            th Goal progress:
+            td = progress_bar percent: @participation.goal_progress
+      .col-sm-4
+        table.table.user-table
+          tr
+            th Score
+            td = @participation.score
+          tr
+            th Rank
+            td = @participation.rank.try(:ordinalize) || "n/a"
+
+          - if @participation.goal_unit?
+            tr
+              th = @participation.unit_detail[:action]
+              td = @participation.activity_logs.sum(:units_accomplished)
+          tr
+            th Hours reported
+            td = @participation.activity_logs.sum(:hours_spent)
+          - if @participation.user.profile_link?
+            tr
+              th Profile
+              td = link_to @participation.user.profile_link, rel: 'nofollow'
+          tr.active
+            th Goal
+            td = @participation.goal
+          - if can? :update, @participation
+            tr
+              td
+              td: small
+                = link_to [:edit, @challenge, @participation] do
+                  | update goal
 

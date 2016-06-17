@@ -7,6 +7,9 @@ $(document).on 'ready page:load', ->
     false
 
 
-  $('.js-chart-raw').each ->
-    el = $(this)
-    el.highcharts(el.data('options'))
+
+  $(document).on 'shown.bs.tab', ->
+    $('.js-chart-raw').each ->
+      el = $(this)
+      el.highcharts(el.data('options'))
+    # $(window).resize()
