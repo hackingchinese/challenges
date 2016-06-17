@@ -1,15 +1,16 @@
 class ActivityLog < ActiveRecord::Base
+
   belongs_to :user
   belongs_to :participation
   has_one :challenge, through: :participation
-  validates_presence_of :user_id, :participation_id
-  validates :units_accomplished, numericality: { greater_than: 0 }, if: ->(r){r.challenge.goal_unit? }
-  validates :minutes, numericality: { greater_than: 0 }, if: ->(r){r.challenge.goal_time? }
-
-  validate :date_valid
-
-  has_many :likes, class_name: 'ActivityLog::Like'
+  has_many :likes, class_name: 'ActivityLog::Like', dependent: :destroy
   has_many :liked_by, class_name: 'User', through: :likes, source: :user
+  has_many :comments, class_name: "ActivityLog::Comment", dependent: :destroy
+
+  validates_presence_of :user_id, :participation_id
+  validates :units_accomplished, numericality: { greater_than: 0 }, if: ->(r){ r.challenge.goal_unit? }
+  validates :minutes, numericality: { greater_than: 0 }, if: ->(r){ r.challenge.goal_time? }
+  validate :date_valid
 
   before_save :set_score
   after_save :update_participation_score

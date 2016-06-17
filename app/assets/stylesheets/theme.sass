@@ -61,3 +61,29 @@ td > .progress
     font-size: 90%
   th, td
     line-height: 1.1
+
+$comment-distance: 20px
+.comment
+  &:before, &:after
+    content: " "
+    border-left: 1px solid #ccc
+    left: -1 * $comment-distance
+    position: absolute
+    width: $comment-distance
+
+  &:before
+    border-bottom: 1px solid #ccc
+    left: -1 * $comment-distance
+    top: -15px
+    height: 50px
+  &:after
+    top: 15px
+    height: 100%
+  .card-footer
+    padding-bottom: 5px
+    padding-top: 5px
+    font-size: 0.8rem
+
+.comment:last-of-type:after
+  display: none
+  &:last

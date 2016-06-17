@@ -1,0 +1,16 @@
+p Hi #{@user.name},
+
+p the user #{@comment.user.name} has commented one of your activities:
+
+blockquote = @comment.text
+
+p = link_to challenge_participation_url(@activity_log.challenge, @activity_log.participation) do
+  | Link to your participation page where you can respond to the comment
+
+p Best wishes,
+
+p Olle
+
+p PS: You can disable eMail notification in your account settings.
+
+

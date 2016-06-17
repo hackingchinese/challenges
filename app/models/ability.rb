@@ -28,6 +28,7 @@ class Ability
       end
       can :comment, ActivityLog
       can :like, ActivityLog
+      can :create, ActivityLog::Comment
     end
     cannot :like, ActivityLog, user_id: user.id
 

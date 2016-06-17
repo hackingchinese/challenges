@@ -1,0 +1,13 @@
+.card.comment style='margin-left: 50px'
+  .card-block
+    p.card-text= comment.text
+  .card-footer.text-muted
+    .row
+      .col-sm-6
+        small= l comment.created_at.to_time, format: :long
+      .col-sm-6
+        .pull-right
+          = image_tag comment.user.avatar.url(:display), class: 'navbar-avatar'
+          = ' '
+          small= comment.user.name
+

@@ -1,40 +1,51 @@
-.card id='#{dom_id(activity_log)}'
-  .card-block
-    h5.card-title
-      | #{activity_log.minutes} minutes
-      - if activity_log.participation.goal_unit?
-        span<> &ndash;
-        = activity_log.units_accomplished
-      .pull-right
-        small.text-muted<>
-          |#{activity_log.hours_spent}h
+div id='#{dom_id(activity_log)}'
+  .card
+    .card-block
+      h5.card-title
+        | #{activity_log.minutes} minutes
+        - if activity_log.participation.goal_unit?
+          span<> &ndash;
+          = activity_log.units_accomplished
+        .pull-right
+          small.text-muted<>
+            |#{activity_log.hours_spent}h
 
-    .card-text
-      - if activity_log.comment.present?
-        .row
-          .col-xs-10
-            = simple_format activity_log.comment
-          .col-xs-2
-            = image_tag activity_log.user.avatar.url(:display), title: activity_log.user.name
+      .card-text
+        - if activity_log.comment.present?
+          = simple_format activity_log.comment
 
 
-      - if can? :update, activity_log
-        .clearfix.m-t-1
-          - if can? :like, activity_log
-            a.btn.btn-secondary.btn-xs> data-remote='true' data-method='post' href='#{url_for([:toggle_like, activity_log.challenge, activity_log.participation, activity_log])}'
-              - if activity_log.liked_by.include?(current_user)
-                i.fa.fa-fw.fa-heart
-              - else
-                i.fa.fa-fw.fa-heart-o
-          - if can? :comment, activity_log
-            a.btn.btn-primary.btn-xs
-              i.fa.fa-fw.fa-commenting-o
-          .pull-right
-            = link_to [:edit, activity_log.challenge, activity_log.participation, activity_log], title: 'Edit', class: 'btn btn-secondary btn-xs' do
-              i.fa.fa-edit.fa-fw
-            a<> href='#{twitter_share_url(text: activity_log.share_text)}' title='Tweet about it' class='btn btn-secondary btn-xs'
-              i.fa.fa-twitter.fa.fw
-  .card-footer
-    small.text-xs-center.text-muted
-      = l activity_log.date, format: "%A, %b %d"
+        - if can? :update, activity_log
+          .clearfix.m-t-1
+            - if can? :like, activity_log
+              a.btn.btn-secondary.btn-xs> data-remote='true' data-method='post' href='#{url_for([:toggle_like, activity_log.challenge, activity_log.participation, activity_log])}'
+                - if activity_log.liked_by.include?(current_user)
+                  i.fa.fa-fw.fa-heart
+                - else
+                  i.fa.fa-fw.fa-heart-o
+            - if can? :comment, activity_log
+              a.btn.btn-primary.btn-xs data-toggle='collapse' href="##{d=dom_id(activity_log, 'comment')}"
+                i.fa.fa-fw.fa-commenting-o
 
+
+            .pull-right
+              = link_to [:edit, activity_log.challenge, activity_log.participation, activity_log], title: 'Edit', class: 'btn btn-secondary btn-xs' do
+                i.fa.fa-edit.fa-fw
+              a<> href='#{twitter_share_url(text: activity_log.share_text)}' title='Tweet about it' class='btn btn-secondary btn-xs'
+                i.fa.fa-twitter.fa.fw
+            - if can? :comment, activity_log
+              .collapse.m-t-1 id=d
+                - comment = ActivityLog::Comment.new
+                = form_tag challenge_participation_activity_log_comments_path(activity_log.challenge, activity_log.participation, activity_log, comment), class: '' do
+                  .row
+                    .col-sm-8
+                      textarea.form-control name='comment[text]' placeholder='Comment'
+                    .col-sm-4
+                      button.btn.btn-secondary type='submit'
+                        | Send
+                  .form-group
+    .card-footer
+      small.text-xs-center.text-muted
+        = l activity_log.date, format: "%A, %b %d"
+
+  = render partial: 'activity_logs/comment', collection: activity_log.comments.sorted
