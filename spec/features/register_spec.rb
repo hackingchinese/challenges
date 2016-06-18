@@ -41,6 +41,9 @@ describe 'Registration', js: true do
     fill_in 'user[password]', with: 'newpassword'
     fill_in 'user[password_confirmation]', with: 'newpassword'
     click_on 'Save'
+    if !page.has_content? 'successfully'
+      click_on 'Save'
+    end
     expect(page).to have_content 'successfully'
     expect(User.first.profile_link).to eql 'http://www.stefanwienert.de'
     expect(User.first.valid_password?('newpassword')).to eql true
