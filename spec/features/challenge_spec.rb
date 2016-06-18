@@ -12,10 +12,10 @@ describe 'Challenge', js: true do
     fill_in 'hours', with: 50
     click_on 'Take part'
 
-    click_on 'Report progress'
+    all('a', text: 'Report progress').first.click
     fill_in 'Minutes', with: '600'
     fill_in 'Comment', with: 'Very good!'
-    click_on 'Log'
+    click_on 'Log activity'
 
     expect(page).to have_content 'successful'
     ActivityLog.first.tap do |al|
@@ -27,9 +27,6 @@ describe 'Challenge', js: true do
       expect(al.participation).to be_present
       expect(al.challenge).to be == challenge
     end
-
-    click_on 'View your statistics'
-    expect(page).to have_content '20.0%'
 
     visit '/'
     click_on 'Spring break'
@@ -44,13 +41,13 @@ describe 'Challenge', js: true do
     click_on 'Enroll!'
     fill_in 'pages', with: 50
     click_on 'Take part'
-    click_on 'Report progress'
+    all('a', text: 'Report progress').first.click
 
     fill_in 'pages', with: '5'
     click_on 'Optional: Please report'
     fill_in 'Minutes', with: 60
     fill_in 'Comment', with: 'Very good!'
-    click_on 'Log'
+    click_on 'Log activity'
     expect(page).to have_content 'successful'
     ActivityLog.first.tap do |al|
       expect(al.hours_spent).to be == 1.0
@@ -61,8 +58,6 @@ describe 'Challenge', js: true do
       expect(al.participation).to be_present
       expect(al.challenge).to be == challenge
     end
-    click_on 'View your statistics'
-    expect(page).to have_content '10.0%'
   end
 
   specify 'Can participate in a challenge that is not started yet, but cant log anything' do

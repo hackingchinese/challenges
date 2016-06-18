@@ -9,7 +9,6 @@
       a href='#time' data-toggle='collapse'
         = t 'activity_logs.new.optional_time_logging'
 
-
   #time.collapse class="#{participation.challenge.goal_time? && 'in'}"
     = f.input :minutes
     - if participation.challenge.is_a? IntensiveChallenge

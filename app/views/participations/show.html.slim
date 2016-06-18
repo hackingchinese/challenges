@@ -20,7 +20,7 @@ ul class="nav nav-tabs" role="tablist"
 
 .tab-content
   .tab-pane.active id='logs' role="tabpanel"
-    - if current_user && can?(:create, ActivityLog, participation_id: @participation.id)
+    - if current_user && can?(:create, ActivityLog.new(participation_id: @participation.id))
       = link_to [:new, @challenge, @participation, :activity_log], class: 'btn btn-primary m-y-1' do
         i.fa.fa-fw.fa-plus>
         | Report progress
@@ -30,10 +30,6 @@ ul class="nav nav-tabs" role="tablist"
     - else
       br
       br
-
-
-
-
       = render @participation.activity_logs.order('date desc')
 
   .tab-pane id='statistics' role="tabpanel"

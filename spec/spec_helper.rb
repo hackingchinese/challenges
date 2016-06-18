@@ -28,6 +28,9 @@ RSpec.configure do |config|
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
   end
+  config.before(:each, js: true) do
+    page.driver.browser.url_blacklist = ["http://fonts.googleapis.com",  "http://fonts.useso.com"]
+  end
   config.before(:each) do |example|
     ex = defined?(example.example) ? example.example : example
     DatabaseCleaner.strategy = ex.metadata[:js] ? :deletion : :transaction
