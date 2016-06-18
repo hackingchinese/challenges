@@ -1,10 +1,10 @@
 module ApplicationHelper
 
-  def nav_link(text, path)
+  def nav_link(text, path, li_class: 'nav-item', a_class: 'nav-link')
     active = request.path == path ? 'active' : ''
 
-    content_tag :li, class: 'nav-item' do
-      link_to text, path, class: "nav-link #{active}"
+    content_tag :li, class: li_class do
+      link_to text, path, class: "#{a_class} #{active}"
     end
   end
 

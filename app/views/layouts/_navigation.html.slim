@@ -27,9 +27,9 @@ nav.navbar.bg-faded.navbar-fixed-top
           a.nav-link.dropdown-toggle#user-menu href='#' data-toggle='dropdown'  aria-haspopup="true" aria-expanded="false"
             |#{image_tag current_user.avatar.url(:thumb), class: 'navbar-avatar'}&nbsp;#{current_user.name}<b class='caret'></b>
           ul.dropdown-menu aria-labelledby="user-menu"
-            li.dropdown-item= link_to 'Edit account', edit_user_registration_path
-            li.dropdown-item= link_to 'Mail preferences', '/mail_preference'
-            li.dropdown-item= link_to 'Logout', destroy_user_session_path, :method=>'delete'
+            = nav_link "Edit account", edit_user_registration_path, li_class: 'dropdown-item', a_class: ''
+            = nav_link "Mail preferences", "/mail_preference", li_class: 'dropdown-item', a_class: ''
+            li.dropdown-item= link_to 'Logout', destroy_user_session_path, method: 'delete', a_class: ''
 
       - if can? :create, Challenge
         li.dropdown.nav-item
@@ -37,14 +37,11 @@ nav.navbar.bg-faded.navbar-fixed-top
             | Admin
             b.caret<
           ul.dropdown-menu
-            li.dropdown-item = link_to :challenges do
-              | Challenges
-            li.dropdown-item = link_to [:admin, :users] do
-              | Users
-            li.dropdown-item = link_to [:admin, :quality_tables] do
-              | Quality Tables
+            = nav_link "Challenges", challenges_path, li_class: 'dropdown-item', a_class: ''
+            = nav_link "Users", [ :admin, :users ], li_class: 'dropdown-item', a_class: ''
+            = nav_link "Quality Tables", [ :admin, :quality_tables ], li_class: 'dropdown-item', a_class: ''
       - else
-        = nav_link "Challenges", '/'
+        = nav_link "Challenges", challenges_path
         = nav_link "Login", new_user_session_path
         = nav_link "Sign up", new_user_registration_path
 
