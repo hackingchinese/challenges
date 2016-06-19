@@ -46,6 +46,6 @@ nav.navbar.bg-faded.navbar-fixed-top
         = nav_link "Sign up", new_user_registration_path
 
       - if c = (@challenge || @participation.try(:challenge)) and c.running_or_just_ended?
-        = render 'challenges/challenge_actions', challenge: c, participation: c.participations.where(user_id: current_user.try(:id)).first
+        = render 'challenges/challenge_actions', challenge: c, participation: current_participation
 
 

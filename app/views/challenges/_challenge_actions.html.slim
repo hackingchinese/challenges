@@ -1,12 +1,8 @@
 - klasses = ->(page) { "nav-link #{controller_name == page ? 'active' : ''}" }
 - if participation and current_user
-  - if can? :create, ActivityLog, participation_id: participation.id
-    li.nav-item>
-      = link_to [:new, challenge, participation, :activity_log], class: klasses.('activity_logs') do
-        | Report progress
   li.nav-item>
     = link_to [challenge, participation], class: klasses.('participations') do
-      | View your activities
+      | Your activities
   li.nav-item>
     = link_to challenge, class: klasses.('challenges') do
       | Leaderboard

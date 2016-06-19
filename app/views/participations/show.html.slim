@@ -37,7 +37,7 @@ ul class="nav nav-tabs" role="tablist"
     br
     br
     .row
-      .col-sm-8
+      .col-lg-6
         br
         table.table
           tr
@@ -46,7 +46,7 @@ ul class="nav nav-tabs" role="tablist"
           tr
             th Goal progress:
             td = progress_bar percent: @participation.goal_progress
-      .col-sm-4
+      .col-lg-6
         table.table.user-table
           tr
             th Score
@@ -65,7 +65,9 @@ ul class="nav nav-tabs" role="tablist"
           - if @participation.user.profile_link?
             tr
               th Profile
-              td = link_to @participation.user.profile_link, rel: 'nofollow'
+              td
+                .text-truncate
+                  = link_to @participation.user.profile_link, rel: 'nofollow'
           tr.active
             th Goal
             td = @participation.goal

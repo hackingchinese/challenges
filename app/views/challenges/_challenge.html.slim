@@ -1,26 +1,27 @@
 .card
   .card-block
-    h3.card-title
-      = link_to challenge do
-        = challenge.title
-    small.text-muted
-      |#{l challenge.from_date, format: :long} &ndash; #{l challenge.to_date, format: :long}
-      - if challenge.running?
-        span.label.label-default<> #{challenge.days_left} Days left
-    .card-text
-      p
-        - if challenge.users.include?(current_user)
-          span.label.label-primary> Enrolled
+    = cache [challenge, challenge.activity_logs.maximum(:updated_at)] do
+      h3.card-title
+        = link_to challenge do
+          = challenge.title
+      small.text-muted
+        |#{l challenge.from_date, format: :long} &ndash; #{l challenge.to_date, format: :long}
         - if challenge.running?
-          span.label.label-primary> Running
-        - if challenge.upcoming?
-          span.label.label-primary> Upcoming
-        - if !challenge.future?
-          span.label.label-default<> title='Participants'
-            |#{challenge.participations.count}人
-          span.label.label-default<> title='Hours logged'
-            |#{challenge.activity_logs.sum(:hours_spent).round}h
-      p = truncate challenge.description, length: 400
+          span.label.label-default<> #{challenge.days_left} Days left
+      .card-text
+        p
+          - if challenge.users.include?(current_user)
+            span.label.label-primary> Enrolled
+          - if challenge.running?
+            span.label.label-primary> Running
+          - if challenge.upcoming?
+            span.label.label-primary> Upcoming
+          - if !challenge.future?
+            span.label.label-default<> title='Participants'
+              |#{challenge.participations.count}人
+            span.label.label-default<> title='Hours logged'
+              |#{challenge.activity_logs.sum(:hours_spent).round}h
+        p = truncate challenge.description, length: 400
     .card-text
       a.btn.btn-primary> href=challenge_path(challenge)
         i.fa.fa-fw.fa-list-ol> title='Leaderboard'

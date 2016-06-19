@@ -18,6 +18,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def current_participation
+    @current_participation ||=
+      @participation || (@challenge && @challenge.participations.find_by(user_id: current_user.try(:id)))
+  end
+  helper_method :current_participation
+
   def resource_params
     permitted_params
   end

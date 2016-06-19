@@ -4,7 +4,7 @@
     - if @challenge.link?
       tr
         td Link
-        td
+        td.text-truncate
           = link_to @challenge.link do
             = truncate @challenge.link
     - if @challenge.running?
@@ -12,17 +12,15 @@
         th Days left
         td = @challenge.days_left
     tr
-      th style='width: 120px' Participants
+      th  Participants
       td = @challenge.participations.count
     - if @challenge.goal_unit?
       tr
         th = @challenge.unit_detail[:action]
         td = @challenge.activity_logs.sum(:units_accomplished)
-
     tr
       th Hours reported
       td = @challenge.activity_logs.sum(:hours_spent)
-
     tr
       th Duration
       td
@@ -34,6 +32,9 @@
   = markdown @challenge.description
 br
 
+- if current_participation && can?(:create, ActivityLog, participation_id: current_participation.id)
+  = link_to [:new, @challenge, current_participation, :activity_log], class: 'btn btn-primary' do
+    | Report progress
 hr
 h2 Leaderboard
 
