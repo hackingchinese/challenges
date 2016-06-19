@@ -41,7 +41,6 @@ gem 'rmagick'
 gem 'redcarpet'
 gem 'whenever'
 gem "stringex"
-gem "kaminari-bootstrap", '~> 3.0.1'
 gem "simple_captcha2", '~> 0.3', require: 'simple_captcha'
 gem "autoprefixer-rails"
 

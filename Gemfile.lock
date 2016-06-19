@@ -120,12 +120,6 @@ GEM
       thor (>= 0.14, < 2.0)
     json (1.8.3)
     jwt (1.5.1)
-    kaminari (0.17.0)
-      actionpack (>= 3.0.0)
-      activesupport (>= 3.0.0)
-    kaminari-bootstrap (3.0.1)
-      kaminari (>= 0.13.0)
-      rails
     launchy (2.4.3)
       addressable (~> 2.3)
     loofah (2.0.3)
@@ -316,7 +310,6 @@ DEPENDENCIES
   highcharts-rails (~> 3.0.0)
   inherited_resources
   jquery-rails
-  kaminari-bootstrap (~> 3.0.1)
   mini_magick
   omniauth
   omniauth-facebook

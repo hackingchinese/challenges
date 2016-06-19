@@ -2,6 +2,14 @@ h1 = t 'pages.index.title'
 
 p = t 'pages.index.intro'
 p: a(href='#about' data-toggle='collapse') More about the challenge engine...
+- if !current_user
+  hr
+  a.btn.btn-lg.btn-primary> href=(new_user_registration_path)
+    i.fa.fa-pencil-square-o.fa-fw>
+    | Sign Up
+  a.btn.btn-lg.btn-primary> href=(new_user_session_path)
+    i.fa.fa-sign-in.fa-fw>
+    | Sign In
 #about.collapse
   = markdown t 'pages.about.content_markdown'
 
@@ -17,11 +25,3 @@ p: a(href='#about' data-toggle='collapse') More about the challenge engine...
   h3.m-t-2: .text-xs-center = t 'pages.index.archive_headline'
   = render "challenges/challenge_list", challenges: @archive
 
-- if !current_user
-  hr
-  a.btn.btn-lg.btn-primary> href=(new_user_registration_path)
-    i.fa.fa-pencil-square-o.fa-fw>
-    | Sign Up
-  a.btn.btn-lg.btn-primary> href=(new_user_session_path)
-    i.fa.fa-sign-in.fa-fw>
-    | Sign In
