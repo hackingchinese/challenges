@@ -5,7 +5,7 @@ source 'https://rubygems.org'
 gem 'rails', '~> 4.2.0'
 gem 'pg'
 gem 'slim-rails'
-gem 'simple_form', '~>3.1.0rc1'
+gem 'simple_form', '~> 3.1'
 gem 'inherited_resources'
 gem 'responders'
 
@@ -22,21 +22,18 @@ gem 'cancancan', '~> 1.7'
 #
 gem 'sass-rails'
 gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails', '~> 4.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'bootstrap', '~> 4.0.0.alpha3'
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'
 end
-
-# gem 'bootswatch-rails'
 gem "font-awesome-rails"
 gem "highcharts-rails", "~> 3.0.0"
 
 
 ### Utils
-
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'quilt'
@@ -45,7 +42,7 @@ gem 'redcarpet'
 gem 'whenever'
 gem "stringex"
 gem "kaminari-bootstrap", '~> 3.0.1'
-gem "simple_captcha2", '~> 0.3.0', require: 'simple_captcha'
+gem "simple_captcha2", '~> 0.3', require: 'simple_captcha'
 gem "autoprefixer-rails"
 
 
