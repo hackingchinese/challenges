@@ -28,7 +28,7 @@ class Ability
         log.created_at < 1.day.ago
       end
       can :comment, ActivityLog
-      can :like, ActivityLog
+      can [:like, :toggle_like], ActivityLog
       can :create, ActivityLog::Comment
     end
     cannot :like, ActivityLog, user_id: user.id

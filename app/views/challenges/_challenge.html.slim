@@ -15,6 +15,11 @@
           span.label.label-primary> Running
         - if challenge.upcoming?
           span.label.label-primary> Upcoming
+        - if !challenge.future?
+          span.label.label-default<> title='Participants'
+            |#{challenge.participations.count}人
+          span.label.label-default<> title='Hours logged'
+            |#{challenge.activity_logs.sum(:hours_spent).round}h
       p = truncate challenge.description, length: 400
     .card-text
       a.btn.btn-primary> href=challenge_path(challenge)

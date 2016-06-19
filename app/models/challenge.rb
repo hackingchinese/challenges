@@ -34,6 +34,10 @@ class Challenge < ActiveRecord::Base
     running? or to_date == Date.yesterday
   end
 
+  def future?
+    from_date > Date.today
+  end
+
   def to_param
     "#{id}-#{title.to_url}"
   end

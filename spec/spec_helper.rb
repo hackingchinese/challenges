@@ -49,4 +49,10 @@ RSpec.configure do |config|
     click_on 'Log in'
     expect(page).to have_content 'successfully'
   end
+  def in_browser(name)
+    old_session = Capybara.session_name
+    Capybara.session_name = name
+    yield
+    Capybara.session_name = old_session
+  end
 end

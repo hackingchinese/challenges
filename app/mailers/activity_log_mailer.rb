@@ -23,7 +23,7 @@ class ActivityLogMailer < ActionMailer::Base
   def comment_on_watched_thread(comment, user)
     @comment = comment
     @activity_log = comment.activity_log
-    @user = activity_log.user
+    @user = user
     return if !MailPreference.allowed?(@user, :comment_on_watched_thread)
 
     mail to: @user.email,
