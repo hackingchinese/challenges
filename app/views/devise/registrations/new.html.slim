@@ -3,10 +3,10 @@
   p
     = t 'sessions.new.intro'
   p
-    a.btn.btn-primary.btn-large href='/auth/twitter'
+    a.btn.btn-primary.btn-large(href='/auth/twitter' data-no-turbolinks)
       i.fa.fa-twitter.fa-2x.fa-fw
     = ' '
-    a.btn.btn-primary.btn-large href='/auth/facebook'
+    a.btn.btn-primary.btn-large(href='/auth/facebook' data-no-turbolinks)
       i.fa.fa-facebook.fa-2x.fa-fw
 
 h2 Sign up via E-Mail
@@ -21,4 +21,6 @@ h2 Sign up via E-Mail
   = show_simple_captcha(input_html: { class: 'form-control'})
 
   = f.button :submit, 'Sign up', :class => 'btn-primary'
+br
+br
 = render "devise/shared/links"

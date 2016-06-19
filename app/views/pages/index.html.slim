@@ -6,7 +6,7 @@ p: a(href='#about' data-toggle='collapse') More about the challenge engine...
   = markdown t 'pages.about.content_markdown'
 
 - if @running.count > 0
-  h2.m-t-2: .text-xs-center = t 'pages.index.current_headline'
+  h3.m-t-2: .text-xs-center = t 'pages.index.current_headline'
   = render "challenges/challenge_list", challenges: @running
 
 - if @upcoming.count > 0

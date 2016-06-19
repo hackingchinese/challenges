@@ -3,13 +3,14 @@
   .card
     .card-block
       p
-        a.btn.btn-primary.btn-large href='/auth/twitter'
+        a.btn.btn-primary.btn-large(href='/auth/twitter' data-no-turbolinks)
           i.fa.fa-twitter.fa-2x.fa-fw
         = ' '
-        a.btn.btn-primary.btn-large href='/auth/facebook'
+        a.btn.btn-primary.btn-large(href='/auth/facebook' data-no-turbolinks)
           i.fa.fa-facebook.fa-2x.fa-fw
     .card-block
       = render "devise/shared/links"
+      br
 
 h2 Log in
 
@@ -23,3 +24,4 @@ h2 Log in
   = f.input :password
   = f.input :remember_me, wrapper: :vertical_boolean, :as => :boolean if devise_mapping.rememberable?
   = f.button :submit, "Log in", :class => 'btn-primary'
+br
