@@ -16,7 +16,7 @@ class ActivityLogsController < InheritedResources::Base
     authorize! :like, @activity_log
     existing = @activity_log.likes.where(user_id: current_user.id).first_or_initialize
     if existing.new_record?
-      ActivityLogMailer.liked(@activity_log, current_user).deliver
+      ActivityLogMailer.liked(@activity_log, current_user).deliver_now
       existing.save
     else
       existing.destroy

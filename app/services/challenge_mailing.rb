@@ -5,11 +5,11 @@ class ChallengeMailing
         case (challenge.from_date - Date.today).round
         when 3
           users.find_each do |user|
-            ChallengeMailer.starts_soon(challenge, user).deliver
+            ChallengeMailer.starts_soon(challenge, user).deliver_now
           end
         when 0
           users.find_each do |user|
-            ChallengeMailer.started(challenge, user).deliver
+            ChallengeMailer.started(challenge, user).deliver_now
           end
         end
       end

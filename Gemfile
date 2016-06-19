@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ## Basic
 #
-gem 'rails', '~> 4.1.0'
+gem 'rails', '~> 4.2.0'
 gem 'pg'
 gem 'slim-rails'
 gem 'simple_form', '~>3.1.0rc1'
