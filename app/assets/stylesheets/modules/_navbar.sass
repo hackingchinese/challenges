@@ -2,6 +2,9 @@
 .icon-zhongwen-jiemi::before
   content: "\e600"
 
+#navbar-collapse
+  margin-left: 65px
+
 nav
   background: #e3e3e3
   li:hover
@@ -28,6 +31,37 @@ nav
     font-size: 0.9rem
     line-height: 1
 
++media-breakpoint-down(sm)
+  #navbar-collapse
+    width: 100%
+    height: 100%
+    overflow: hidden
+    padding-left: 65px
+    margin-left: 0
+  .navbar-nav
+    .nav-item
+      float: left
+      width: 47%
+      margin-right: 2.5%
+    &.main-menu
+      &:before
+        content: "Main sections"
+        text-align: center
+        display: block
+        font-size: 0.8rem
+        font-family: $font-family-sans-serif
+    &.sub-menu
+      margin-top: 20px
+    .nav-item + .nav-item
+      margin-left: 0
+
++media-breakpoint-down(xs)
+  .navbar-nav
+    .nav-item
+      width: 100%
+      margin-right: 0
+
+
 .navbar-brand
   position: absolute
   font-size: inherit
@@ -36,8 +70,6 @@ nav
   display: inline-block
   max-width: 14px
 
-#navbar-collapse
-  margin-left: 65px
 
 .navbar .dropdown-item
   font-size: 0.9rem
