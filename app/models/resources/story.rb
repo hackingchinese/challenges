@@ -4,4 +4,5 @@ class Resources::Story < ActiveRecord::Base
 
 	has_many :taggings, class_name: "Resources::Tagging", foreign_key: 'story_id', dependent: :destroy
 	has_many :tags, through: :taggings
+  has_many :likes, class_name: "Resources::Like", as: :likeable
 end

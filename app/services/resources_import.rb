@@ -7,6 +7,8 @@ class ResourcesImport
     tags!
     users!
     stories!
+    comments!
+    # likes!
   end
 
   def tags!
@@ -62,6 +64,18 @@ class ResourcesImport
       end
     end
 
+  end
+
+  def comments!
+    yaml('comments').each do |hash|
+      comment = Resources::Comment.where(id: hash['id']).first_or_initialize
+      comment.created_at = hash['created_at']
+      comment.story = Resources::Story.find(hash['story_id'])
+      comment.comment = hash['comment']
+      comment.id = hash['id']
+      comment.user_id = @user_mapping[ hash['user_id'] ]
+      comment.save!
+    end
   end
 
   def yaml(file)
