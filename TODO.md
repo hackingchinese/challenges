@@ -10,6 +10,7 @@ Rails 4.2 -> Rails 5
 * Paginate leaderboard style
 
 * Migration der Leuts die keine mails mehr wollen
+* Grab Gravatar instead auto image
 
 
 ## Resources

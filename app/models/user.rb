@@ -9,15 +9,12 @@ class User < ActiveRecord::Base
   has_many :challenges, through: :participations
   has_many :activity_logs, dependent: :destroy
   has_many :account_connections, dependent: :destroy
-
   has_one :mail_preference
 
   validates :name, presence: true, uniqueness: true
-
   after_create :generate_random_image
 
   scope :with_email, -> { where('no_mails = ?', false).where('email not like ?', '%@changeme.com') }
-
 
   def fake_email?
     !email || email[/@changeme/]
