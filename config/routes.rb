@@ -14,6 +14,15 @@ HnChallenge::Application.routes.draw do
     resources :quality_tables
   end
 
+  get 'resources' => 'resources/stories#index'
+  namespace :resources do
+    resources :stories do
+      member do
+        post :toggle_like
+      end
+    end
+  end
+
   get 'mail_preference' => 'mail_preferences#edit'
   post 'mail_preference' => 'mail_preferences#update'
 

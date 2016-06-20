@@ -1,0 +1,11 @@
+.card
+  .card-block
+    .row
+      .col-xs-3.col-sm-2
+        .text-xs-center
+          div= image_tag comment.user.avatar.url(:display), style: 'max-width: 50px'
+          small.text-muted= comment.user.name
+      .col-xs-9.col-sm-10
+        p
+          small.text-muted= l comment.created_at, format: :long
+        = markdown comment.comment

@@ -1,5 +1,10 @@
 class ApplicationController < ActionController::Base
 
+  def navigation_name
+    'challenges'
+  end
+  helper_method :navigation_name
+
   include SimpleCaptcha::ControllerHelpers
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.

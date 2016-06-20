@@ -12,17 +12,21 @@ nav.navbar.bg-faded.navbar-fixed-top
       li.nav-item
         a.nav-link href="//www.hackingchinese.com/archive-2/"  Categories
       li.nav-item
-        a.nav-link href="//www.hackingchinese.com/resources/"  Resources
+        a.nav-link class='#{navigation_name == 'resources' ? 'active' : ''}' href="/resources/"  Resources
       li.nav-item
-        a.nav-link.active href="/"  Challenges
+        a.nav-link class='#{navigation_name == 'challenges' ? 'active' : ''}' href="/"  Challenges
+
       li.nav-item
         a.nav-link href="//www.hackingchinese.com/about/practical-guide-to-learning-mandarin/"  Course
       li.nav-item
         a.nav-link href="//www.hackingchinese.com/about/"  About
 
     div.clearfix: ul.nav.navbar-nav.sub-menu
+      - if navigation_name == 'challenges'
+        = render "layouts/navigation_challenge"
+      - else
+        = render "layouts/navigation_resources"
       - if current_user
-        = nav_link "Challenges", '/'
         li.nav-item.dropdown
           a.nav-link.dropdown-toggle#user-menu href='#' data-toggle='dropdown'  aria-haspopup="true" aria-expanded="false"
             |#{image_tag current_user.avatar.url(:thumb), class: 'navbar-avatar'}&nbsp;#{current_user.name}<b class='caret'></b>
@@ -30,22 +34,8 @@ nav.navbar.bg-faded.navbar-fixed-top
             = nav_link "Edit account", edit_user_registration_path, li_class: 'dropdown-item', a_class: ''
             = nav_link "Mail preferences", "/mail_preference", li_class: 'dropdown-item', a_class: ''
             li.dropdown-item= link_to 'Logout', destroy_user_session_path, method: 'delete', a_class: ''
-
-      - if can? :create, Challenge
-        li.dropdown.nav-item
-          a.nav-link.dropdown-toggle data-toggle='dropdown' href='#'
-            | Admin
-            b.caret<
-          ul.dropdown-menu
-            = nav_link "Challenges", challenges_path, li_class: 'dropdown-item', a_class: ''
-            = nav_link "Users", [ :admin, :users ], li_class: 'dropdown-item', a_class: ''
-            = nav_link "Quality Tables", [ :admin, :quality_tables ], li_class: 'dropdown-item', a_class: ''
       - else
-        = nav_link "Challenges", challenges_path
         = nav_link "Login", new_user_session_path
         = nav_link "Sign up", new_user_registration_path
-
-      - if c = (@challenge || @participation.try(:challenge)) and c.running_or_just_ended?
-        = render 'challenges/challenge_actions', challenge: c, participation: current_participation
 
 

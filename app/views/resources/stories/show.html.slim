@@ -1,0 +1,21 @@
+h2 = @story.title
+
+.row
+  .col-md-6
+    = link_to @story.url do
+      = truncate pretty_print_url(@story.url), length: 50
+    p
+      small.text-muted
+        |Submitted by #{@story.user.name} on #{l @story.created_at, format: :long}
+  .col-md-6
+    - @story.tags.each do |tag|
+      span.label.label-default<> = tag.name
+br
+.entry-content = markdown @story.description
+
+br
+- if @story.comments.blank?
+  p: i No comments yet.
+
+- else
+  = render @story.comments.order('created_at asc')

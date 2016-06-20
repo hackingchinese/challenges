@@ -37,4 +37,13 @@ module ApplicationHelper
   def twitter_share_url(text: '', url: request.url)
     "https://twitter.com/share?#{{ text: text, url: url}.to_query}"
   end
+
+  def pretty_print_url(url)
+    URI.parse(url).tap{|uri| uri.scheme = nil; uri.query = nil }.to_s.sub('www.', '').sub('//','')
+  end
+
+  # TODO
+  def markdown(text)
+    text
+  end
 end

@@ -34,15 +34,16 @@ gem "highcharts-rails", "~> 3.0.0"
 
 
 ### Utils
-gem 'carrierwave'
-gem 'mini_magick'
-gem 'quilt'
-gem 'rmagick'
-gem 'redcarpet'
-gem 'whenever'
+gem "carrierwave"
+gem "mini_magick"
+gem "quilt"
+gem "rmagick"
+gem "redcarpet"
+gem "whenever"
 gem "stringex"
 gem "simple_captcha2", '~> 0.3', require: 'simple_captcha'
 gem "autoprefixer-rails"
+gem "kaminari"
 
 
 group :development do

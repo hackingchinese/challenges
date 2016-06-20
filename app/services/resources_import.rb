@@ -8,7 +8,7 @@ class ResourcesImport
     users!
     stories!
     comments!
-    # likes!
+    likes!
   end
 
   def tags!
@@ -39,20 +39,25 @@ class ResourcesImport
         false
       end
       user.save!
-      @user_mapping[hash['id']] = user.id
+      @user_mapping[ hash['id'] ] = user.id
     end
 
   end
 
   def stories!
+    @story_dupes = {}
     yaml('stories').each do |hash|
       story = Resources::Story.where(short_id: hash['short_id']).first_or_initialize
+      if story.new_record? and dupe = Resources::Story.where(url: hash['url']).first
+        @story_dupes[ hash['id'] ] = dupe.id
+        next
+      end
       story.created_at = hash['created_at']
       story.id = hash['id']
       story.url = hash['url']
       story.title = hash['title']
       story.description = hash['description']
-      story.user_id = @user_mapping[hash['id']]
+      story.user_id = @user_mapping[hash['user_id']]
       if story.image.blank? && hash['image_url'].present?
         story.remote_image_url = "http://resources.hackingchinese.com" + hash['image_url']
       end
@@ -70,11 +75,24 @@ class ResourcesImport
     yaml('comments').each do |hash|
       comment = Resources::Comment.where(id: hash['id']).first_or_initialize
       comment.created_at = hash['created_at']
-      comment.story = Resources::Story.find(hash['story_id'])
+      comment.story = @story_dupes[hash['story_id']] || Resources::Story.find(hash['story_id'])
       comment.comment = hash['comment']
       comment.id = hash['id']
       comment.user_id = @user_mapping[ hash['user_id'] ]
       comment.save!
+    end
+  end
+
+  def likes!
+    yaml('votes').each do |hash|
+      like = Resources::Like.where(id: hash['id']).first_or_initialize
+      like.user_id = @user_mapping[ hash['user_id'] ]
+      if hash['comment_id']
+        like.likeable = Resources::Comment.find(hash['comment_id'])
+      else
+        like.likeable = Resources::Story.find(@story_dupes[hash['story_id']] ||hash['story_id'])
+      end
+      like.save!
     end
   end
 

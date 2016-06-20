@@ -7,8 +7,8 @@ class CreateResourcesStories < ActiveRecord::Migration
       t.belongs_to :user, index: true, foreign_key: true
       t.text :description
       t.string :image
-      t.integer :comments_count
-      t.integer :like_count
+      t.integer :comments_count, default: 0
+      t.integer :like_count, default: 0
 
       t.timestamps null: false
     end

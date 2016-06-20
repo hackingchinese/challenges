@@ -24,5 +24,11 @@ Rails 4.2 -> Rails 5
 * Search
 
 * Pfade migrieren
+* Stories sperren / melden
+* Comment creation
+* Admin Oberflaeche um Tags zu steuern
+* Admin kann Post aendern -> Mail an Autor?
+* Pagination
+* Filter
 
 * Info Mail/BlogPost

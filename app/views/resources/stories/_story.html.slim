@@ -1,0 +1,28 @@
+.story.card
+  - if story.image.present?
+    = image_tag story.image.url(:medium), class: 'card-img-top'
+  .card-block
+    h4.card-title style='font-size: 1.1rem'
+      = link_to story.url do
+        = story.title
+    p.card-text
+      - story.tags.each do |tag|
+        span.label.label-default<> = tag.name
+    .pull-right
+      - if story.liked_by?(current_user)
+        a href='#{toggle_like_resources_story_path(story)}' title='Unlike story' data-method='post' data-remote='true'
+          i.fa.fa-fw.fa-heart
+      - else
+        a href='#{toggle_like_resources_story_path(story)}' title='Like story' data-method='post' data-remote='true'
+          i.fa.fa-fw.fa-heart-o
+      small.text-muted<= story.like_count
+      = ' '
+      a.p-l-1 href='#{resources_story_path(story)}'
+        i.fa.fa-fw.fa-commenting-o
+      small.text-muted<= story.comments_count
+    p.card-text: small.text-muted
+      = story.user.try(:name)
+      span<> &ndash;
+      = l story.created_at, format: :long
+
+
