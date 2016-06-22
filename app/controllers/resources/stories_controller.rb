@@ -1,9 +1,6 @@
 class Resources::StoriesController < ResourcesController
   def index
-    @stories = Resources::Story.
-      includes(:tags, :user).
-      order('created_at desc').
-      page(params[:page]).per(54)
+    @filter = ResourcesFilter.new(params)
   end
 
   def show

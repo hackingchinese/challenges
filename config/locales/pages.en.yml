@@ -1,4 +1,11 @@
 en:
+  resources:
+    tiers:
+      type: Type
+      level: Level
+      topic: Topic
+      extra: Additional
+
   goal_types:  [ 'pages', 'articles', 'movies', 'episodes', 'units']
   challenges:
     challenge:

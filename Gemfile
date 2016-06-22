@@ -56,6 +56,7 @@ group :development, :test do
   gem 'fabrication'
   gem 'pry-rails'
   gem 'pry-rescue'
+  gem 'pry-doc'
   gem 'rspec-rails'
   gem 'thin'
 end

@@ -3,10 +3,36 @@ h2.text-xs-center Resources
 
 p Click one or more tags to show relevant resources. Follow #{link_to '@ChineseLinks', 'https://twitter.com/ChineseLinks'} on Twitter, to get notified about new resources!
 
+h4: small Filter
+
+.resource-filter
+  - Resources::Tag.tiers.keys.each do |tier|
+    .row
+      .col-sm-2: strong = t "resources.tiers.#{tier}"
+      .col-sm-9
+        - Resources::Tag.send(tier).each do |tag|
+          - if @filter.tag_active?(tag)
+            a.btn.active.btn-secondary.btn-xs<> href='#{@filter.disable_filter_path(tag)}'
+              = tag.name
+          - else
+            - count = @filter.tag_count_before_filter(tag)
+            - if count == 0
+              a.btn.disabled.btn-secondary.btn-xs<> href='#{@filter.enable_filter_path(tag)}' disabled='disabled'
+                = tag.name
+                small.text-muted<
+                  | (#{count})
+            - else
+              a.btn.btn-secondary.btn-xs<> href='#{@filter.enable_filter_path(tag)}'
+                = tag.name
+                small.text-muted<
+                  | (#{count})
+
+
 p: small.text-muted
-  | #{@stories.total_count} resources found.
+  | #{@filter.stories.total_count} resources found.
+
 .row
-  - @stories.each_with_index do |story, i|
+  - @filter.stories.each_with_index do |story, i|
     - if i % 2 == 0 && i > 0
       .clearfix.hidden-lg-up
     - if i % 3 == 0 && i > 0
@@ -14,5 +40,4 @@ p: small.text-muted
     .col-md-6.col-lg-4
       = render story
 
-
-== raw paginate @stories
+== raw paginate @filter.stories

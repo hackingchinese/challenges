@@ -12,23 +12,19 @@ Rails 4.2 -> Rails 5
 * Migration der Leuts die keine mails mehr wollen
 * Grab Gravatar instead auto image
 
-
 ## Resources
 
-* Import Resources + Comments + Stories + Tags
-* Merge User
-
 * Story creation
-* Upvote = like
-* Comment + Mail notification
+  * StoryFetcher
+  * BlogPost
 * Search
-
 * Pfade migrieren
-* Stories sperren / melden
-* Comment creation
+* Stories sperren / melden / bearbeiten
 * Admin Oberflaeche um Tags zu steuern
 * Admin kann Post aendern -> Mail an Autor?
-* Pagination
-* Filter
-
 * Info Mail/BlogPost
+
+User-Pages
+* Challenges wo teilgenommen
+* Stories submitted
+* Stories liked

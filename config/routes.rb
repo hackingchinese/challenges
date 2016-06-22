@@ -14,6 +14,7 @@ HnChallenge::Application.routes.draw do
     resources :quality_tables
   end
 
+  get 'resources/:tier_0(/:tier_1(/:tier_2(/:tier_3)))' => 'resources/stories#index'
   get 'resources' => 'resources/stories#index'
   namespace :resources do
     resources :stories do
