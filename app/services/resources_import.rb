@@ -9,6 +9,14 @@ class ResourcesImport
     stories!
     comments!
     likes!
+    reset_counters!
+  end
+
+  def reset_counters!
+    Resources::Story.connection.execute "ALTER SEQUENCE resources_stories_id_seq RESTART WITH #{Resources::Story.maximum('id') + 1};"
+    Resources::Story.connection.execute "ALTER SEQUENCE resources_comments_id_seq RESTART WITH #{Resources::Comment.maximum('id') + 1};"
+    Resources::Story.connection.execute "ALTER SEQUENCE resources_tags_id_seq RESTART WITH #{Resources::Tag.maximum('id') + 1};"
+    Resources::Story.connection.execute "ALTER SEQUENCE resources_likes_id_seq RESTART WITH #{Resources::Like.maximum('id') + 1};"
   end
 
   def tags!

@@ -1,0 +1,10 @@
+= paginator.render do
+  nav
+    ul.pagination
+      = raw first_page_tag unless current_page.first?
+      = raw prev_page_tag unless current_page.first?
+      - each_page do |page|
+        - if page.left_outer? || page.right_outer? || page.inside_window?
+          = raw page_tag page
+      = raw next_page_tag unless current_page.last?
+      = raw last_page_tag unless current_page.last?

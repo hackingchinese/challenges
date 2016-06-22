@@ -13,9 +13,28 @@ h2 = @story.title
 br
 .entry-content = markdown @story.description
 
+p
+  - if @story.liked_by?(current_user)
+    a> href='#{toggle_like_resources_story_path(@story)}' title='Unlike story' data-method='post'
+      i.fa.fa-fw.fa-heart
+  - else
+    a> href='#{toggle_like_resources_story_path(@story)}' title='Like story' data-method='post'
+      i.fa.fa-fw.fa-heart-o
+  | Liked by #{@story.liked_by.map(&:name).to_sentence}
+
 br
 - if @story.comments.blank?
   p: i No comments yet.
 
 - else
   = render @story.comments.order('created_at asc')
+
+- if can? :create, Resources::Comment
+  br
+  br
+  h5: small Comment that resource
+  p How did you like the linked resource? Any experience for your learning?
+  - comment = @comment || Resources::Comment.new
+  = simple_form_for [ @story, comment], url: resources_story_comments_path(@story) do |f|
+    = f.input :comment, hint: "Markdown enabled", label: false
+    = f.submit "Send", class: 'btn btn-primary'

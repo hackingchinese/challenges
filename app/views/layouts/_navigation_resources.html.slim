@@ -1,2 +1,4 @@
-= nav_link "New", "/resources"
+= nav_link "All resources", "/resources"
 = nav_link "Search", "/resources/search"
+- if can? :create, Resources::Story
+  = nav_link "Submit", "/resources/stories/new"

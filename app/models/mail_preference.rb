@@ -7,6 +7,10 @@ class MailPreference < ActiveRecord::Base
     :comment_on_watched_thread_disabled,
     :challenge_starts_soon_disabled,
     :challenge_started_disabled,
+
+    :new_resource_disabled,
+    :resource_comment_on_story_disabled,
+    :resource_comment_on_thread_disabled,
   ]
   MAILS.each do |mail|
     store_accessor :mails_disabled, mail

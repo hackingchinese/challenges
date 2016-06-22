@@ -20,6 +20,7 @@ HnChallenge::Application.routes.draw do
       member do
         post :toggle_like
       end
+      resources :comments
     end
   end
 

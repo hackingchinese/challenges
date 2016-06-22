@@ -22,7 +22,8 @@ module ApplicationHelper
 
 
   def markdown(html)
-    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
+    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true, safe_links_only: true, no_styles: true,
+                                      link_attributes: { rel: :nofollow })
     markdown.render(html).html_safe
   end
 
@@ -43,7 +44,4 @@ module ApplicationHelper
   end
 
   # TODO
-  def markdown(text)
-    text
-  end
 end

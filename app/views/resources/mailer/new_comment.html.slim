@@ -1,0 +1,17 @@
+p Hi #{@user.name},
+
+p the user #{@comment.user.name} wrote a comment on the story #{@story.title}:
+
+blockquote = markdown @comment.comment
+
+p = link_to resources_story_url(@story) do
+  | Link to comment page
+
+p Best wishes,
+
+p Olle
+
+p PS: You can disable eMail notification in your account settings.
+
+
+

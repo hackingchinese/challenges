@@ -13,6 +13,10 @@ class Ability
     if user.role == 'admin'
       can :manage, :all
     else
+      can :like, Resources::Story
+      if current_user.created_at > 1.day.ago
+        can :create, Resources::Comment
+      end
 
       can :read, Challenge, id: Challenge.visible.pluck(:id)
       can :create, ActivityLog, participation_id: active_participations.pluck(:id)

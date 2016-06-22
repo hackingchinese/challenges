@@ -1,4 +1,4 @@
-.story.card
+.story.card id='#{dom_id(story)}'
   - if story.image.present?
     = image_tag story.image.url(:medium), class: 'card-img-top'
   .card-block
@@ -23,6 +23,6 @@
     p.card-text: small.text-muted
       = story.user.try(:name)
       span<> &ndash;
-      = l story.created_at, format: :long
+      = time_ago_in_words story.created_at
 
 
