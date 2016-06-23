@@ -6,10 +6,44 @@ $(document).on 'ready page:load', ->
     modal.modal('show')
     false
 
-
-
   $(document).on 'shown.bs.tab', ->
     $('.js-chart-raw').each ->
       el = $(this)
       el.highcharts(el.data('options'))
-    # $(window).resize()
+
+$(document).on 'click', '.js-fetch-url', (event) ->
+  setError = (e) ->
+    error_div = $('.js-error-result')
+    if e? and e
+      error_div.html """
+      <div class='alert alert-danger'>#{e}</div>
+      """
+    else
+      error_div.html ""
+
+  el = $(this)
+  form = el.closest('form')
+  event.preventDefault()
+  el.html """
+    <i class='fa fa-fw fa-spinner fa-spin'></i>
+  """
+  $.ajax
+    method: 'POST'
+    url: el.attr('href')
+    data:
+      url: form.find('#resources_story_url').val()
+    error: (xhr,textResponse,error) ->
+      if xhr.responseJSON? && xhr.responseJSON.error
+        setError xhr.responseJSON.error
+      else
+        setError textResponse
+    complete: ->
+      el.html("fetch url + description + image")
+    success: (data) ->
+      setError null
+      form.find('input[name*=title]').val(data.title)
+      form.find('textarea[name*=description]').val(data.description)
+      form.find('input[name*=image_cache]').val(data.image_cache)
+      img = $("<img class='story-fetcher-preview' src=''/>")
+      img.attr('src', "/uploads/tmp/#{data.image_cache}")
+      $('.js-image-preview').html(img)

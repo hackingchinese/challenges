@@ -8,6 +8,10 @@ class Resources::Story < ActiveRecord::Base
   has_many :liked_by, class_name: "User", through: :likes, source: :user
   has_many :comments, class_name: "Resources::Comment", dependent: :destroy, counter_cache: true
 
+  validates :url, presence: true
+  validates :title, presence: true
+  validates :description, presence: true
+
   def liked_by?(user)
     return if !user
     likes.where(user_id: user.id).any?

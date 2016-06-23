@@ -19,12 +19,17 @@ Rails 4.2 -> Rails 5
   * BlogPost
 * Search
 * Pfade migrieren
+* Sitemap / Google
 * Stories sperren / melden / bearbeiten
 * Admin Oberflaeche um Tags zu steuern
 * Admin kann Post aendern -> Mail an Autor?
 * Info Mail/BlogPost
+* Tests
+* Sortierung Categories
 
 User-Pages
 * Challenges wo teilgenommen
 * Stories submitted
 * Stories liked
+* User about text
+

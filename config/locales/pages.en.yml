@@ -62,29 +62,70 @@ en:
       upcoming_headline: Upcoming challenges
       archive_headline: Challenge archive
     about:
-      content_markdown: '
-      <p>Hacking Chinese Challenges is meant to stimulate and encourage language learning by allowing you to set personal goals and strive to achieve them alongside fellow students. With a clear goal in sight and a defined period of time, procrastination is kept to a minimum and focus remains high. The challenges here are meant to be cooperative where we strive towards similar goals together, giving each other moral support, helpful suggestions and inspiration. Any competitive element should be friendly in nature!</p>
+      content_markdown: |
+        <p>Hacking Chinese Challenges is meant to stimulate and encourage language learning by allowing you to set personal goals and strive to achieve them alongside fellow students. With a clear goal in sight and a defined period of time, procrastination is kept to a minimum and focus remains high. The challenges here are meant to be cooperative where we strive towards similar goals together, giving each other moral support, helpful suggestions and inspiration. Any competitive element should be friendly in nature!</p>
 
-      <p>Create a new account or log in using Facebook or Twitter. You can then enroll in challenges and report progress for the current challenge. Read more about Hacking Chinese Challenges here <a href="http://www.hackingchinese.com/?p=5835">here</a>.<br>
+        <p>Create a new account or log in using Facebook or Twitter. You can then enroll in challenges and report progress for the current challenge. Read more about Hacking Chinese Challenges here <a href="http://www.hackingchinese.com/?p=5835">here</a>.<br>
 
-      <p>The Challenge Engine was created for <a href="http://www.hackingchinese.com">Hacking Chinese</a> by:<br></p>
-      <div class="card-group">
-        <div class="card card-block">
-          <a href="//www.stefanwienert.de">Stefan Wienert</a><br/>
-          <small class="text-muted">coding + maintenance</small>
+        <p>The Challenge Engine was created for <a href="http://www.hackingchinese.com">Hacking Chinese</a> by:<br></p>
+        <div class="card-group">
+          <div class="card card-block">
+            <a href="//www.stefanwienert.de">Stefan Wienert</a><br/>
+            <small class="text-muted">coding + maintenance</small>
+          </div>
+          <div class="card card-block">
+            <a href="http://www.hackingchinese.com">Olle Linge</a><br/>
+            <small class="text-muted">product development and testing </small>
+          </div>
+          <div class="card card-block">
+            <a href="http://www.marcopoloproject.org">Julien Leyre</a><br/>
+            <small class="text-muted">product development and testing</small>
+          </div>
         </div>
-        <div class="card card-block">
-          <a href="http://www.hackingchinese.com">Olle Linge</a><br/>
-          <small class="text-muted">product development and testing </small>
-        </div>
-        <div class="card card-block">
-          <a href="http://www.marcopoloproject.org">Julien Leyre</a><br/>
-          <small class="text-muted">product development and testing</small>
-        </div>
-      </div>
-      <br/>
-      <p> Inspiration from <a href="http://www.readmod.wordpress.com">Andre Smith</a></p>
-        '
+        <br/>
+        <p> Inspiration from <a href="http://www.readmod.wordpress.com">Andre Smith</a></p>
   sessions:
     new:
       intro: "Login via e-mail/password or use your Twitter/Facebook account to sign in (We won't access your data or post anything)"
+  text:
+    guidelines: |
+      The main purpose of this section of Hacking Chinese is to provide links to interesting resources for Chinese learners. Note that even though it works well for sharing the latest news, **the primary goal is to create an archive of great resources for learning Chinese**. This is what makes this section of the site very different from Reddit and other similar communities that are more focused on the present and only offer limited search or archive features. Therefore,
+
+      Therefore, **it's very important that you tag all links properly and also write about why you are sharing them**, preferably by summarising what it is about and why it's good. People shouldn't have to go to the site in order to figure out if it's for them or not. In general, **use few tags to show the main focus of the resources**. A link to a good film in Chinese isn’t mainly for reading practice even though there are subtitles. A dictionary is mostly a tool, even if it contains audio and some sample sentences.
+
+      This site is **only meant for resources that are related to learning the Chinese language** (or any dialect of it). Thus, please refrain from posting general links about society, culture and politics in China (unless language related or in Chinese, of course) or links about language learning that aren’t related to Chinese at all (the minimum requirement is that the examples should be about Chinese).
+
+      **Level** This is about the language proficiency required to appreciate the shared material. If the resource is in English (such as my articles on Hacking Chinese), it is the target group that matters. For anything in Chinese, try to estimate what kind of student can benefit from this material.
+
+      *   **Beginner** - For learners who haven’t learnt basic communication in Chinese about personal or familiar topics. Roughly equal to A1 and A2 in the [CEFR](http://en.wikipedia.org/wiki/Common_European_Framework_of_Reference_for_Languages) framework. Resources in this category is specifically designed for beginners or contains a lot of scaffolding.
+      *   **Intermediate** - For learners who can already deal with basic communication in Chinese and are starting to broadening the focus a bit. roughly equal to [CEFR](http://en.wikipedia.org/wiki/Common_European_Framework_of_Reference_for_Languages) B1\. Resources with this tag is easier than most authentic material and/or considerable help is offered.
+      *   **Advanced** - For learners who are fairly comfortable with Chinese and are starting to look at wide range of topics in different styles and genres. Equal to B2 and above in [CEFR](http://en.wikipedia.org/wiki/Common_European_Framework_of_Reference_for_Languages). Resources can be authentic and needn’t be targeted at language learners at all.
+
+      **Topic** These tags are meant to describe what the link is about or what the reader can hope to gain or improve my visiting the link. Sites that cover a lot of topics (more than three) should be tagged **only** with “general”. Tag according to the **main focus** of the resource.
+
+      *   **Listening** - Self-explanatory
+      *   **Speaking** - Includes pronunciation
+      *   **Reading** - Self-explanatory
+      *   **Writing** - Does not include characters (see vocabulary)
+      *   **Vocabulary** - Characters, words and expressions
+      *   **Grammar** - Composing phrases, sentences and paragraphs
+      *   **Chinese in context** - Pragmatics, language usage, culture
+      *   ****Living in Chinese** -** Living in China, learning Chinese
+      *   **Language learning** - In general, not tied to a specific skill
+      *   **General** - Focusing on more than three of the above topics
+
+      **Type** The following tags describe what type of link we’re talking about rather than what it is about. **Most resources will only have one** of these, but it is conceivable to have more than one, for instance for an article about how to learn Chinese written in Chinese. It would be tagged with both “information and advice” as well as “resource highlights”.
+
+      *   **Information and advice** - This isn’t for actual learning resources, but for anything about the Chinese language or advice about how to learn. Examples: [Advice on how to learn pronunciation](http://www.hackingchinese.com/focusing-on-tone-pairs-to-improve-your-mandarin-pronunciation/), [an article about phonetic components](http://www.hackingchinese.com/phonetic-components-part-1-the-key-to-80-of-all-chinese-characters/), [information and a discussion about Chinese dialects](http://links.hackingchinese.com/stories/8rzrhy).
+      *   **Resource highlights** - Particular resources worth highlighting for some reason. Includes series of similar resources, especially if they are linked together. Examples: [A great song with subtitles](http://links.hackingchinese.com/stories/yrpvvq), [a cartoon about zombies in several episodes](http://links.hackingchinese.com/stories/plutku), [an online course/textbook](http://links.hackingchinese.com/stories/wjcgte).
+      *   **Resource collections** - Large and diverse collections of resources that aren’t linked together in any particular way. Examples: [An excellent grammar wiki](http://links.hackingchinese.com/stories/9rqynp), [a collection of articles translated from Chinese to other languages](http://links.hackingchinese.com/stories/swqpn1), [an excellent podcast with independent episodes](http://links.hackingchinese.com/stories/rie5gs).
+      *   **Tools and apps** - Includes all kinds of software (and potentially hardware) that are used to complete a task related to learning Chinese. Examples: [A very good dictionary](http://links.hackingchinese.com/stories/n4mbzj), [a tool to create cool Chinese calligraphy](http://links.hackingchinese.com/stories/ipciaq), [a program that allows you to watch lots of Chinese TV](http://links.hackingchinese.com/stories/cayms4).
+      *   **Social learning** - Communities, forums or any other place where you interact with other people (both native speakers and other learners) to learn Chinese. Examples: [A forum about everything related to Chinese](http://links.hackingchinese.com/stories/49ujhp), [a website where you can receive feedback on your writing](http://links.hackingchinese.com/stories/qdmgkv), [a forum in Chinese about almost anything](http://links.hackingchinese.com/stories/pklngc).
+
+      **Extra** These tags can answer two important questions (that should perhaps be separated into two entry fields when the resource is submitted):
+
+      1.  **What is required (if anything) to appreciate this resource?** _Examples of answers: Money (it's not free), VPN (the site is blocked in China), a specific OS (for apps and software), something else._
+      2.  **What is the resources about more exactly?** _This would work as a genre specifier. Some of the "topic" tags are very broad (culture, for instance). This would give more detailed information. Examples: News, literature, music, game, handwriting, dictionary, etc.._
+
+      Extra tags are not compulsory and you can choose to ignore them if you want. However, adding as many suitable extra tags as possible will help other people finding the great content you’re sharing. If you want to add extra tags, let me know and I will have a look!
+

@@ -3,6 +3,22 @@ class Resources::StoriesController < ResourcesController
     @filter = ResourcesFilter.new(params)
   end
 
+  def new
+    authorize! :create, Resources::Story
+    @story = Resources::Story.new
+  end
+
+  def create
+    authorize! :create, Resources::Story
+    @story = Resources::Story.new(params[:resources_story])
+    if @story.save
+      # TODO Inform all users
+      redirect_to resources_story_path(@story), notice: "Created"
+    else
+      render :new
+    end
+  end
+
   def show
     @story = Resources::Story.find(params[:id])
   end

@@ -44,6 +44,9 @@ gem "stringex"
 gem "simple_captcha2", '~> 0.3', require: 'simple_captcha'
 gem "autoprefixer-rails"
 gem "kaminari"
+gem "typhoeus"
+gem "headless"
+gem 'wkhtmltoimage-binary'
 
 
 group :development do
