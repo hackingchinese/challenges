@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
   has_many :stories, class_name: 'Resources::Story'
   has_one :mail_preference
 
+  has_many :likes, class_name: 'Resources::Like'
+
   validates :name, presence: true, uniqueness: true
   after_create :generate_random_image
 

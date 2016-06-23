@@ -21,7 +21,8 @@
         i.fa.fa-fw.fa-commenting-o
       small.text-muted<= story.comments_count
     p.card-text: small.text-muted
-      = story.user.try(:name)
+      = link_to user_path(story.user)
+        = story.user.try(:name)
       span<> &ndash;
       = time_ago_in_words story.created_at
 

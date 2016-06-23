@@ -23,6 +23,7 @@ HnChallenge::Application.routes.draw do
       resources :comments
     end
   end
+  get 'u/:id' => 'users#show', as: :user
   get 'resources/:tier_0(/:tier_1(/:tier_2(/:tier_3)))' => 'resources/stories#index'
   get 'resources' => 'resources/stories#index'
 

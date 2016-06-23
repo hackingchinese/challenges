@@ -1,0 +1,63 @@
+- @container_class = 'container-fluid'
+h2.text-xs-center
+  |Member: #{@user.name}
+
+
+.row
+  .col-sm-6
+    .card
+      .card-block
+        h3.card-title Challenges
+        p.card-text #{@user.name} took part in this challenges:
+      - if @participations.any?
+        ul.list-group.list-group-flush
+          - @participations.each do |participation|
+            li.list-group-item
+              = link_to [participation.challenge, participation] do
+                = participation.challenge.title
+      - else
+        .card-block Not participated in any challenges, yet.
+  .col-sm-6
+    .card
+      = image_tag @user.avatar.url(:display), class: 'card-img-top'
+      .card-block
+        p.text-xs-center.text-caps
+          = @user.name
+          br
+        - if @user.profile_link?
+          p
+            strong.text-caps Profile
+            br
+            .text-truncate = link_to @user.profile_link, rel: 'nofollow'
+        - if @user.about?
+          p
+            strong.text-caps About
+            = markdown @user.about
+        p
+          strong.text-caps Resources submitted
+          br
+          = @user.stories.count
+        p
+          strong.text-caps Resources liked
+          br
+          = @user.likes.where(likeable_type: 'Resources::Story').count
+        p
+          strong.text-caps Hours logged
+          br
+          = @user.activity_logs.sum(:hours_spent).to_i
+
+
+
+h3.text-xs-center.m-t-2 Resources liked
+p Recently liked by #{@user.name}.
+
+= render "resources/stories/story_collection", stories: @resources_liked
+
+.text-xs-center
+  = paginate @resources_liked, :param_name => :like_page
+
+h3.text-xs-center.m-t-2.m-b-1 Resources submitted
+
+= render "resources/stories/story_collection", stories: @resources
+.text-xs-center
+  = paginate @resources, :param_name => :story_page

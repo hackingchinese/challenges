@@ -22,9 +22,15 @@ module ApplicationHelper
 
 
   def markdown(html)
-    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true, safe_links_only: true, no_styles: true,
-                                      link_attributes: { rel: :nofollow })
-    markdown.render(html).html_safe
+    @_renderer ||= Redcarpet::Render::HTML.new(
+      autolink: true,
+      tables: true,
+      safe_links_only: true,
+      no_styles: true,
+      link_attributes: { rel: :nofollow }
+    )
+    @_markdown ||= Redcarpet::Markdown.new(@_renderer)
+    @_markdown.render(html).html_safe
   end
 
   def progress_bar(max: 100, percent:, title: "#{percent.round(1)}%", inside_text: title, outside_text: '')
