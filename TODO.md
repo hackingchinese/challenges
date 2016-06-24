@@ -14,6 +14,7 @@ Rails 4.2 -> Rails 5
 
 ## Resources
 
+* MailPreference umdrehen
 * Search
 * Pfade migrieren
 * Sitemap / Google
@@ -22,5 +23,6 @@ Rails 4.2 -> Rails 5
 * Admin kann Post aendern -> Mail an Autor?
 * Info Mail/BlogPost
 * Tests
+  * Story Fetcher
 * Sortierung Categories
 
