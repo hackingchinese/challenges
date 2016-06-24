@@ -47,6 +47,7 @@ gem "kaminari"
 gem "typhoeus"
 gem "headless"
 gem 'wkhtmltoimage-binary'
+gem "select2-rails"
 
 
 group :development do

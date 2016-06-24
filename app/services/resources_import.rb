@@ -71,7 +71,7 @@ class ResourcesImport
       end
       story.tag_ids = hash['tag_ids']
       begin
-        story.save
+        story.save!
       rescue ActiveRecord::RecordNotUnique
         binding.pry
       end

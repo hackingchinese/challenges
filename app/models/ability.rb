@@ -14,8 +14,9 @@ class Ability
       can :manage, :all
     else
       can :like, Resources::Story
-      if current_user.created_at > 1.day.ago
+      if user.created_at > 1.day.ago
         can :create, Resources::Comment
+        can :create, Resources::Story
       end
 
       can :read, Challenge, id: Challenge.visible.pluck(:id)

@@ -1,0 +1,18 @@
+p Hi #{@user.name},
+
+p the user #{@story.user.name} just submitted a new story: #{@story.title}.
+
+p You can read more about that and comment here:
+
+p = link_to resources_story_url(@story) do
+  | Link to resource
+
+p Best wishes,
+
+p Olle
+
+p PS: You can disable eMail notification in your account settings.
+
+
+
+

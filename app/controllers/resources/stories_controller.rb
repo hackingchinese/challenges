@@ -10,10 +10,15 @@ class Resources::StoriesController < ResourcesController
 
   def create
     authorize! :create, Resources::Story
-    @story = Resources::Story.new(params[:resources_story])
+    @story = Resources::Story.new(params[:resources_story].permit!)
+    @story.user = current_user
     if @story.save
-      # TODO Inform all users
-      redirect_to resources_story_path(@story), notice: "Created"
+      @story.liked_by << current_user
+      MailPreference.notifiable_users(:new_resource).each do |user|
+        next if user == @story.user
+        Resources::Mailer.new_resource(@story, user).deliver_now
+      end
+      redirect_to resources_story_path(@story), notice: "Resource created!"
     else
       render :new
     end
@@ -37,7 +42,7 @@ class Resources::StoriesController < ResourcesController
         redirect_to resources_story_path(@story)
       }
       f.js {
-        @body = render_to_string partial: @story.reload, format: 'html'
+        @body = render_to_string partial: @story.reload, format: 'html', short: false
       }
     end
 

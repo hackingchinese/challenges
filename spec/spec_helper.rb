@@ -56,4 +56,7 @@ RSpec.configure do |config|
     yield
     Capybara.session_name = old_session
   end
+  def screenshot(name='foo')
+     page.save_screenshot "#{name}.png", full: true
+  end
 end

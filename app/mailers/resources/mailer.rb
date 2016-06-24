@@ -15,4 +15,12 @@ class Resources::Mailer < ActionMailer::Base
       mail to: @user.email, subject: "[Hackingchinese] New comment on a story you commented on"
     end
   end
+
+  def new_resource(story, user)
+    return if !MailPreference.allowed?(user, :new_resource)
+    @story = story
+    @user = user
+
+    mail to: @user.email, subject: "[Hackingchinese] New resource #{@story.title} submitted"
+  end
 end

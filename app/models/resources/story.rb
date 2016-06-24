@@ -11,6 +11,7 @@ class Resources::Story < ActiveRecord::Base
   validates :url, presence: true
   validates :title, presence: true
   validates :description, presence: true
+  validate :check_tags
 
   def liked_by?(user)
     return if !user
@@ -21,6 +22,15 @@ class Resources::Story < ActiveRecord::Base
     users_to_inform = ([user] + comments.map(&:user)) - [comment.user]
     users_to_inform.each do |user|
       Resources::Mailer.new_comment(comment, user).deliver_now
+    end
+  end
+
+  private
+
+  def check_tags
+    tags = self.taggings.map{|i| i.tag }
+    if tags.none?{|i| i.level?} || tags.none?{|i| i.topic?}
+      errors.add :tags, 'Please select at least one tag from the proficiency and one from the skill list'
     end
   end
 end

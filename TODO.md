@@ -14,9 +14,6 @@ Rails 4.2 -> Rails 5
 
 ## Resources
 
-* Story creation
-  * StoryFetcher
-  * BlogPost
 * Search
 * Pfade migrieren
 * Sitemap / Google
@@ -26,10 +23,4 @@ Rails 4.2 -> Rails 5
 * Info Mail/BlogPost
 * Tests
 * Sortierung Categories
-
-User-Pages
-* Challenges wo teilgenommen
-* Stories submitted
-* Stories liked
-* User about text
 

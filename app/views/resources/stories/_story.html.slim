@@ -5,7 +5,7 @@
     h4.card-title style='font-size: 1.1rem'
       = link_to story.url do
         = story.title
-    p.card-text
+    p.card-text.tags
       - story.tags.each do |tag|
         span.label.label-default<> = tag.name
     .pull-right

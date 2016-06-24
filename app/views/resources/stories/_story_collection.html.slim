@@ -1,3 +1,4 @@
+- short = false if !defined?(short)
 .row
   - stories.each_with_index do |story, i|
     - if i % 2 == 0 && i > 0
@@ -5,4 +6,4 @@
     - if i % 3 == 0 && i > 0
       .clearfix.hidden-md-down
     .col-md-6.col-lg-4
-      = render story
+      = render story, short: short

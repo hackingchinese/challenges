@@ -5,6 +5,11 @@ en:
       level: Level
       topic: Topic
       extra: Additional
+    tier_help:
+      level: Select for what proficiency level(s) this link is suitable.
+      topic: Select which topic(s) are relevant, if more than three select 'general'.
+      type: Select what kind of resource this is (usually only one).
+      extra: Select any number of additional tags to further classify the content.
 
   goal_types:  [ 'pages', 'articles', 'movies', 'episodes', 'units']
   challenges:

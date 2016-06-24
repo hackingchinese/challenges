@@ -27,4 +27,11 @@ class MailPreference < ActiveRecord::Base
     value != "1"
   end
 
+  def self.notifiable_users(mail_type)
+    mail_type = mail_type.to_s + "_disabled"
+    MailPreference.
+      where("mails_disabled is not null and (mails_disabled->?) is not null", mail_type).
+      where("(mails_disabled->>?) = ?", mail_type, '0').map(&:user)
+  end
+
 end

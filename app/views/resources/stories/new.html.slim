@@ -20,6 +20,11 @@ h2 Create new resource
       - if @story.image.present?
         = image_tag @story.image.url
 
+
+  - Resources::Tag.tiers.each do |t, _|
+    = f.association :tags, collection: Resources::Tag.send(t), label: t("resources.tiers.#{t}"), hint: t("resources.tier_help.#{t}")
+
+
   .card.card-block
     a href='#guidelines' data-toggle='collapse'
       | Story submission guidelines
@@ -32,3 +37,5 @@ css:
   textarea {
     min-height: 200px;
   }
+javascript:
+  $('select').select2({ theme: "bootstrap" })

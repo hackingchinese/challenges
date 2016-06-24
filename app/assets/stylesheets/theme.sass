@@ -99,3 +99,26 @@ $comment-distance: 20px
     margin-right: 2px
     padding: 0.15rem 0.3rem
     font-size: 0.8rem
+.story
+  line-height: 1
+  transition: box-shadow .5s ease
+  .tags
+    line-height: 1
+    display: flex
+    flex-flow: row wrap
+    justify-content: space-between
+  img
+    max-height: 100px
+  .label
+    padding: .20em .3em
+    font-size: 65%
+    line-height: 1
+    color: #fff
+    margin: 2px
+    font-weight: normal
+    background-color: lighten(#b1bac1,20%)
+    transition: all .5s ease
+  &:hover
+    box-shadow: 0 0 3px #999
+    .tags .label
+      background-color: lighten(#666666,20%)

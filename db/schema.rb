@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160620081155) do
+ActiveRecord::Schema.define(version: 20160620133737) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -117,6 +117,18 @@ ActiveRecord::Schema.define(version: 20160620081155) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "resources_comments", force: :cascade do |t|
+    t.integer  "story_id"
+    t.integer  "user_id"
+    t.text     "comment"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "like_count", default: 0
+  end
+
+  add_index "resources_comments", ["story_id"], name: "index_resources_comments_on_story_id", using: :btree
+  add_index "resources_comments", ["user_id"], name: "index_resources_comments_on_user_id", using: :btree
 
   create_table "resources_likes", force: :cascade do |t|
     t.integer  "likeable_id"
