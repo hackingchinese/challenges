@@ -15,14 +15,14 @@ en:
       default_message: "Please review the problems below:"
     labels:
       mail_preference:
-        liked_disabled: "You receive a notification if someone liked one of your activities"
-        commented_disabled: "You receive a notification if someone commented on one of your activities"
-        comment_on_watched_thread_disabled: "You receive an reply to a comment you made on someone else's activity"
-        challenge_starts_soon_disabled: "You receive an information if a new challenge will start soon"
-        challenge_started_disabled: "You receive an information if a new challenge just started and is open for activity tracking"
-        resource_comment_on_story_disabled: "Receive a notification, if somebody comments on a resource you've submitted"
-        new_resource_disabled: "Receive a notification, if someone submits a new resource to the site"
-        resource_comment_on_thread_disabled: "Receive a notification, if someone writes a new comment on a resource discussion you are taking part"
+        liked: "You receive a notification if someone liked one of your activities"
+        commented: "You receive a notification if someone commented on one of your activities"
+        comment_on_watched_thread: "You receive an reply to a comment you made on someone else's activity"
+        challenge_starts_soon: "You receive an information if a new challenge will start soon"
+        challenge_started: "You receive an information if a new challenge just started and is open for activity tracking"
+        resource_comment_on_story: "Receive a notification, if somebody comments on a resource you've submitted"
+        new_resource: "Receive a notification, if someone submits a new resource to the site"
+        resource_comment_on_thread: "Receive a notification, if someone writes a new comment on a resource discussion you are taking part"
       user:
         no_mails: Check to disable challenge reminders via e-mail
       activity_log:

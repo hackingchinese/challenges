@@ -90,7 +90,7 @@ ActiveRecord::Schema.define(version: 20160620133737) do
 
   create_table "mail_preferences", force: :cascade do |t|
     t.integer  "user_id"
-    t.json     "mails_disabled"
+    t.json     "mails_enabled"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

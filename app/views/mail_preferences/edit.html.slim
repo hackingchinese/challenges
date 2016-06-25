@@ -1,20 +1,20 @@
 h1 Mail preferences
 
-p You can disable different kind of notifications by this application.
+p You can enable or disable different kind of notifications by this application.
 
-p <strong>Disable</strong> any of the following mails:
+p <strong>Enable</strong> any of the following mails:
 
 = simple_form_for @mail_preference, url: '', method: :post do |f|
   h4: small Challenge notifications
-  = f.input :liked_disabled, as: :boolean
-  = f.input :commented_disabled, as: :boolean
-  = f.input :comment_on_watched_thread_disabled, as: :boolean
-  = f.input :challenge_starts_soon_disabled, as: :boolean
-  = f.input :challenge_started_disabled, as: :boolean
+  = f.input :liked, as: :boolean
+  = f.input :commented, as: :boolean
+  = f.input :comment_on_watched_thread, as: :boolean
+  = f.input :challenge_starts_soon, as: :boolean
+  = f.input :challenge_started, as: :boolean
   h4: small Resources notifications
-  = f.input :new_resource_disabled, as: :boolean
-  = f.input :resource_comment_on_story_disabled, as: :boolean
-  = f.input :resource_comment_on_thread_disabled, as: :boolean
+  = f.input :new_resource, as: :boolean
+  = f.input :resource_comment_on_story, as: :boolean
+  = f.input :resource_comment_on_thread, as: :boolean
   = f.submit "Save", class: 'btn btn-primary'
 
 

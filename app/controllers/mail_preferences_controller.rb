@@ -2,7 +2,7 @@ class MailPreferencesController < ApplicationController
   authorize_resource class: false
 
   def edit
-    @mail_preference = current_user.mail_preference || current_user.create_mail_preference(mails_disabled: {})
+    @mail_preference = current_user.mail_preference || current_user.create_mail_preference(mails_enabled: {})
   end
 
   def update

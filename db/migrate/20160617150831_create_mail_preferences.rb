@@ -2,7 +2,7 @@ class CreateMailPreferences < ActiveRecord::Migration
   def change
     create_table :mail_preferences do |t|
       t.belongs_to :user, index: true
-      t.json :mails_disabled
+      t.json :mails_enabled
 
       t.timestamps
     end

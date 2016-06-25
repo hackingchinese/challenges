@@ -15,12 +15,17 @@ class User < ActiveRecord::Base
   has_many :likes, class_name: 'Resources::Like'
 
   validates :name, presence: true, uniqueness: true
+  after_create :set_mail_preference
   after_create :generate_random_image
 
   scope :with_email, -> { where('no_mails = ?', false).where('email not like ?', '%@changeme.com') }
 
   def fake_email?
     !email || email[/@changeme/]
+  end
+
+  def set_mail_preference
+    self.mail_preference || create_mail_preference
   end
 
   def generate_random_image
