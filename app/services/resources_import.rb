@@ -10,6 +10,16 @@ class ResourcesImport
     comments!
     likes!
     reset_counters!
+    unsubscribers!
+  end
+
+  def unsubscribers!
+    User.find_each do |user|
+      user.set_mail_preference
+      if user.no_mails
+        user.mail_preference.update(challenge_starts_soon: '0', challenge_started: '0', new_resource: '0')
+      end
+    end
   end
 
   def reset_counters!
