@@ -10,7 +10,6 @@ Rails 4.2 -> Rails 5
 
 ## Resources
 
-* Migration der Leuts die keine mails mehr wollen
 * Sortierung Categories
 * Search
 * Pfade migrieren
@@ -20,7 +19,6 @@ Rails 4.2 -> Rails 5
 
 * Admin
   * Stories sperren / melden / bearbeiten
-  * Admin Oberflaeche um Tags zu steuern
   * Admin kann Post aendern -> Mail an Autor?
 
 * Non Function

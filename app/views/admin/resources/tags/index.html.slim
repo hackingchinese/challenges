@@ -1,0 +1,24 @@
+h2 Tags
+p = link_to [:new, :admin, :resources_tag ], class: 'btn btn-primary' do
+  | New tag
+- @tiers.each do |tier|
+  h3 = tier
+
+  table.table
+    thead
+      tr
+        th style='width: 50%' Tag
+        th style='width: 25%'
+          | # resources
+
+    - Resources::Tag.send(tier).sorted.each do |tag|
+      tr
+        td = tag.name
+        td = tag.stories.count
+        td
+          = link_to [:edit, :admin, tag] do
+            | edit
+          = ' '
+          = link_to [:admin, tag], data: { method: :delete, confirm: "Really delete? cant be undone" } do
+            | delete
+

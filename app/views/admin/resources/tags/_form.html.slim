@@ -1,0 +1,5 @@
+= simple_form_for [:admin, @tag] do |f|
+  = f.input :name
+  = f.input :weight
+  = f.input :tier, collection: Resources::Tag.tiers.keys, as: :radio_buttons, wrapper: :vertical_boolean
+  = f.submit class: 'btn btn-primary'

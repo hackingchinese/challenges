@@ -2,3 +2,11 @@
 = nav_link "Search", "/resources/search"
 - if can? :create, Resources::Story
   = nav_link "Submit", "/resources/stories/new"
+
+- if can? :create, Resources::Tag
+  li.dropdown.nav-item
+    a.nav-link.dropdown-toggle data-toggle='dropdown' href='#'
+      | Admin
+      b.caret<
+    ul.dropdown-menu
+      = nav_link "Tags", admin_resources_tags_path, li_class: 'dropdown-item', a_class: ''

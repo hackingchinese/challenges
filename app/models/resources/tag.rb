@@ -3,4 +3,6 @@ class Resources::Tag < ActiveRecord::Base
 
   has_many :taggings, class_name: "Resources::Tagging", foreign_key: "tag_id", dependent: :destroy
   has_many :stories, through: :taggings
+  scope :sorted, -> { order 'weight, name' }
+
 end
