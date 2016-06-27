@@ -10,7 +10,6 @@ Rails 4.2 -> Rails 5
 
 ## Resources
 
-* Sortierung Categories
 * Search
 * Pfade migrieren
 * Sitemap / Google
@@ -18,8 +17,7 @@ Rails 4.2 -> Rails 5
   * Story Fetcher
 
 * Admin
-  * Stories sperren / melden / bearbeiten
-  * Admin kann Post aendern -> Mail an Autor?
+  Comments
 
 * Non Function
   * Info Mail/BlogPost

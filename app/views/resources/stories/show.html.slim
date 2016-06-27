@@ -7,20 +7,33 @@ h2 = @story.title
     p
       small.text-muted
         |Submitted by #{@story.user.name} on #{l @story.created_at, format: :long}
+    p
+      - @story.tags.each do |tag|
+        span.label.label-default<> = tag.name
+    p
+      - if @story.liked_by?(current_user)
+        a> href='#{toggle_like_resources_story_path(@story)}' title='Unlike story' data-method='post'
+          i.fa.fa-fw.fa-heart
+      - else
+        a> href='#{toggle_like_resources_story_path(@story)}' title='Like story' data-method='post'
+          i.fa.fa-fw.fa-heart-o
+      | Liked by #{@story.liked_by.map(&:name).to_sentence}
+    - if can?(:edit, @story)
+      p
+        = link_to [:edit, @story], class: 'btn btn-secondary btn-xs' do
+          i.fa.fa-fw.fa-edit>
+          | Edit
+        - if can?(:destroy, @story)
+            = ' '
+            = link_to @story, class: 'btn btn-danger btn-xs', data: { method: :delete, confirm: "Really delete? That can't be undone" } do
+              i.fa.fa-fw.fa-trash-o>
+              | Delete
+
   .col-md-6
-    - @story.tags.each do |tag|
-      span.label.label-default<> = tag.name
+    = image_tag @story.image.url(:medium)
 br
 .entry-content = markdown @story.description
 
-p
-  - if @story.liked_by?(current_user)
-    a> href='#{toggle_like_resources_story_path(@story)}' title='Unlike story' data-method='post'
-      i.fa.fa-fw.fa-heart
-  - else
-    a> href='#{toggle_like_resources_story_path(@story)}' title='Like story' data-method='post'
-      i.fa.fa-fw.fa-heart-o
-  | Liked by #{@story.liked_by.map(&:name).to_sentence}
 
 br
 - if @story.comments.blank?

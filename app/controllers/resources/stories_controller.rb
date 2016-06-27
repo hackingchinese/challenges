@@ -11,7 +11,7 @@ class Resources::StoriesController < ResourcesController
 
   def create
     authorize! :create, Resources::Story
-    @story = Resources::Story.new(params[:resources_story].permit!)
+    @story = Resources::Story.new(permitted_params)
     @story.user = current_user
     if @story.save
       Rails.cache.delete_matched('tag_counts.*')
@@ -28,6 +28,21 @@ class Resources::StoriesController < ResourcesController
 
   def show
     @story = Resources::Story.find(params[:id])
+  end
+
+  def edit
+    @story = Resources::Story.find(params[:id])
+    authorize! :edit, @story
+  end
+
+  def update
+    @story = Resources::Story.find(params[:id])
+    authorize! :edit, @story
+    if @story.update(permitted_params)
+      redirect_to resources_story_path(@story), notice: "Resource updated!"
+    else
+      render :edit
+    end
   end
 
   def toggle_like
@@ -47,6 +62,17 @@ class Resources::StoriesController < ResourcesController
         @body = render_to_string partial: @story.reload, format: 'html', short: false
       }
     end
+  end
 
+  def destroy
+    @story = Resources::Story.find(params[:id])
+    authorize! :destroy, @story
+    redirect_to resources_path
+  end
+
+  private
+
+  def permitted_params
+    params.require(:resources_story).permit(:title, :url, :description, :image, :image_cache, :tag_ids => [])
   end
 end

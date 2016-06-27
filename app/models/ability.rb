@@ -19,6 +19,10 @@ class Ability
         can :create, Resources::Story
       end
 
+      can :edit, Resources::Story do |s|
+        s.user_id == user.id && s.created_at > 2.hours.ago
+      end
+
       can :read, Challenge, id: Challenge.visible.pluck(:id)
       can :create, ActivityLog, participation_id: active_participations.pluck(:id)
       can :update, :mail_preference
