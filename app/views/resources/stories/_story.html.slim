@@ -1,3 +1,4 @@
+- @_tag_sort_order ||= Resources::Tag.tag_sort_order
 .story.card id='#{dom_id(story)}'
   - if story.image.present?
     = image_tag story.image.url(:medium), class: 'card-img-top'
@@ -6,7 +7,7 @@
       = link_to story.url do
         = story.title
     p.card-text.tags
-      - story.tags.each do |tag|
+      - story.tags.sort_by{|tag| @_tag_sort_order.index(tag.id) }.each do |tag|
         span.label.label-default<> = tag.name
     .pull-right
       - if story.liked_by?(current_user)

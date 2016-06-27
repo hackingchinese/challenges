@@ -23,6 +23,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def admin?
+    current_user && current_user.admin?
+  end
+  helper_method :admin?
+
   def current_participation
     @current_participation ||=
       @participation || (@challenge && @challenge.participations.find_by(user_id: current_user.try(:id)))

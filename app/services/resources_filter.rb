@@ -1,5 +1,5 @@
 class ResourcesFilter
-  attr_reader :params
+  attr_reader :params, :selected_tag_ids
   def initialize(params)
     @params = params
 
@@ -36,7 +36,9 @@ class ResourcesFilter
   end
 
   def tag_count_before_filter(tag)
-    story_sql(extra_tiers: { tag['tier'] => [ tag ]}).count
+    Rails.cache.fetch("tag_counts.#{tag.id}.#{@selected_tag_ids.join('-')}", expires_in: 1.day) do
+      story_sql(extra_tiers: { tag['tier'] => [ tag ]}).count
+    end
   end
 
   def story_sql(extra_tiers: {})

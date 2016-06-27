@@ -10,7 +10,7 @@ class Ability
     challenges_loggable = Challenge.running_or_just_ended.visible
     active_participations = Participation.where(challenge_id: challenges_loggable ).where(user_id: user.id)
 
-    if user.role == 'admin'
+    if user.admin?
       can :manage, :all
     else
       can :like, Resources::Story

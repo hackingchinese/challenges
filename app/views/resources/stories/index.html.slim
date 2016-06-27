@@ -7,6 +7,7 @@ h4: small Filter
 
 .resource-filter
   - Resources::Tag.tiers.keys.each do |tier|
+    - next if tier == 'extra' && @filter.selected_tag_ids.blank?
     .row
       .col-sm-2: strong = t "resources.tiers.#{tier}"
       .col-sm-9

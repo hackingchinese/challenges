@@ -28,6 +28,7 @@ gem 'turbolinks'
 gem 'bootstrap', '~> 4.0.0.alpha3'
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'
+  gem 'rails-assets-dragula'
 end
 gem "font-awesome-rails"
 gem "highcharts-rails", "~> 3.0.0"

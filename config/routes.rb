@@ -13,7 +13,11 @@ HnChallenge::Application.routes.draw do
     resources :users
     resources :quality_tables
     namespace :resources do
-      resources :tags
+      resources :tags do
+        collection do
+          post :resort
+        end
+      end
     end
   end
 

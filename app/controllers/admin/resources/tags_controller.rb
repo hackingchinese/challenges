@@ -7,6 +7,17 @@ class Admin::Resources::TagsController < InheritedResources::Base
     @tiers = Resources::Tag.tiers.keys
   end
 
+  def resort
+    tags = Resources::Tag.send(params['tier'])
+    sort_order = params[:ids].map(&:to_i)
+    new_order = tags.sort_by{|tag| sort_order.index(tag.id) || 99 }
+    new_order.each_with_index do |tag, i|
+      tag.update weight: i
+    end
+    Rails.cache.delete('tag_sort_order')
+    render nothing: true
+  end
+
   protected
 
   def permitted_params

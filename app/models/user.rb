@@ -28,6 +28,10 @@ class User < ActiveRecord::Base
     self.mail_preference || create_mail_preference
   end
 
+  def admin?
+    role == 'admin'
+  end
+
   def generate_random_image
     image_file = RandomImageGenerator.generate email
     self.avatar = image_file

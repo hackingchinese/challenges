@@ -1,4 +1,5 @@
 class Resources::StoriesController < ResourcesController
+
   def index
     @filter = ResourcesFilter.new(params)
   end
@@ -13,6 +14,7 @@ class Resources::StoriesController < ResourcesController
     @story = Resources::Story.new(params[:resources_story].permit!)
     @story.user = current_user
     if @story.save
+      Rails.cache.delete_matched('tag_counts.*')
       @story.liked_by << current_user
       MailPreference.notifiable_users(:new_resource).each do |user|
         next if user == @story.user
