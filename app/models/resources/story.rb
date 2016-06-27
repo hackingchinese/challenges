@@ -18,6 +18,10 @@ class Resources::Story < ActiveRecord::Base
     likes.where(user_id: user.id).any?
   end
 
+  def to_param
+    "#{id}-#{title.to_url}"
+  end
+
   def notify_new_comment(comment)
     users_to_inform = ([user] + comments.map(&:user)) - [comment.user]
     users_to_inform.each do |user|

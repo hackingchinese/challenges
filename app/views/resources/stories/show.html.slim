@@ -6,7 +6,7 @@ h2 = @story.title
       = truncate pretty_print_url(@story.url), length: 50
     p
       small.text-muted
-        |Submitted by #{@story.user.name} on #{l @story.created_at, format: :long}
+        |Submitted by #{link_to @story.user.name, user_path(@story.user)} on #{l @story.created_at, format: :long}
     p
       - @story.tags.each do |tag|
         span.label.label-default<> = tag.name

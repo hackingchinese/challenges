@@ -25,3 +25,7 @@ job_type :runner, "cd :path && bin/rails runner -e :environment ':task' :output"
 every 1.day, at: '7pm' do
   runner 'ChallengeMailing.cronjob'
 end
+
+every 1.day, :at => '5:00 am' do
+  rake "-s sitemap:refresh"
+end

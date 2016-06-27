@@ -6,7 +6,7 @@ Rails 4.2 -> Rails 5
 
 * Tests
 
-* Grab Gravatar instead auto image
+* Fetch Gravatar instead auto image
 
 ## Resources
 

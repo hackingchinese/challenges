@@ -32,6 +32,7 @@ source 'https://rails-assets.org' do
 end
 gem "font-awesome-rails"
 gem "highcharts-rails", "~> 3.0.0"
+gem 'sitemap_generator'
 
 
 ### Utils
