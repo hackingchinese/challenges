@@ -31,8 +31,21 @@ HnChallenge::Application.routes.draw do
     end
   end
   get 'u/:id' => 'users#show', as: :user
-  get 'resources/:tier_0(/:tier_1(/:tier_2(/:tier_3)))' => 'resources/stories#index'
+  get 'resources/:level/:topic/:type/:extra' => 'resources/stories#index'
+  get 'resources/:level/:topic/:type' => 'resources/stories#index'
+  get 'resources/:level/:topic' => 'resources/stories#index'
+  get 'resources/:level' => 'resources/stories#index'
   get 'resources' => 'resources/stories#index'
+
+  # /s/p2akyy/decipher_chinese_level-adjusted_reading_practice
+  # /s/p2akyy/decipher_chinese_level-adjusted_reading_practice/comments/e95ntq
+  get 's/:short_id(/:stuff(/comments/:more_stuff))' => 'resources/migration#story_redirect'
+
+  # /t/Intermediate
+  # /t/Intermediate/Listening
+  get 't/:tag1(/:tag2(/:tag3))' => 'resources/migration#tag_redirect'
+  get 'newest/:username' => 'resources/migration#user_page'
+  get 'newest' => redirect('/resources')
 
   get 'mail_preference' => 'mail_preferences#edit'
   post 'mail_preference' => 'mail_preferences#update'

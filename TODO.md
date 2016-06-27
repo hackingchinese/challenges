@@ -1,24 +1,25 @@
-## New features
-
-... Feed? Notifications? Messages?
-
-Rails 4.2 -> Rails 5
-
-* Tests
-
-* Fetch Gravatar instead auto image
-
-## Resources
+## Resources migration
 
 * Search
 * Pfade migrieren
-* Sitemap / Google
 * Tests
   * Story Fetcher
-
-* Admin
-  Comments
 
 * Non Function
   * Info Mail/BlogPost
 
+## Optional
+
+Rails 4.2 -> Rails 5
+* Fetch Gravatar instead auto image
+* Admin
+  Comments
+
+## Ideas
+... Feed? Notifications? Messages?
+
+Profile:
+* Languages spoken proficiency
+* Blog
+* Twitter
+* ..? any chinese learning site? Tools i use?
