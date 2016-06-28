@@ -1,7 +1,6 @@
 ## Resources migration
 
 * Search
-* Pfade migrieren
 * Tests
   * Story Fetcher
 

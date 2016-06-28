@@ -65,6 +65,8 @@ group :development, :test do
   gem 'pry-doc'
   gem 'rspec-rails'
   gem 'thin'
+  gem 'vcr'
+  gem 'webmock'
 end
 
 group :test do

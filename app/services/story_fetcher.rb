@@ -40,7 +40,7 @@ class StoryFetcher
     Typhoeus.get(url,
                  followlocation: true,
                  accept_encoding: "gzip",
-                 timeout: 20,
+                 timeout: 60,
                  headers: {
                   "User-agent" => "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/Firefox27.0",
                   "Accept" => "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
@@ -52,7 +52,6 @@ class StoryFetcher
     parse_content
     dummy_story = Resources::Story.new
     if @image
-      puts 'fetching image..'
       response = get(@image)
       if response.success?
         tf = Tempfile.new(["image_download", ".jpg"])
