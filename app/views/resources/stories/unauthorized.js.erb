@@ -1,0 +1,4 @@
+var tpl = <%= render(partial: "unauthorized_modal", formats: [:html]).to_json.html_safe %>;
+jQuery("#unauthorized-modal").remove();
+jQuery("body").append(tpl);
+jQuery("#unauthorized-modal").modal("show");

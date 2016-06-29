@@ -1,3 +1,5 @@
+Turbolinks.enableProgressBar()
+
 $(document).on 'ready page:load', ->
   $('.js-tooltip').tooltip()
   $(document).on 'click', '.js-modal', ->

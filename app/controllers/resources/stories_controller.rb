@@ -47,6 +47,16 @@ class Resources::StoriesController < ResourcesController
 
   def toggle_like
     @story = Resources::Story.find(params[:id])
+    if !can?(:like, @story)
+      respond_to do |f|
+        f.html {
+          authorize! :like, @story
+        }
+        f.js { render 'unauthorized' }
+
+      end
+      return
+    end
     authorize! :like, @story
     existing = @story.likes.where(user_id: current_user.id).first_or_initialize
     if existing.new_record?

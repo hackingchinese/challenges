@@ -1,9 +1,5 @@
 ## Resources migration
 
-* Search
-* Tests
-  * Story Fetcher
-
 * Non Function
   * Info Mail/BlogPost
 
