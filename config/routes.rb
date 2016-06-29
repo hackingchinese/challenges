@@ -22,6 +22,7 @@ HnChallenge::Application.routes.draw do
   end
 
   namespace :resources do
+    match 'search' => 'search#show', via: [:get, :post]
     resources :stories do
       member do
         post :toggle_like
@@ -31,6 +32,8 @@ HnChallenge::Application.routes.draw do
     end
   end
   get 'u/:id' => 'users#show', as: :user
+  get 'u/:id/liked' => 'users#liked', as: :user_likes
+  get 'u/:id/submissions' => 'users#submissions', as: :user_submissions
   get 'resources/:level/:topic/:type/:extra' => 'resources/stories#index'
   get 'resources/:level/:topic/:type' => 'resources/stories#index'
   get 'resources/:level/:topic' => 'resources/stories#index'

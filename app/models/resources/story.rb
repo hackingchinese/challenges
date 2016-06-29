@@ -1,6 +1,8 @@
 class Resources::Story < ActiveRecord::Base
   belongs_to :user
   mount_uploader :image, ImageUploader
+  include PgSearch
+  multisearchable :against => [:title, :description, :url, :tag_list]
 
 	has_many :taggings, class_name: "Resources::Tagging", foreign_key: 'story_id', dependent: :destroy
 	has_many :tags, through: :taggings
@@ -18,6 +20,12 @@ class Resources::Story < ActiveRecord::Base
     likes.where(user_id: user.id).any?
   end
 
+  def tag_list
+    tags.pluck(:name)
+  end
+
+  before_save :set_domain_name, if: :url_changed?
+
   def to_param
     "#{id}-#{title.to_url}"
   end
@@ -30,6 +38,12 @@ class Resources::Story < ActiveRecord::Base
   end
 
   private
+
+  def set_domain_name
+    uri = URI.parse(self.url)
+    self.domain_name = uri.host.remove('www.','')
+  rescue URI::InvalidURIError
+  end
 
   def check_tags
     tags = self.taggings.map{|i| i.tag }

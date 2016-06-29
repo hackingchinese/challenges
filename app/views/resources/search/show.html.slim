@@ -1,0 +1,14 @@
+
+= form_tag '', class: 'form-inline', method: 'get' do
+  fieldset.form-group
+    input.form-control type='text' name='q' value=params[:q] placeholder='search term'
+
+  button.btn.btn-primary type='submit'
+    | Search
+
+- if params[:q]
+  p: small.text-muted
+    | #{@result.total_count} found.
+  = render "resources/stories/story_collection", stories: @result.map(&:searchable)
+
+

@@ -4,4 +4,6 @@ class Resources::Comment < ActiveRecord::Base
   has_many :likes, class_name: "Resources::Like", as: :likeable
 
   validates :comment, presence: true
+  include PgSearch
+  multisearchable :against => [:comment]
 end

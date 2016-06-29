@@ -1,0 +1,7 @@
+- @container_class = 'container-fluid'
+h3.text-xs-center.m-b-1
+  = @user.name
+ul class="nav nav-tabs" role="tablist"
+  = nav_link "Profile", user_path(@user)
+  = nav_link "#{@user.stories.count} Resources submitted", user_submissions_path(@user)
+  = nav_link "#{@user.likes.where(likeable_type: 'Resources::Story').count} Resources liked", user_likes_path(@user)

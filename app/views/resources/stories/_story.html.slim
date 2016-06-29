@@ -5,7 +5,8 @@
   .card-block
     h4.card-title style='font-size: 1.1rem'
       = link_to story.url do
-        = story.title
+        = highlight_search_term story.title
+    p.domain-name: small = story.domain_name
     p.card-text.tags
       - story.tags.sort_by{|tag| @_tag_sort_order.index(tag.id) }.each do |tag|
         span.label.label-default<> = tag.name
@@ -18,7 +19,7 @@
           i.fa.fa-fw.fa-heart-o
       small.text-muted<= story.like_count
       = ' '
-      a.p-l-1 href='#{resources_story_path(story)}'
+      a.p-l-1 href=resources_story_path(story) title='Discussion on Hackingchinese'
         i.fa.fa-fw.fa-commenting-o
       small.text-muted<= story.comments_count
     p.card-text: small.text-muted

@@ -1,12 +1,26 @@
-.card
-  .card-block
-    .row
-      .col-xs-3.col-sm-2
-        .text-xs-center
-          div= image_tag comment.user.avatar.url(:display), style: 'max-width: 50px'
-          = link_to user_path(comment.user)
-            small.text-muted= comment.user.name
-      .col-xs-9.col-sm-10
-        p
-          small.text-muted= l comment.created_at, format: :long
+- if @story
+  .card
+    .card-block
+      .row
+        .col-md-3
+          .text-xs-center
+            div= image_tag comment.user.avatar.url(:display), style: 'max-width: 50px'
+            = link_to user_path(comment.user)
+              small.text-muted= comment.user.name
+        .col-md-9
+          p
+            small.text-muted= l comment.created_at, format: :long
+          = markdown comment.comment
+- else
+  .card
+    .card-block
+      .text-xs-center
+        div= image_tag comment.user.avatar.url(:display), style: 'max-width: 50px'
+        = link_to user_path(comment.user)
+          small.text-muted= comment.user.name
+      p.text-muted Comment on #{link_to comment.story.title, comment.story}
+      - if params[:q]
+        = highlight(markdown(comment.comment), params[:q].split(" "))
+      - else
         = markdown comment.comment
+      p: small.text-muted= l comment.created_at, format: :long

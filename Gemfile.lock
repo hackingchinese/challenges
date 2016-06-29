@@ -173,6 +173,10 @@ GEM
       omniauth-oauth (~> 1.1)
     orm_adapter (0.5.0)
     pg (0.18.4)
+    pg_search (1.0.5)
+      activerecord (>= 3.1)
+      activesupport (>= 3.1)
+      arel
     pkg-config (1.1.7)
     poltergeist (1.9.0)
       capybara (~> 2.1)
@@ -345,6 +349,7 @@ DEPENDENCIES
   omniauth-facebook
   omniauth-twitter
   pg
+  pg_search
   poltergeist
   pry-doc
   pry-rails

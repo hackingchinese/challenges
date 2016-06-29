@@ -1,0 +1,8 @@
+= render "nav"
+h3.text-xs-center.m-t-2 Resources liked
+p Recently liked by #{@user.name}.
+
+= render "resources/stories/story_collection", stories: @resources_liked, short: true
+
+.text-xs-center
+  = paginate @resources_liked, :param_name => :like_page

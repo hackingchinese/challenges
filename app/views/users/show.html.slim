@@ -1,21 +1,20 @@
-- @container_class = 'container-fluid'
-h3.text-xs-center.m-b-1
-  = @user.name
+= render "nav"
 
+h3.text-xs-center.m-t-2 Profile &amp; Challenges
 
 .row
   .col-sm-6
     .card
-      .card-block
-        h3.card-title Challenges
-        - if @participations.any?
+      - if @participations.any?
+        .card-block
           p.card-text #{@user.name} took part in this challenges:
-          ul.list-group.list-group-flush
-            - @participations.each do |participation|
-              li.list-group-item
-                = link_to [participation.challenge, participation] do
-                  = participation.challenge.title
-        - else
+        ul.list-group.list-group-flush
+          - @participations.each do |participation|
+            li.list-group-item
+              = link_to [participation.challenge, participation] do
+                = participation.challenge.title
+      - else
+        .card-block
           |Not participated in any challenges, yet.
   .col-sm-6
     .card
@@ -34,25 +33,8 @@ h3.text-xs-center.m-b-1
             strong.text-caps About
             = markdown @user.about
         p
-          strong.text-caps #{@user.stories.count} Resources submitted
-        p
-          strong.text-caps #{@user.likes.where(likeable_type: 'Resources::Story').count} Resources liked
-        p
           strong.text-caps #{@user.activity_logs.sum(:hours_spent).to_i} Hours logged
 
 
 
 
-h3.text-xs-center.m-t-2 Resources liked
-p Recently liked by #{@user.name}.
-
-= render "resources/stories/story_collection", stories: @resources_liked, short: true
-
-.text-xs-center
-  = paginate @resources_liked, :param_name => :like_page
-
-h3.text-xs-center.m-t-2.m-b-1 Resources submitted
-
-= render "resources/stories/story_collection", stories: @resources, short: true
-.text-xs-center
-  = paginate @resources, :param_name => :story_page

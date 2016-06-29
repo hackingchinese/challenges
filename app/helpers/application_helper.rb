@@ -8,6 +8,14 @@ module ApplicationHelper
     end
   end
 
+  def highlight_search_term(string)
+    if params[:q]
+      highlight(string, params[:q].split(' '))
+    else
+      string
+    end
+  end
+
   def display_base_errors resource
     return '' if (resource.errors.empty?) or (resource.errors[:base].empty?)
     messages = resource.errors[:base].map { |msg| content_tag(:p, msg) }.join

@@ -4,11 +4,11 @@ source 'https://rubygems.org'
 #
 gem 'rails', '~> 4.2.0'
 gem 'pg'
+gem 'pg_search'
 gem 'slim-rails'
 gem 'simple_form', '~> 3.1'
 gem 'inherited_resources'
 gem 'responders'
-
 
 ## User Auth
 #
