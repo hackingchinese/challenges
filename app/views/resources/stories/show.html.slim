@@ -30,7 +30,8 @@ h2 = @story.title
               | Delete
 
   .col-md-6
-    = image_tag @story.image.url(:medium)
+    - if @story.image.present?
+      = image_tag @story.image.url(:medium)
 br
 .entry-content = markdown @story.description
 

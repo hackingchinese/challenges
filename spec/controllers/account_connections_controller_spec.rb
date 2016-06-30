@@ -27,7 +27,7 @@ describe AccountConnectionsController do
     })
     request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:twitter]
 
-    get :omniauth, provider: :twitter
+    get :omniauth, params: { provider: :twitter }
     expect(response).to be_redirect
     expect(AccountConnection.count).to eql 1
     AccountConnection.first.tap do |ac|
@@ -39,8 +39,7 @@ describe AccountConnectionsController do
     expect(controller.current_user).to be_present
 
     # Re login
-    session.clear
-    get :omniauth, provider: :twitter
+    get :omniauth, params: { provider: :twitter }, session: {}
     expect(response).to be_redirect
     expect(AccountConnection.count).to eql 1
     expect(controller.current_user).to be_present
@@ -68,14 +67,13 @@ describe AccountConnectionsController do
       },
     })
     request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:facebook]
-
-    get :omniauth, provider: :facebook
+    get :omniauth, params: { provider: :facebook }, session: {}
     expect(response).to be_redirect
     expect(AccountConnection.count).to eql 1
     expect(AccountConnection.first.user).to be_present
 
-    session.clear()
-    get :omniauth, provider: :facebook
+    get :omniauth, params: { provider: :facebook }, session: {}
+
     expect(response).to be_redirect
     expect(AccountConnection.count).to eql 1
 

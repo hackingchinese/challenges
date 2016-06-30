@@ -1,4 +1,5 @@
 class AccountConnectionsController < ApplicationController
+  skip_before_action :check_valid_email
 
   def omniauth
     data = request.env['omniauth.auth']
