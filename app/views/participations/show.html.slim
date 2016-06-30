@@ -7,7 +7,8 @@
         |in #{@participation.challenge.title}
   .col-sm-4.text-xs-center
     = image_tag @participation.user.avatar.url(:display), style: 'max-width: 50px'
-    = @participation.user.name
+    = link_to @participation.user
+      = @participation.user.name
 
 
 ul class="nav nav-tabs" role="tablist"

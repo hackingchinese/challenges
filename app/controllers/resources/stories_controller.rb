@@ -28,6 +28,8 @@ class Resources::StoriesController < ResourcesController
 
   def show
     @story = Resources::Story.find(params[:id])
+    @page_title = @story.title
+    @page_description = @story.description
   end
 
   def edit

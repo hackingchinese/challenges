@@ -1,9 +1,5 @@
 meta[name="viewport" content="width=device-width, initial-scale=1.0"]
-title
-  - if Rails.env.development?
-    | (Dev)
-  = content_for?(:title) ? yield(:title) : 'Hacking Chinese Challenges'
-meta name="description" content="#{content_for?(:description) ? yield(:description) : 'Hacking Chinese Challenges - building language skills through daily practice and friendly competition!'}"
+== display_meta_tags site: @site_title
 
 == stylesheet_link_tag "application", media: 'all', 'data-turbolinks-track' => true
 == javascript_include_tag 'application', 'data-turbolinks-track' => true

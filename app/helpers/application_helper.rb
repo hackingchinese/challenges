@@ -31,21 +31,16 @@ module ApplicationHelper
 
   def markdown(html)
     @_renderer ||= Redcarpet::Render::HTML.new(
-      autolink: true,
-      tables: true,
-      safe_links_only: true,
-      no_styles: true,
       link_attributes: { rel: :nofollow }
     )
-    @_markdown ||= Redcarpet::Markdown.new(@_renderer)
+    @_markdown ||= Redcarpet::Markdown.new(@_renderer, autolink: true, safe_links_only: true, no_styles: true, tables: true,
+                                          link_attributes: { rel: :nofollow })
     @_markdown.render(html).html_safe
   end
 
   def progress_bar(max: 100, percent:, title: "#{percent.round(1)}%", inside_text: title, outside_text: '')
     content_tag :progress, class: 'progress js-tooltip', value: percent, max: max, title: title do
       inside_text
-      # concat content_tag(:div, class: 'progress-bar', style: "width: #{percent}%", 'aria-valuenow' => percent, 'aria-valuemin' => 0, role: 'progressbar') { inside_text }
-      # concat outside_text
     end
   end
 

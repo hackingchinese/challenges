@@ -1,4 +1,9 @@
 class ApplicationController < ActionController::Base
+  before_action do
+    @site_title = (Rails.env.development? ? "(DEV) " : "") + 'HC Challenges'
+    @page_description = 'Hacking Chinese Challenges - building language skills through daily practice and friendly competition!'
+    @page_title = "Building language skills through daily practice and friendly competition!"
+  end
 
   def navigation_name
     'challenges'
