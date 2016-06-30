@@ -2,11 +2,12 @@ source "https://rubygems.org"
 
 ## Basic
 #
-gem "rails", "~> 4.2.0"
+# gem "rails", "~> 4.2.0"
+gem "rails", ">= 5.0.0.rc2"
 gem "pg"
 gem "pg_search"
 gem "slim-rails"
-gem "simple_form", "~> 3.1"
+gem "simple_form"
 gem "inherited_resources"
 gem "responders"
 
