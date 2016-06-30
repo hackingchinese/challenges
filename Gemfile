@@ -66,7 +66,7 @@ group :development, :test do
   gem "pry-rails"
   gem "pry-rescue"
   gem "pry-doc"
-  gem "rspec-rails"
+  gem "rspec-rails", ">= 3.5.0.beta4"
   gem "thin"
   gem "vcr"
   gem "webmock"

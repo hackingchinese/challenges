@@ -1,5 +1,5 @@
 class RegistrationsController < Devise::RegistrationsController
-  before_filter :configure_permitted_parameters
+  before_action :configure_permitted_parameters
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up) { |u|
       u.permit(:name, :avatar, :email, :password, :password_confirmation, :profile_link, :no_mails)

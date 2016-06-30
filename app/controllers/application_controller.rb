@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
     redirect_to main_app.root_url, :alert => exception.message
   end
 
-  before_filter :check_valid_email
+  before_action :check_valid_email
 
   def check_valid_email
     if current_user && current_user.fake_email?
