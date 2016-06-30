@@ -1,4 +1,4 @@
-class Challenge < ActiveRecord::Base
+class Challenge < ApplicationRecord
   enum goal_type: [ :goal_time, :goal_unit ]
 
   has_many :participations

@@ -1,4 +1,4 @@
-class Resources::Story < ActiveRecord::Base
+class Resources::Story < ApplicationRecord
   belongs_to :user
   mount_uploader :image, ImageUploader
   include PgSearch

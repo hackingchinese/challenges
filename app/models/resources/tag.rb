@@ -1,4 +1,4 @@
-class Resources::Tag < ActiveRecord::Base
+class Resources::Tag < ApplicationRecord
   enum tier: [:level, :topic, :type, :extra ]
 
   has_many :taggings, class_name: "Resources::Tagging", foreign_key: "tag_id", dependent: :destroy

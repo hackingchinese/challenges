@@ -1,4 +1,4 @@
-class MailPreference < ActiveRecord::Base
+class MailPreference < ApplicationRecord
   belongs_to :user
   before_create :set_defaults
 

@@ -1,4 +1,4 @@
-class ActivityLog < ActiveRecord::Base
+class ActivityLog < ApplicationRecord
 
   belongs_to :user
   belongs_to :participation

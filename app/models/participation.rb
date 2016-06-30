@@ -1,4 +1,4 @@
-class Participation < ActiveRecord::Base
+class Participation < ApplicationRecord
   belongs_to :user
   belongs_to :challenge
   validates :goal_units, numericality: { greater_than: 0 }, if: :goal_unit?

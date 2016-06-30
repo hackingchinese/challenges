@@ -1,2 +1,2 @@
-class QualityTable < ActiveRecord::Base
+class QualityTable < ApplicationRecord
 end
