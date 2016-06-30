@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160629021012) do
+ActiveRecord::Schema.define(version: 20160630030916) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "pg_trgm"
   enable_extension "fuzzystrmatch"
+  enable_extension "unaccent"
 
   create_table "account_connections", force: :cascade do |t|
     t.integer  "user_id"
@@ -25,9 +25,8 @@ ActiveRecord::Schema.define(version: 20160629021012) do
     t.string   "token",      limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["user_id"], name: "index_account_connections_on_user_id", using: :btree
   end
-
-  add_index "account_connections", ["user_id"], name: "index_account_connections_on_user_id", using: :btree
 
   create_table "activity_log_comments", force: :cascade do |t|
     t.integer  "user_id"
@@ -35,21 +34,19 @@ ActiveRecord::Schema.define(version: 20160629021012) do
     t.integer  "activity_log_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["activity_log_id"], name: "index_activity_log_comments_on_activity_log_id", using: :btree
+    t.index ["user_id"], name: "index_activity_log_comments_on_user_id", using: :btree
   end
-
-  add_index "activity_log_comments", ["activity_log_id"], name: "index_activity_log_comments_on_activity_log_id", using: :btree
-  add_index "activity_log_comments", ["user_id"], name: "index_activity_log_comments_on_user_id", using: :btree
 
   create_table "activity_log_likes", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "activity_log_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["activity_log_id"], name: "index_activity_log_likes_on_activity_log_id", using: :btree
+    t.index ["user_id", "activity_log_id"], name: "index_activity_log_likes_on_user_id_and_activity_log_id", unique: true, using: :btree
+    t.index ["user_id"], name: "index_activity_log_likes_on_user_id", using: :btree
   end
-
-  add_index "activity_log_likes", ["activity_log_id"], name: "index_activity_log_likes_on_activity_log_id", using: :btree
-  add_index "activity_log_likes", ["user_id", "activity_log_id"], name: "index_activity_log_likes_on_user_id_and_activity_log_id", unique: true, using: :btree
-  add_index "activity_log_likes", ["user_id"], name: "index_activity_log_likes_on_user_id", using: :btree
 
   create_table "activity_logs", force: :cascade do |t|
     t.integer  "user_id"
@@ -64,10 +61,9 @@ ActiveRecord::Schema.define(version: 20160629021012) do
     t.datetime "updated_at"
     t.integer  "minutes"
     t.date     "date"
+    t.index ["participation_id"], name: "index_activity_logs_on_participation_id", using: :btree
+    t.index ["user_id"], name: "index_activity_logs_on_user_id", using: :btree
   end
-
-  add_index "activity_logs", ["participation_id"], name: "index_activity_logs_on_participation_id", using: :btree
-  add_index "activity_logs", ["user_id"], name: "index_activity_logs_on_user_id", using: :btree
 
   create_table "challenges", force: :cascade do |t|
     t.string   "title",                 limit: 255
@@ -83,21 +79,19 @@ ActiveRecord::Schema.define(version: 20160629021012) do
     t.string   "link",                  limit: 255
     t.integer  "time_quality_table_id"
     t.integer  "unit_quality_table_id"
+    t.index ["goal_type"], name: "index_challenges_on_goal_type", using: :btree
+    t.index ["time_quality_table_id"], name: "index_challenges_on_time_quality_table_id", using: :btree
+    t.index ["type"], name: "index_challenges_on_type", using: :btree
+    t.index ["unit_quality_table_id"], name: "index_challenges_on_unit_quality_table_id", using: :btree
   end
-
-  add_index "challenges", ["goal_type"], name: "index_challenges_on_goal_type", using: :btree
-  add_index "challenges", ["time_quality_table_id"], name: "index_challenges_on_time_quality_table_id", using: :btree
-  add_index "challenges", ["type"], name: "index_challenges_on_type", using: :btree
-  add_index "challenges", ["unit_quality_table_id"], name: "index_challenges_on_unit_quality_table_id", using: :btree
 
   create_table "mail_preferences", force: :cascade do |t|
     t.integer  "user_id"
     t.json     "mails_enabled"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["user_id"], name: "index_mail_preferences_on_user_id", using: :btree
   end
-
-  add_index "mail_preferences", ["user_id"], name: "index_mail_preferences_on_user_id", using: :btree
 
   create_table "participations", force: :cascade do |t|
     t.integer  "user_id"
@@ -107,11 +101,10 @@ ActiveRecord::Schema.define(version: 20160629021012) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.decimal  "score",        precision: 8, scale: 3
+    t.index ["challenge_id"], name: "index_participations_on_challenge_id", using: :btree
+    t.index ["score"], name: "index_participations_on_score", using: :btree
+    t.index ["user_id"], name: "index_participations_on_user_id", using: :btree
   end
-
-  add_index "participations", ["challenge_id"], name: "index_participations_on_challenge_id", using: :btree
-  add_index "participations", ["score"], name: "index_participations_on_score", using: :btree
-  add_index "participations", ["user_id"], name: "index_participations_on_user_id", using: :btree
 
   create_table "pg_search_documents", force: :cascade do |t|
     t.text     "content"
@@ -119,9 +112,8 @@ ActiveRecord::Schema.define(version: 20160629021012) do
     t.string   "searchable_type"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id", using: :btree
   end
-
-  add_index "pg_search_documents", ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id", using: :btree
 
   create_table "quality_tables", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -137,10 +129,9 @@ ActiveRecord::Schema.define(version: 20160629021012) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.integer  "like_count", default: 0
+    t.index ["story_id"], name: "index_resources_comments_on_story_id", using: :btree
+    t.index ["user_id"], name: "index_resources_comments_on_user_id", using: :btree
   end
-
-  add_index "resources_comments", ["story_id"], name: "index_resources_comments_on_story_id", using: :btree
-  add_index "resources_comments", ["user_id"], name: "index_resources_comments_on_user_id", using: :btree
 
   create_table "resources_likes", force: :cascade do |t|
     t.integer  "likeable_id"
@@ -148,10 +139,9 @@ ActiveRecord::Schema.define(version: 20160629021012) do
     t.integer  "user_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.index ["likeable_type", "likeable_id"], name: "index_resources_likes_on_likeable_type_and_likeable_id", using: :btree
+    t.index ["user_id"], name: "index_resources_likes_on_user_id", using: :btree
   end
-
-  add_index "resources_likes", ["likeable_type", "likeable_id"], name: "index_resources_likes_on_likeable_type_and_likeable_id", using: :btree
-  add_index "resources_likes", ["user_id"], name: "index_resources_likes_on_user_id", using: :btree
 
   create_table "resources_stories", force: :cascade do |t|
     t.string   "url"
@@ -165,20 +155,18 @@ ActiveRecord::Schema.define(version: 20160629021012) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.string   "domain_name"
+    t.index ["short_id"], name: "index_resources_stories_on_short_id", unique: true, using: :btree
+    t.index ["url"], name: "index_resources_stories_on_url", unique: true, using: :btree
+    t.index ["user_id"], name: "index_resources_stories_on_user_id", using: :btree
   end
-
-  add_index "resources_stories", ["short_id"], name: "index_resources_stories_on_short_id", unique: true, using: :btree
-  add_index "resources_stories", ["url"], name: "index_resources_stories_on_url", unique: true, using: :btree
-  add_index "resources_stories", ["user_id"], name: "index_resources_stories_on_user_id", using: :btree
 
   create_table "resources_taggings", force: :cascade do |t|
     t.integer  "tag_id"
     t.integer  "story_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["tag_id", "story_id"], name: "index_resources_taggings_on_tag_id_and_story_id", unique: true, using: :btree
   end
-
-  add_index "resources_taggings", ["tag_id", "story_id"], name: "index_resources_taggings_on_tag_id_and_story_id", unique: true, using: :btree
 
   create_table "resources_tags", force: :cascade do |t|
     t.string   "name"
@@ -194,9 +182,8 @@ ActiveRecord::Schema.define(version: 20160629021012) do
     t.string   "value",      limit: 6
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["key"], name: "idx_key", using: :btree
   end
-
-  add_index "simple_captcha_data", ["key"], name: "idx_key", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                      limit: 255, default: "",    null: false
@@ -225,11 +212,10 @@ ActiveRecord::Schema.define(version: 20160629021012) do
     t.boolean  "no_mails",                               default: false
     t.integer  "imported_from_resources_id"
     t.text     "about"
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["name"], name: "index_users_on_name", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
-
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["name"], name: "index_users_on_name", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "resources_likes", "users"
   add_foreign_key "resources_stories", "users"
