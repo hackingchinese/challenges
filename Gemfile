@@ -3,13 +3,14 @@ source "https://rubygems.org"
 ## Basic
 #
 # gem "rails", "~> 4.2.0"
-gem "rails", ">= 5.0.0.rc2"
+gem "rails", "~> 5.0.0"
 gem "pg"
 gem "pg_search"
 gem "slim-rails"
 gem "simple_form"
 gem "inherited_resources"
 gem "responders"
+# wait for > 0.1.1
 gem "active_params", github: 'choonkeat/active_params'
 
 
@@ -58,7 +59,6 @@ gem "meta-tags"
 gem "sitemap_generator"
 
 group :development do
-  gem "quiet_assets"
   gem "rails_layout"
 end
 
