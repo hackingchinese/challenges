@@ -10,6 +10,8 @@ gem "slim-rails"
 gem "simple_form"
 gem "inherited_resources"
 gem "responders"
+gem "active_params", github: 'choonkeat/active_params'
+
 
 ## User Auth
 #
@@ -25,7 +27,7 @@ gem "sass-rails"
 gem "uglifier", ">= 1.3.0"
 gem "coffee-rails", "~> 4.0"
 gem "jquery-rails"
-gem "turbolinks"
+gem "turbolinks", '~> 5.0.0.beta'
 gem "bootstrap", "~> 4.0.0.alpha3"
 source "https://rails-assets.org" do
   gem "rails-assets-tether", ">= 1.1.0"

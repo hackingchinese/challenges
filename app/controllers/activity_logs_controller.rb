@@ -32,29 +32,26 @@ class ActivityLogsController < InheritedResources::Base
   end
 
   def create
-    create! {  url_for [@activity_log.challenge, @activity_log.participation] }
+    @activity_log = ActivityLog.new(params[:activity_log])
+    @activity_log.user_id = current_user.id
+    @activity_log.participation_id = params[:participation_id]
+    if @activity_log.save
+      redirect_to [@activity_log.challenge, @activity_log.participation], notice: "Activity logged!"
+    else
+      render :new
+    end
   end
 
   def update
-    update! {  url_for [@activity_log.challenge, @activity_log.participation] }
+    @activity_log = current_user.activity_logs.find(params[:id])
+    if @activity_log.update(params[:activity_log])
+      redirect_to [@activity_log.challenge, @activity_log.participation], notice: "Activity updated!"
+    else
+      render :edit
+    end
   end
 
   def destroy
     destroy! {  url_for [@activity_log.challenge, @activity_log.participation] }
-  end
-
-  protected
-
-  def permitted_params
-    para = params.permit( :challenge_id, :participation_id, { activity_log: [:minutes, :units_accomplished, :date, :units_measure, :comment, :hours_measure]})
-
-    user_id = @activity_log.try(:user_id) || current_user.try(:id)
-    if para[:activity_log]
-      para[:activity_log].merge!(user_id: user_id)
-      para[:activity_log].merge!(participation_id: params[:participation_id])
-    else
-      para.merge! user_id: user_id
-    end
-    para
   end
 end

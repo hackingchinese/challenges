@@ -5,11 +5,7 @@ class ApplicationController < ActionController::Base
     @page_title = "Building language skills through daily practice and friendly competition!"
   end
 
-  def navigation_name
-    'challenges'
-  end
-  helper_method :navigation_name
-
+  include ActiveParams
   include SimpleCaptcha::ControllerHelpers
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -27,6 +23,11 @@ class ApplicationController < ActionController::Base
       @fake_email = true
     end
   end
+
+  def navigation_name
+    'challenges'
+  end
+  helper_method :navigation_name
 
   def admin?
     current_user && current_user.admin?

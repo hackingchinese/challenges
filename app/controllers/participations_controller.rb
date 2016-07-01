@@ -8,11 +8,24 @@ class ParticipationsController < InheritedResources::Base
     end
   end
 
-  def permitted_params
-    para = params.permit(:participation => [:goal_units, :goal_hours])
-    user_id = @participation.try(:user_id) || current_user.id
-    para[:participation] and para[:participation].merge!(user_id: user_id, challenge_id: @challenge.id)
-    para
+  def create
+    @participation = Participation.new(params[:participation])
+    @participation.user_id = current_user.id
+    @participation.challenge_id = params[:challenge_id]
+    if @participation.save
+      redirect_to [@participation.challenge, @participation], notice: "You are now taking part!"
+    else
+      render :new
+    end
+  end
+
+  def update
+    @participation = current_user.participations.find(params[:id])
+    if @participation.update(params[:participation])
+      redirect_to [@participation.challenge, @participation], notice: "Goal updated!"
+    else
+      render :edit
+    end
   end
 
 end

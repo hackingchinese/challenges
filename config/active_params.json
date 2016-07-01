@@ -1,0 +1,124 @@
+{
+  "GET activity_logs/new": {
+  },
+  "POST activity_logs/create": {
+    "activity_log": [
+      "minutes",
+      "units_accomplished",
+      "date",
+      "comment"
+    ]
+  },
+  "GET participations/show": {
+  },
+  "GET activity_logs/edit": {
+  },
+  "POST activity_logs/update": {
+    "activity_log": [
+      "minutes",
+      "units_accomplished",
+      "date",
+      "comment"
+    ]
+  },
+  "GET pages/index": {
+  },
+  "GET challenges/index": {
+  },
+  "GET challenges/edit": {
+  },
+  "POST challenges/update": {
+    "challenge": [
+      "title",
+      "description",
+      "link",
+      "from_date",
+      "to_date",
+      "visible",
+      "type",
+      "goal_type",
+      "unit"
+    ]
+  },
+  "GET challenges/show": {
+  },
+  "GET users/index": {
+  },
+  "GET quality_tables/index": {
+  },
+  "GET resources/stories/index": {
+  },
+  "GET resources/stories/show": {
+  },
+  "GET resources/stories/edit": {
+  },
+  "POST resources/stories/update": {
+    "resources_story": [
+      "description",
+      "image_cache",
+      "title",
+      "url",
+      {
+        "tag_ids": [
+
+        ]
+      }
+    ]
+  },
+  "GET resources/stories/new": {
+  },
+  "POST resources/stories/create": {
+    "resources_story": [
+      "description",
+      "image_cache",
+      "title",
+      "url",
+      {
+        "tag_ids": [
+
+        ]
+      }
+    ]
+  },
+  "GET admin/resources/tags/index": {
+  },
+  "GET admin/resources/tags/edit": {
+  },
+  "POST admin/resources/tags/create": {
+    "resources_tag": [
+      "name",
+      "weight",
+      "tier"
+    ]
+  },
+  "POST admin/resources/tags/update": {
+    "resources_tag": [
+      "name",
+      "weight",
+      "tier"
+    ]
+  },
+  "GET participations/edit": {
+  },
+  "POST participations/create": {
+    "participation": [
+      "goal_hours",
+      "goal_units"
+    ]
+  },
+  "POST participations/update": {
+    "participation": [
+      "goal_hours",
+      "goal_units"
+    ]
+  },
+  "POST resources/stories/toggle_like": {
+  },
+  "POST resources/comments/create": {
+    "resources_comment": [
+      "comment"
+    ]
+  },
+  "POST activity_logs/toggle_like": {
+  }
+}

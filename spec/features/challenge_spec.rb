@@ -17,7 +17,7 @@ describe 'Challenge', js: true do
     fill_in 'Comment', with: 'Very good!'
     click_on 'Log activity'
 
-    expect(page).to have_content 'successful'
+    expect(page).to have_content 'Activity logged'
     ActivityLog.first.tap do |al|
       expect(al.hours_spent).to be == 10.0
       expect(al.minutes).to be == 600
@@ -48,7 +48,7 @@ describe 'Challenge', js: true do
     fill_in 'Minutes', with: 60
     fill_in 'Comment', with: 'Very good!'
     click_on 'Log activity'
-    expect(page).to have_content 'successful'
+    expect(page).to have_content 'Activity logged'
     ActivityLog.first.tap do |al|
       expect(al.hours_spent).to be == 1.0
       expect(al.minutes).to be == 60
