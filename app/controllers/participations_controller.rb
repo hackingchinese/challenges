@@ -1,11 +1,16 @@
-class ParticipationsController < InheritedResources::Base
-  belongs_to :challenge
+class ParticipationsController < ApplicationController
   authorize_resource
+  before_action do
+    @challenge = Challenge.find params[:challenge_id]
+  end
+
+  def show
+    @participation = Participation.find(params[:id])
+  end
 
   def new
-    new! do
-      @participation.goal_hours = 10
-    end
+    @participation = Participation.new
+    @participation.goal_hours = 10
   end
 
   def create
@@ -19,6 +24,11 @@ class ParticipationsController < InheritedResources::Base
     end
   end
 
+  def edit
+    @participation = Participation.find(params[:id])
+    authorize! :edit, @participation
+  end
+
   def update
     @participation = current_user.participations.find(params[:id])
     if @participation.update(params[:participation])
@@ -26,6 +36,13 @@ class ParticipationsController < InheritedResources::Base
     else
       render :edit
     end
+  end
+
+  def destroy
+    @participation = Participation.find(params[:id])
+    c = @participation.challenge
+    authorize! :destroy, @participation
+    redirect_to c, notice: "Left the challenge"
   end
 
 end

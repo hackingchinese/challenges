@@ -1,18 +1,21 @@
-class ActivityLogsController < InheritedResources::Base
-  belongs_to :participation
-  load_and_authorize_resource
+class ActivityLogsController < ApplicationController
+  before_action do
+    @participation = Participation.find(params[:participation_id])
+  end
 
   def new
-    super do
-      date = Time.zone.now.to_date
-      if date > @participation.challenge.to_date
-        date = @participation.challenge.to_date
-      end
-      @activity_log.date = date
+    date = Time.zone.now.to_date
+    if date > @participation.challenge.to_date
+      date = @participation.challenge.to_date
     end
+    @activity_log = ActivityLog.new
+    @activity_log.participation = @participation
+    @activity_log.date = date
+    authorize! :new, @activity_log
   end
 
   def toggle_like
+    @activity_log = ActivityLog.find(params[:id])
     authorize! :like, @activity_log
     existing = @activity_log.likes.where(user_id: current_user.id).first_or_initialize
     if existing.new_record?
@@ -34,16 +37,23 @@ class ActivityLogsController < InheritedResources::Base
   def create
     @activity_log = ActivityLog.new(params[:activity_log])
     @activity_log.user_id = current_user.id
-    @activity_log.participation_id = params[:participation_id]
+    @activity_log.participation = @participation
+    authorize! :create, @activity_log
     if @activity_log.save
-      redirect_to [@activity_log.challenge, @activity_log.participation], notice: "Activity logged!"
+      redirect_to [@activity_log.challenge, @participation], notice: "Activity logged!"
     else
       render :new
     end
   end
 
+  def edit
+    @activity_log = ActivityLog.find(params[:id])
+    authorize! :edit, @activity_log
+  end
+
   def update
     @activity_log = current_user.activity_logs.find(params[:id])
+    authorize! :update, @activity_log
     if @activity_log.update(params[:activity_log])
       redirect_to [@activity_log.challenge, @activity_log.participation], notice: "Activity updated!"
     else
@@ -52,6 +62,9 @@ class ActivityLogsController < InheritedResources::Base
   end
 
   def destroy
-    destroy! {  url_for [@activity_log.challenge, @activity_log.participation] }
+    @activity_log = ActivityLog.find(params[:id])
+    authorize! :destroy, @activity_log
+    @activity_log.destroy
+    redirect_to [@activity_log.challenge, @activity_log.participation], notice: "Activity removed!"
   end
 end

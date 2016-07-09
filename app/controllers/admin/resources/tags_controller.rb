@@ -1,10 +1,30 @@
-class Admin::Resources::TagsController < InheritedResources::Base
+class Admin::Resources::TagsController < ApplicationController
   load_and_authorize_resource :tag, class: ::Resources::Tag
-  defaults :resource_class => ::Resources::Tag, :collection_name => 'tags', :instance_name => 'tag'
-  actions :all, except: [:show]
 
   def index
     @tiers = Resources::Tag.tiers.keys
+  end
+
+  def new
+  end
+
+  def create
+    if @tag.save
+      redirect_to [:admin, :resources, :tags], notice: "Tag created."
+    else
+      render :new
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @tag.update(params[:resources_tag])
+      redirect_to [:admin, :resources, :tags], notice: "Tag created."
+    else
+      render :new
+    end
   end
 
   def resort
@@ -19,10 +39,6 @@ class Admin::Resources::TagsController < InheritedResources::Base
   end
 
   protected
-
-  def permitted_params
-    params.permit!
-  end
 
   def navigation_name
     'resources'

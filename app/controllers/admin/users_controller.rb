@@ -1,7 +1,7 @@
-class Admin::UsersController < InheritedResources::Base
+class Admin::UsersController < ApplicationController
   load_and_authorize_resource
 
-  def permitted_params
-    params.permit!
+  def index
   end
+
 end

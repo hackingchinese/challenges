@@ -8,8 +8,6 @@ gem "pg"
 gem "pg_search"
 gem "slim-rails"
 gem "simple_form"
-gem "inherited_resources"
-gem "responders"
 # wait for > 0.1.1
 gem "active_params", github: 'choonkeat/active_params'
 
