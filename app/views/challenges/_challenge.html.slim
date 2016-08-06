@@ -19,15 +19,21 @@
           - if !challenge.future?
             span.label.label-default<> title='Participants'
               |#{challenge.participations.count}人
-            span.label.label-default<> title='Hours logged'
-              |#{challenge.activity_logs.sum(:hours_spent).round}h
+            - if challenge.goal_unit?
+              span.label.label-default<> title='#{challenge.unit_type.units_completed}'
+                i.fa.fa-book.fa-fw>
+                |#{challenge.activity_logs.sum(:units_accomplished).round}
+            - else
+              span.label.label-default<> title='Hours logged'
+                |#{challenge.activity_logs.sum(:hours_spent).round}h
+
         p = truncate challenge.description, length: 400
     .card-text
       a.btn.btn-primary> href=challenge_path(challenge)
         i.fa.fa-fw.fa-list-ol> title='Leaderboard'
       - if challenge.link? and challenge.link.starts_with?("http")
         a.btn.btn-secondary<> href=challenge.link
-          i.fa.fa-fw.fa-search title='Blog post'
+          i.fa.fa-fw.fa-file-text-o title='Blog post'
       - if can?(:enroll, challenge)
         = link_to [:new, challenge, :participation], class: 'btn btn-primary' do
           = t 'challenges.challenge.enroll'

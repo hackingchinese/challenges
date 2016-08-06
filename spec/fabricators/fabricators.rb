@@ -30,5 +30,5 @@ end
 
 Fabricator :reading_challenge, from: :challenge do
   goal_type :goal_unit
-  unit 'pages'
+  unit_type
 end

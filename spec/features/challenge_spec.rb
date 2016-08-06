@@ -9,6 +9,7 @@ describe 'Challenge', js: true do
 
     expect(page).to have_content 'Spring break'
     click_on 'Enroll!'
+    expect(page).to have_content "Joining Spring break"
     fill_in 'hours', with: 50
     click_on 'Take part'
 

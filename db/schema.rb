@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160806084450) do
+ActiveRecord::Schema.define(version: 20160806150334) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,7 +75,6 @@ ActiveRecord::Schema.define(version: 20160806084450) do
     t.boolean  "visible"
     t.text     "description"
     t.integer  "goal_type"
-    t.string   "unit",                  limit: 255
     t.string   "link",                  limit: 255
     t.integer  "time_quality_table_id"
     t.integer  "unit_quality_table_id"
