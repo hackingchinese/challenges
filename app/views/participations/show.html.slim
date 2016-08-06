@@ -58,7 +58,7 @@ ul class="nav nav-tabs" role="tablist"
 
           - if @participation.goal_unit?
             tr
-              th = @participation.unit_detail[:action]
+              th = @participation.unit_type.units_completed
               td = @participation.activity_logs.sum(:units_accomplished)
           tr
             th Hours reported

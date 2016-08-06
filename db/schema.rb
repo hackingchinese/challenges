@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160630030916) do
+ActiveRecord::Schema.define(version: 20160806084450) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,10 +79,12 @@ ActiveRecord::Schema.define(version: 20160630030916) do
     t.string   "link",                  limit: 255
     t.integer  "time_quality_table_id"
     t.integer  "unit_quality_table_id"
+    t.integer  "unit_type_id"
     t.index ["goal_type"], name: "index_challenges_on_goal_type", using: :btree
     t.index ["time_quality_table_id"], name: "index_challenges_on_time_quality_table_id", using: :btree
     t.index ["type"], name: "index_challenges_on_type", using: :btree
     t.index ["unit_quality_table_id"], name: "index_challenges_on_unit_quality_table_id", using: :btree
+    t.index ["unit_type_id"], name: "index_challenges_on_unit_type_id", using: :btree
   end
 
   create_table "mail_preferences", force: :cascade do |t|
@@ -108,8 +110,8 @@ ActiveRecord::Schema.define(version: 20160630030916) do
 
   create_table "pg_search_documents", force: :cascade do |t|
     t.text     "content"
-    t.integer  "searchable_id"
     t.string   "searchable_type"
+    t.integer  "searchable_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id", using: :btree
@@ -134,8 +136,8 @@ ActiveRecord::Schema.define(version: 20160630030916) do
   end
 
   create_table "resources_likes", force: :cascade do |t|
-    t.integer  "likeable_id"
     t.string   "likeable_type"
+    t.integer  "likeable_id"
     t.integer  "user_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
@@ -150,10 +152,10 @@ ActiveRecord::Schema.define(version: 20160630030916) do
     t.integer  "user_id"
     t.text     "description"
     t.string   "image"
-    t.integer  "comments_count"
-    t.integer  "like_count"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.integer  "comments_count", default: 0
+    t.integer  "like_count",     default: 0
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.string   "domain_name"
     t.index ["short_id"], name: "index_resources_stories_on_short_id", unique: true, using: :btree
     t.index ["url"], name: "index_resources_stories_on_url", unique: true, using: :btree
@@ -185,6 +187,19 @@ ActiveRecord::Schema.define(version: 20160630030916) do
     t.index ["key"], name: "idx_key", using: :btree
   end
 
+  create_table "unit_types", force: :cascade do |t|
+    t.string   "key"
+    t.string   "action"
+    t.string   "singular"
+    t.string   "plural"
+    t.string   "verb_present"
+    t.string   "verb_past"
+    t.json     "texts"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["key"], name: "index_unit_types_on_key", unique: true, using: :btree
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                      limit: 255, default: "",    null: false
     t.string   "encrypted_password",         limit: 255, default: "",    null: false
@@ -210,7 +225,7 @@ ActiveRecord::Schema.define(version: 20160630030916) do
     t.string   "profile_link",               limit: 255
     t.string   "avatar",                     limit: 255
     t.boolean  "no_mails",                               default: false
-    t.integer  "imported_from_resources_id"
+    t.integer  "imported_from_resources_id",                                          comment: "user-id by former resources.hc website"
     t.text     "about"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["name"], name: "index_users_on_name", unique: true, using: :btree

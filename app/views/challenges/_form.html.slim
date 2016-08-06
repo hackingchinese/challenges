@@ -14,7 +14,7 @@
     = field_set_tag 'Challenge Type' do
       = f.input :type, as: :select, collection: [['Extensive', ExtensiveChallenge], ['Intensive', IntensiveChallenge]], include_blank: false
       = f.input :goal_type, as: :radio_buttons, collection: Challenge.goal_types.keys.map(&:to_sym)
-      = f.input :unit, as: :select, collection: t('goal_types')
+      = f.association :unit_type, as: :select, collection: UnitType.all, label_method: 'key'
 
   .form-actions
     = f.button :submit

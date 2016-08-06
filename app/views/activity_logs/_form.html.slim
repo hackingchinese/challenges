@@ -2,7 +2,7 @@
   = f.error :base
 
   - if participation.challenge.goal_unit?
-    = f.input :units_accomplished, label: t('simple_form.labels.activity_log.units_accomplished', units: participation.challenge.unit.pluralize)
+    = f.input :units_accomplished, label: t('simple_form.labels.activity_log.units_accomplished', units: participation.unit.plural)
     - if participation.challenge.is_a? IntensiveChallenge
       = f.input :units_measure
     p: small

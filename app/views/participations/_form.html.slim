@@ -5,7 +5,7 @@
     - if @challenge.goal_time?
       = f.input :goal_hours, label: 'How many hours do you want to spend during that time?'
     - else
-      = f.input :goal_units, label: "How many #{@challenge.unit.pluralize} do you want to complete?"
+      = f.input :goal_units, label: "How many #{@challenge.unit.plural} do you want to #{@challenge.unit.verb_present}?"
 
   .form-actions.m-b-2.m-t-1
     = f.submit 'Take part', class: 'btn btn-primary'

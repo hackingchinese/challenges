@@ -15,35 +15,6 @@ en:
   challenges:
     challenge:
       enroll: Enroll!
-  units:
-    pages:
-      action: 'Pages read'
-      goal: 'Read #{count} pages'
-      past: 'read #{count} pages'
-    haiku:
-      action: 'Haikus read'
-      goal: 'Read #{count} haikus'
-      past: 'Read #{count} haikus'
-    characters:
-      action: 'Characters learned'
-      goal: 'learn %{count} characters'
-      goal: 'learned %{count} characters'
-    articles:
-      action: 'Articles read'
-      goal: 'Read #{count} articles'
-      past: 'read #{count} articles'
-    movies:
-      action: 'Movies watched'
-      goal: 'Watch #{count} movies'
-      past: 'watched #{count} movies'
-    episodes:
-      action: 'Episodes watched/listened'
-      goal: 'Watch/listen to #{count} episodes'
-      past: 'watched/listened to #{count} episodes'
-    units:
-      action: 'Units accomplished'
-      goal: 'Complete #{count} units'
-      past: 'accomplished #{count} units'
   participations:
     show:
       twitter_share_text: 'I just %{past}!'

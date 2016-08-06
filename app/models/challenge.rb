@@ -4,6 +4,7 @@ class Challenge < ApplicationRecord
   has_many :participations
   has_many :users, through: :participations
   has_many :activity_logs, through: :participations
+  belongs_to :unit_type
 
   scope :visible, -> { where visible: true }
   scope :running, -> { where 'from_date <= :date and to_date >= :date', date: Date.today}
@@ -23,7 +24,7 @@ class Challenge < ApplicationRecord
   validates :title, presence: true
   validates :from_date, presence: true
   validates :to_date, presence: true
-  validates :unit, presence: true, if: :goal_unit?
+  validates :unit_type, presence: true, if: :goal_unit?
 
 
   def running?
@@ -52,10 +53,6 @@ class Challenge < ApplicationRecord
 
   def time_progress
     [100 - days_left * 100 / duration_days, 100].min
-  end
-
-  def unit_detail
-    I18n.t("units.#{unit}")
   end
 
   def upcoming?

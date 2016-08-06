@@ -25,9 +25,16 @@ class ChallengesController < ApplicationController
   end
 
   def update
+    if @challenge.update(params[:challenge].permit!)
+      redirect_to @challenge, notice: "Successfully saved!"
+    else
+      render :edit
+    end
   end
 
   def destroy
+    @challenge.destroy
+    redirect_to '/', notice: "Successfully deleted."
   end
 
 end

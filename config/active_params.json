@@ -3,8 +3,8 @@
   },
   "POST activity_logs/create": {
     "activity_log": [
-      "minutes",
       "units_accomplished",
+      "minutes",
       "date",
       "comment"
     ]
@@ -37,7 +37,7 @@
       "visible",
       "type",
       "goal_type",
-      "unit"
+      "unit_type_id"
     ]
   },
   "GET challenges/show": {
@@ -102,7 +102,6 @@
   },
   "POST participations/create": {
     "participation": [
-      "goal_hours",
       "goal_units"
     ]
   },
@@ -120,5 +119,23 @@
     ]
   },
   "POST activity_logs/toggle_like": {
+  },
+  "GET devise/sessions/new": {
+  },
+  "POST devise/sessions/create": {
+    "user": [
+      "email",
+      "password",
+      "remember_me"
+    ]
+  },
+  "POST devise/sessions/new": {
+    "user": [
+      "email",
+      "password",
+      "remember_me"
+    ]
+  },
+  "GET participations/new": {
   }
 }

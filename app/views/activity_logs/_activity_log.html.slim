@@ -2,13 +2,16 @@ div id='#{dom_id(activity_log)}'
   .card
     .card-block
       h5.card-title
-        | #{activity_log.minutes} minutes
+        - if activity_log.minutes?
+          | #{activity_log.minutes} minutes
         - if activity_log.participation.goal_unit?
-          span<> &ndash;
-          = activity_log.units_accomplished
+          - if activity_log.minutes?
+            span<> &ndash;
+          = activity_log.unit_type.completed_n_units(activity_log.units_accomplished).capitalize
         .pull-right
-          small.text-muted<>
-            |#{activity_log.hours_spent}h
+          - if activity_log.hours_spent?
+            small.text-muted<>
+              |#{activity_log.hours_spent}h
 
       .card-text
         - if activity_log.comment.present?

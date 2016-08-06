@@ -11,6 +11,53 @@ class ResourcesImport
     likes!
     reset_counters!
     unsubscribers!
+
+    unit_types!
+  end
+
+  def unit_types!
+    UnitType.where(key: 'pages').first_or_create(
+      singular: 'page',
+      plural: 'pages',
+      verb_present: 'read',
+      verb_past: 'read',
+    )
+    UnitType.where(key: 'haikus').first_or_create(
+      singular: 'haiku',
+      plural: 'haikus',
+      verb_present: 'read',
+      verb_past: 'read',
+    )
+    UnitType.where(key: 'characters').first_or_create(
+      singular: 'character',
+      plural: 'characters',
+      verb_present: 'learn',
+      verb_past: 'learned',
+    )
+    UnitType.where(key: 'movies').first_or_create(
+      singular: 'movie',
+      plural: 'movies',
+      verb_present: 'watch',
+      verb_past: 'watched',
+    )
+    UnitType.where(key: 'tv_episodes').first_or_create(
+      singular: 'episode',
+      plural: 'episodes',
+      verb_present: 'watch',
+      verb_past: 'watched',
+    )
+    UnitType.where(key: 'podcasts').first_or_create(
+      singular: 'episode',
+      plural: 'episodes',
+      verb_present: 'listen to',
+      verb_past: 'listened to',
+    )
+    UnitType.where(key: 'units').first_or_create(
+      singular: 'unit',
+      plural: 'units',
+      verb_present: 'complete',
+      verb_past: 'completed',
+    )
   end
 
   def unsubscribers!
@@ -74,7 +121,7 @@ class ResourcesImport
       story.id = hash['id']
       story.url = hash['url']
       story.title = hash['title']
-      story.description = hash['description']
+      story.description = hash['description'].presence || "."
       story.user_id = @user_mapping[hash['user_id']]
       if story.image.blank? && hash['image_url'].present?
         story.remote_image_url = "http://resources.hackingchinese.com" + hash['image_url']
@@ -84,6 +131,8 @@ class ResourcesImport
         story.save!
       rescue ActiveRecord::RecordNotUnique
         binding.pry
+      rescue ActiveRecord::RecordInvalid
+        story.save validate: false
       end
     end
 

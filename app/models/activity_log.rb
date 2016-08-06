@@ -15,6 +15,7 @@ class ActivityLog < ApplicationRecord
   before_save :set_score
   after_save :update_participation_score
 
+  delegate :unit_type, to: :challenge
   def date_valid
     if date_changed? and date.present?
 
@@ -51,7 +52,7 @@ class ActivityLog < ApplicationRecord
     if challenge.goal_time?
       I18n.t('participations.show.twitter_share_text_time', count: minutes)
     else
-      I18n.t('participations.show.twitter_share_text', past: participation.unit_detail[:past].gsub('#{count}', units_accomplished.to_s))
+      I18n.t('participations.show.twitter_share_text', past: challenge.unit_type.completed_n_units(units_accomplished))
     end
   end
 end

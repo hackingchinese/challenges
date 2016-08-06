@@ -10,7 +10,7 @@ class Participation < ApplicationRecord
     where('score is not null').order('score desc')
   }
 
-  delegate :goal_unit?, :goal_time?, :unit_detail, to: :challenge
+  delegate :goal_unit?, :goal_time?, :unit_type, to: :challenge
 
   def score
     activity_logs.sum(:score)
@@ -18,7 +18,7 @@ class Participation < ApplicationRecord
 
   def goal
     if goal_unit?
-      unit_detail[:goal].gsub('#{count}', goal_units.to_s)
+      unit_type.complete_n_units(goal_units)
     else
       "#{goal_hours}h"
     end

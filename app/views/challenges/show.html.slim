@@ -16,7 +16,7 @@
       td = @challenge.participations.count
     - if @challenge.goal_unit?
       tr
-        th = @challenge.unit_detail[:action]
+        th = @challenge.unit_type.units_completed.capitalize
         td = @challenge.activity_logs.sum(:units_accomplished)
     tr
       th Hours reported
