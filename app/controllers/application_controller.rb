@@ -17,7 +17,11 @@ class ApplicationController < ActionController::Base
   end
   before_action do
     if request.host == 'resources.hackingchinese.com'
-      url = "http://challenges.hackingchinese.com" + request.env['REQUEST_URI']
+      if request.env['REQUEST_URI'] == '/'
+        url = 'http://challenges.hackingchinese.com/resources'
+      else
+        url = "http://challenges.hackingchinese.com" + request.env['REQUEST_URI']
+      end
       redirect_to url
     end
   end
