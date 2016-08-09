@@ -82,3 +82,4 @@ pickle-email-*.html
 public/*jpg
 public/uploads
 config/secrets.yml
+/export

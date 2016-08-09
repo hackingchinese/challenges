@@ -2,6 +2,7 @@ require 'capybara/rspec'
 require 'capybara/poltergeist'
 Capybara.javascript_driver = :poltergeist
 Capybara.default_driver = :poltergeist
+Capybara.default_max_wait_time = 5
 
 RSpec.configure do |config|
   config.before(:each, js: true) do
