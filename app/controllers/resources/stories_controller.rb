@@ -41,6 +41,7 @@ class Resources::StoriesController < ResourcesController
     @story = Resources::Story.find(params[:id])
     authorize! :edit, @story
     if @story.update(permitted_params)
+      Rails.cache.delete_matched('tag_counts.*')
       redirect_to resources_story_path(@story), notice: "Resource updated!"
     else
       render :edit
@@ -85,6 +86,10 @@ class Resources::StoriesController < ResourcesController
   private
 
   def permitted_params
-    params.require(:resources_story).permit(:title, :url, :description, :image, :image_cache, :tag_ids => [])
+    p = params.require(:resources_story).permit(:title, :url, :description, :image, :image_cache, :tag_ids => [])
+    if p[:image].present?
+      p.delete :image_cache
+    end
+    p
   end
 end

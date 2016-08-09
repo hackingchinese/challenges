@@ -34,13 +34,8 @@ $(document).on 'click', '.js-fetch-url', (event) ->
     url: el.attr('href')
     data:
       url: form.find('#resources_story_url').val()
+      id: window.location.pathname.match(/stories\/(\d+)/)[1]
     error: (xhr,textResponse,error) ->
-      if xhr.responseJSON? && xhr.responseJSON.error
-        setError xhr.responseJSON.error
-      else
-        setError textResponse
-    complete: ->
-      el.html("fetch url + description + image")
     success: (data) ->
       setError null
       form.find('input[name*=title]').val(data.title)

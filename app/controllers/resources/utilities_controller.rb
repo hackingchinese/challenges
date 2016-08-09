@@ -1,8 +1,8 @@
 class Resources::UtilitiesController < ApplicationController
   def fetch_url
     authorize! :create, Resources::Story
-    url = params['url']
-    fetcher = StoryFetcher.new(url)
+    url = params[:url]
+    fetcher = StoryFetcher.new(url, params[:id])
     if fetcher.run()
       render json: {
         title: fetcher.title,

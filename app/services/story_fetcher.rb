@@ -1,8 +1,9 @@
 class StoryFetcher
   attr_reader :title, :description, :image_cache, :image_base64, :error, :url, :response
 
-  def initialize(url)
+  def initialize(url, existing_story_id)
     @url = url
+    @existing_story_id = existing_story_id
   end
 
   def valid?
@@ -15,7 +16,7 @@ class StoryFetcher
       return false
     end
     @url.gsub!(/\??utm_source.*/,'')
-    if dupe = Resources::Story.find_by(url: @url)
+    if !@existing_story_id && (dupe = Resources::Story.find_by(url: @url))
       @error = "Link already submitted by #{dupe.user.name} on #{dupe.created_at.to_date}!<br/> <a href='/resources/stories/#{dupe.id}'>Link</a>"
       return false
     end
