@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe StoryFetcher do
   specify 'parses HC Blogs' do
-    s = StoryFetcher.new('http://www.hackingchinese.com/anki-a-friendly-intelligent-spaced-learning-system/')
+    s = StoryFetcher.new('http://www.hackingchinese.com/anki-a-friendly-intelligent-spaced-learning-system/', nil)
     VCR.use_cassette 'hc.1' do
       s.run
     end
