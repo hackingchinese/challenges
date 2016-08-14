@@ -49,8 +49,4 @@ class ApplicationController < ActionController::Base
       @participation || (@challenge && @challenge.participations.find_by(user_id: current_user.try(:id)))
   end
   helper_method :current_participation
-
-  def resource_params
-    permitted_params
-  end
 end
