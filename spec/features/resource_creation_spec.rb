@@ -30,10 +30,10 @@ describe 'Resource creation', js: true do
       login user2.email, 'password123'
       visit '/resources'
       find('.fa-commenting-o').click
-      if !page.has_content?("Comment that resources")
+      if !page.has_content?("Leave a comment")
         find('.fa-commenting-o').click
       end
-      expect(page).to have_content 'Comment that resource'
+      expect(page).to have_content 'Leave a comment'
       find('.fa-heart-o').click
       fill_in 'resources_comment[comment]', with: "Thx"
       click_on 'Send'

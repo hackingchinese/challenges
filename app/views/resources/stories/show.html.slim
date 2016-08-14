@@ -46,8 +46,8 @@ br
 - if can? :create, Resources::Comment
   br
   br
-  h5: small Comment that resource
-  p How did you like the linked resource? Any experience for your learning?
+  h5: small Leave a comment
+  p How did you like the linked resource? Share your experience!
   - comment = @comment || Resources::Comment.new
   = simple_form_for [ @story, comment], url: resources_story_comments_path(@story) do |f|
     = f.input :comment, hint: "Markdown enabled", label: false
