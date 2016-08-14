@@ -46,7 +46,7 @@ HnChallenge::Application.routes.draw do
 
   # /t/Intermediate
   # /t/Intermediate/Listening
-  get 't/:tag1(/:tag2(/:tag3))' => 'resources/migration#tag_redirect'
+  get 't/:tag1(/:tag2(/:tag3(/:tag4)))' => 'resources/migration#tag_redirect'
   get 'newest/:username' => 'resources/migration#user_page'
   get 'newest' => redirect('/resources')
 

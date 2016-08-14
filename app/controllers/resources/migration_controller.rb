@@ -1,13 +1,13 @@
 class Resources::MigrationController < ApplicationController
-  # MISSING /t/News/Resource-collections/Tools-and-Apps/Simplified-Characters
   def story_redirect
     story = Resources::Story.find_by!(short_id: params[:short_id])
     redirect_to resources_story_path(story), status: :moved_permanently
   end
 
   def tag_redirect
-    tag_names = [params[:tag1], params[:tag2], params[:tag3] ].reject(&:blank?)
-    tags = Resources::Tag.where(name: tag_names).map{|i| [i.tier, i.name] }.to_h
+  # MISSING /t/News/Resource-collections/Tools-and-Apps/Simplified-Characters
+    tag_names = [params[:tag1], params[:tag2], params[:tag3], params[:tag4] ].reject(&:blank?)
+    tags = Resources::Tag.where(name: tag_names).map{|i| [i.tier, i.name] }.group_by(&:first).transform_values{|v| v.map(&:last).join("+") }
 
     url = url_for( tags.merge(controller: 'resources/stories', action: 'index', only_path: true))
     redirect_to url, status: :moved_permanently

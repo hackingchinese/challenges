@@ -156,5 +156,7 @@
       "goal_type",
       "unit_type_id"
     ]
+  },
+  "GET resources/migration/tag_redirect": {
   }
 }
