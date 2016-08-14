@@ -1,13 +1,20 @@
 - @_tag_sort_order ||= Resources::Tag.tag_sort_order
 .story.card id='#{dom_id(story)}'
-  - if story.image.present?
-    = image_tag story.image.url(:medium), class: 'card-img-top'
   .card-block
     h4.card-title style='font-size: 1.1rem'
       = link_to story.url do
         = highlight_search_term story.title
-    p.domain-name: small = story.domain_name
-    p.card-text.tags
+    .row
+      .col-sm-8
+        p.story-preview
+          = truncate(story.description, length: 200)
+          a< href=resources_story_path(story)
+            |Read more.
+      .col-sm-4
+        p.domain-name: small = story.domain_name
+        - if story.image.present?
+          = image_tag story.image.url(:medium), class: 'story-image'
+    p.card-text.tags.m-t-1
       - story.tags.sort_by{|tag| @_tag_sort_order.index(tag.id) }.each do |tag|
         span.label.label-default<> = tag.name
     .pull-right

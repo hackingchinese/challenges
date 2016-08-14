@@ -104,9 +104,9 @@ $comment-distance: 20px
   transition: box-shadow .5s ease
   .tags
     line-height: 1
-    display: flex
-    flex-flow: row wrap
-    justify-content: space-between
+    // display: flex
+    // flex-flow: row wrap
+    // justify-content: space-between
   img
     max-height: 100px
   .label
@@ -129,3 +129,14 @@ $comment-distance: 20px
   @extend .text-xs-right
   @extend .text-muted
   @extend .text-caps
+  overflow: hidden
+  text-overflow: ellipsis
+
+.story-preview
+  font-size: 0.8rem
+  line-height: 1.2
+  margin-top: 1rem
+
+.story-image
+  text-align: right
+  display: inline-block
