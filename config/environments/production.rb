@@ -21,7 +21,7 @@ Rails.application.configure do
   config.middleware.use ExceptionNotification::Rack,
     :email => {
     :email_prefix => "[Challenge] ",
-    :sender_address => %{"challenge" <noreply@stefanwienert.de>},
+    :sender_address => %{"challenge" <challenges@hackingchinese.com>},
     :exception_recipients => %w{info@stefanwienert.de}
   }
 end
