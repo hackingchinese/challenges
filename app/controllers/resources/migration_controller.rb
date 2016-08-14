@@ -1,4 +1,5 @@
 class Resources::MigrationController < ApplicationController
+  # MISSING /t/News/Resource-collections/Tools-and-Apps/Simplified-Characters
   def story_redirect
     story = Resources::Story.find_by!(short_id: params[:short_id])
     redirect_to resources_story_path(story), status: :moved_permanently

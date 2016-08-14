@@ -141,5 +141,20 @@
   "GET participations/new": {
   },
   "POST resources/utilities/fetch_url": {
+  },
+  "GET challenges/new": {
+  },
+  "POST challenges/create": {
+    "challenge": [
+      "title",
+      "description",
+      "link",
+      "from_date",
+      "to_date",
+      "visible",
+      "type",
+      "goal_type",
+      "unit_type_id"
+    ]
   }
 }
