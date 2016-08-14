@@ -132,6 +132,10 @@ GEM
       activesupport (>= 3.0.0)
     launchy (2.4.3)
       addressable (~> 2.3)
+    lograge (0.3.6)
+      actionpack (>= 3)
+      activesupport (>= 3)
+      railties (>= 3)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.4)
@@ -345,6 +349,7 @@ DEPENDENCIES
   highcharts-rails (~> 3.0.0)
   jquery-rails
   kaminari
+  lograge
   meta-tags
   mini_magick
   omniauth
