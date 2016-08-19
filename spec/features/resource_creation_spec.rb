@@ -1,7 +1,7 @@
 require "spec_helper"
 describe 'Resource creation', js: true do
-  let(:user1) { Fabricate :user, name: 'user1', email: 'info1@foobar.com', password: 'password123' }
-  let(:user2) { Fabricate :user, name: 'user2', email: 'info2@foobar.com', password: 'password123' }
+  let(:user1) { Fabricate :user, name: 'user1', email: 'info1@foobar.com', password: 'password123', created_at: 1.year.ago }
+  let(:user2) { Fabricate :user, name: 'user2', email: 'info2@foobar.com', password: 'password123', created_at: 1.year.ago }
 
   specify 'Resource creation + User inform' do
     Resources::Tag.create(tier: 'level', name: 'Beginner')

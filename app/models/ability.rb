@@ -20,7 +20,7 @@ class Ability
       end
 
       can :edit, Resources::Story do |s|
-        s.user_id == user.id && s.created_at > 2.hours.ago
+        s.user_id == user.id && (s.created_at > 2.hours.ago) || (user.created_at < 1.year.ago)
       end
 
       can :read, Challenge, id: Challenge.visible.pluck(:id)

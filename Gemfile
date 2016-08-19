@@ -71,6 +71,7 @@ group :development, :test do
   gem "thin"
   gem "vcr"
   gem "webmock"
+  gem 'phantomjs-binaries', '~> 2.1'
 end
 
 group :test do

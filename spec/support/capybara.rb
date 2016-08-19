@@ -32,6 +32,6 @@ RSpec.configure do |config|
   end
 
   def screenshot(name='foo')
-     page.save_screenshot "#{name}.png", full: true
+    page.save_screenshot "#{name}.png", full: true
   end
 end

@@ -22,6 +22,7 @@ describe 'Social interactions', js: true do
     in_browser 'user2' do
       login user2.email, 'password123'
       click_on 'Spring break'
+      click_on 'Leaderboard'
       click_on 'user1'
       find('.fa-heart-o').click
       expect(page).to have_selector '.fa-heart'

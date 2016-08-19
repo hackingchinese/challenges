@@ -5,6 +5,7 @@ Fabricator :user do
   password_confirmation do |a,b|
     a[:password]
   end
+  created_at { 1.year.ago }
 end
 
 Fabricator :generated_user, from: :user do
