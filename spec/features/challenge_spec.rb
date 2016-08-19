@@ -31,6 +31,7 @@ describe 'Challenge', js: true do
 
     visit '/'
     click_on 'Spring break'
+    click_on 'Leaderboard'
     expect(page).to have_content '1.'
     expect(page).to have_content 'Stefan'
   end
