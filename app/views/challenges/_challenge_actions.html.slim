@@ -5,7 +5,7 @@
       | Your activities
   li.nav-item>
     = link_to challenge, class: klasses.('challenges') do
-      | Leaderboard
+      | All activities
 - elsif can? :create, Participation, challenge_id: challenge.id
   = link_to [:new, challenge, :participation], class: 'btn btn-primary navbar-btn' do
     ' Enroll!

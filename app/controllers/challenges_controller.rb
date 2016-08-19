@@ -15,10 +15,11 @@ class ChallengesController < ApplicationController
 
   def show
     @leaderboard = @challenge.leaderboard
-    # @offset = ( @leaderboard.current_page - 1 ) * 20
     @offset = 0
     @max = [ 1 ,@challenge.participations.maximum('score') || 0 ].max
     @page_title = @challenge.title
+
+    @feed = @challenge.activity_feed_items.sorted.page(params[:page]).per(25)
   end
 
   def edit

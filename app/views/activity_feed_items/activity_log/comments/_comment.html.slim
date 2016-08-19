@@ -1,0 +1,18 @@
+div id='#{dom_id(item)}'
+  .list-group-item.clearfix
+    .row
+      .col-sm-10
+        = link_to [ @challenge, item.activity_log.participation] do
+          - other = item.activity_log.user
+          - if other == item.user
+            | #{item.user.name} commented on one of their activities
+          - else
+            |#{item.user.name} commented on one of #{item.activity_log.user.name}'s activities
+        br
+        small.text-muted = l item.created_at, format: "%A, %b %d"
+
+      .col-sm-2.text-xs-center
+        - if item.user.avatar.present?
+          = image_tag item.user.avatar.url(:display), style: 'max-width: 50px'
+        small= item.user.name
+

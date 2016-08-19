@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160806150334) do
+ActiveRecord::Schema.define(version: 20160819190120) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,12 @@ ActiveRecord::Schema.define(version: 20160806150334) do
     t.date     "date"
     t.index ["participation_id"], name: "index_activity_logs_on_participation_id", using: :btree
     t.index ["user_id"], name: "index_activity_logs_on_user_id", using: :btree
+  end
+
+  create_table "ar_internal_metadata", primary_key: "key", id: :string, force: :cascade do |t|
+    t.string   "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "challenges", force: :cascade do |t|
@@ -233,4 +239,28 @@ ActiveRecord::Schema.define(version: 20160806150334) do
 
   add_foreign_key "resources_likes", "users"
   add_foreign_key "resources_stories", "users"
+
+  create_view :activity_feed_items,  sql_definition: <<-SQL
+      SELECT activity_logs.id AS searchable_id,
+      'ActivityLog'::text AS searchable_type,
+      participations.challenge_id,
+      activity_logs.created_at
+     FROM (activity_logs
+       JOIN participations ON ((participations.id = activity_logs.participation_id)))
+  UNION
+   SELECT activity_log_comments.id AS searchable_id,
+      'ActivityLog::Comment'::text AS searchable_type,
+      participations.challenge_id,
+      activity_log_comments.created_at
+     FROM ((activity_log_comments
+       JOIN activity_logs ON ((activity_logs.id = activity_log_comments.activity_log_id)))
+       JOIN participations ON ((participations.id = activity_logs.participation_id)))
+  UNION
+   SELECT participations.id AS searchable_id,
+      'Participation'::text AS searchable_type,
+      participations.challenge_id,
+      participations.created_at
+     FROM participations;
+  SQL
+
 end

@@ -1,61 +1,84 @@
 - @title = @challenge.title
-- content_for :sidebar do
-  table.table-striped.table.table-bordered
-    - if @challenge.link?
-      tr
-        td Link
-        td.text-truncate
-          = link_to @challenge.link do
-            = truncate @challenge.link
-    - if @challenge.running?
-      tr.active
-        th Days left
-        td = @challenge.days_left
-    tr
-      th  Participants
-      td = @challenge.participations.count
-    - if @challenge.goal_unit?
-      tr
-        th = @challenge.unit_type.units_completed.capitalize
-        td = @challenge.activity_logs.sum(:units_accomplished)
-    tr
-      th Hours reported
-      td = @challenge.activity_logs.sum(:hours_spent)
-    tr
-      th Duration
-      td
-        |#{@challenge.from_date.to_s :long} to <br> #{@challenge.to_date.to_s :long} (#{@challenge.duration_days} days)
-
-
 
 .stand-out
   = markdown @challenge.description
-br
 
 - if current_participation && can?(:create, ActivityLog, participation_id: current_participation.id)
   = link_to [:new, @challenge, current_participation, :activity_log], class: 'btn btn-primary' do
     | Report progress
-hr
-h2 Leaderboard
+  br
+  br
 
-table.table.table-striped.table-bordered
-  thead
-    tr
-      td Rank
-      td colspan='2'
-      td Score
-      td Personal goal progress
-  - @leaderboard.each_with_index do |participation, index|
-    - position = index + 1 + @offset
-    tr
-      td style='width: 30px' #{position}.
-      td style='width: 30px' = image_tag participation.user.avatar.url(:thumb), style: 'min-width: 30px'
-      td
-        = link_to [@challenge, participation] do
-          = participation.user.name
-      td
-        = link_to [@challenge, participation] do
-          = participation.score.round(2)
-      td
-        = progress_bar percent: participation.goal_progress, title: 'Personal goal progress in percent', inside_text: "#{participation.goal_progress.to_i}% "
+ul class="nav nav-tabs" role="tablist"
+  li.nav-item
+    a.active.nav-link data-toggle="tab" href="#feed" role="tab"
+      | Recent activities
+  li.nav-item
+    a.nav-link data-toggle="tab" href="#leaderboard" role="tab"
+      | Leaderboard
+
+.tab-content
+  .tab-pane.active#feed role="tabpanel"
+    br
+    h3.text-xs-center: small Recent activities
+
+    .list-group
+      - @feed.each do |item|
+        = render "activity_feed_items/#{item.searchable.to_partial_path}", item: item.searchable
+    = paginate @feed
+
+  .tab-pane#leaderboard
+    br
+    h3.text-xs-center: small Leaderboard
+    .row
+      .col-sm-9
+        table.table.table-striped.table-bordered
+          thead
+            tr
+              td Rank
+              td colspan='2'
+              td Score
+              td Personal goal progress
+          - @leaderboard.each_with_index do |participation, index|
+            - position = index + 1 + @offset
+            tr
+              td style='width: 30px' #{position}.
+              td style='width: 30px' = image_tag participation.user.avatar.url(:thumb), style: 'min-width: 30px'
+              td
+                = link_to [@challenge, participation] do
+                  = participation.user.name
+              td
+                = link_to [@challenge, participation] do
+                  = participation.score.round(2)
+              td
+                = progress_bar percent: participation.goal_progress, title: 'Personal goal progress in percent', inside_text: "#{participation.goal_progress.to_i}% "
+
+      .col-sm-3
+        table.table-striped.table.table-bordered
+          - if @challenge.link?
+            tr
+              td Link
+              td.text-truncate
+                = link_to @challenge.link do
+                  = truncate @challenge.link
+          - if @challenge.running?
+            tr.active
+              th Days left
+              td = @challenge.days_left
+          tr
+            th  Participants
+            td = @challenge.participations.count
+          - if @challenge.goal_unit?
+            tr
+              th = @challenge.unit_type.units_completed.capitalize
+              td = @challenge.activity_logs.sum(:units_accomplished)
+          tr
+            th Hours reported
+            td = @challenge.activity_logs.sum(:hours_spent)
+          tr
+            th Duration
+            td
+              |#{@challenge.from_date.to_s :long} to <br> #{@challenge.to_date.to_s :long} (#{@challenge.duration_days} days)
+
+
 

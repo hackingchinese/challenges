@@ -37,16 +37,16 @@ div id='#{dom_id(activity_log)}'
               a.btn.btn-primary.btn-xs data-toggle='collapse' href="##{d=dom_id(activity_log, 'comment')}"
                 i.fa.fa-fw.fa-commenting-o
 
-            - if can? :comment, activity_log
-              .collapse.m-t-1 id=d
-                - comment = ActivityLog::Comment.new
-                = form_tag challenge_participation_activity_log_comments_path(activity_log.challenge, activity_log.participation, activity_log, comment), class: '' do
-                  .row
-                    .col-sm-8
-                      textarea.form-control name='comment[text]' placeholder='Comment'
-                    .col-sm-4
-                      button.btn.btn-secondary type='submit'
-                        | Send
+          - if can? :comment, activity_log
+            .collapse.m-t-1 id=d
+              - comment = ActivityLog::Comment.new
+              = form_tag challenge_participation_activity_log_comments_path(activity_log.challenge, activity_log.participation, activity_log, comment), class: '' do
+                .row
+                  .col-sm-8
+                    textarea.form-control name='comment[text]' placeholder='Comment'
+                  .col-sm-4
+                    button.btn.btn-secondary type='submit'
+                      | Send
 
     .card-footer
       small.text-xs-center.text-muted

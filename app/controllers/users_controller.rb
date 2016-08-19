@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
   def show
     @participations = @user.participations.includes(:challenge).references(:challenge).order('challenges.from_date desc').select{|i| i.challenge.present?}
-    @page_title = @user.name + " profile"
+    @page_title = (@user.name.presence || "??") + " profile"
   end
 
   def liked

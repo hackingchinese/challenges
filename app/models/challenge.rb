@@ -4,6 +4,7 @@ class Challenge < ApplicationRecord
   has_many :participations
   has_many :users, through: :participations
   has_many :activity_logs, through: :participations
+  has_many :activity_feed_items
   belongs_to :unit_type
 
   scope :visible, -> { where visible: true }

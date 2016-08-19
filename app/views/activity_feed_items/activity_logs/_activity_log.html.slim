@@ -1,0 +1,22 @@
+- activity_log = item
+div id='#{dom_id(activity_log)}'
+  .list-group-item.clearfix
+    .row
+      .col-sm-10
+        = link_to [@challenge, activity_log.participation] do
+          = ' '
+          - if activity_log.minutes?
+            | #{activity_log.minutes} minutes
+          - if activity_log.participation.goal_unit? && activity_log.units_accomplished?
+            - if activity_log.minutes?
+              span<> &ndash;
+            = activity_log.unit_type.completed_n_units(activity_log.units_accomplished).capitalize
+        br
+        p style='font-size: 0.8rem'= truncate(item.comment, length: 200)
+        small.text-muted = l activity_log.date, format: "%A, %b %d"
+      .col-sm-2.text-xs-center
+        - if item.user.avatar.present?
+          = image_tag item.user.avatar.url(:display), style: 'max-width: 50px'
+        small= item.user.name
+
+

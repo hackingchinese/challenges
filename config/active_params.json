@@ -158,5 +158,10 @@
     ]
   },
   "GET resources/migration/tag_redirect": {
+  },
+  "POST comments/create": {
+    "comment": [
+      "text"
+    ]
   }
 }
