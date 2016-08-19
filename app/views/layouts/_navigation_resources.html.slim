@@ -2,6 +2,11 @@
 = nav_link "Search", "/resources/search"
 - if can? :create, Resources::Story
   = nav_link "Submit", "/resources/stories/new"
+- else
+  li.nav-item
+    a href='#' disabled='disabled' title="New users can't submit stories shortly after sign up. Please wait one day"
+      |Submit
+
 
 - if can? :create, Resources::Tag
   li.dropdown.nav-item

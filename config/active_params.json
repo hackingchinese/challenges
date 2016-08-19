@@ -167,5 +167,7 @@
   "GET users/show": {
   },
   "GET resources/search/show": {
+  },
+  "GET users/submissions": {
   }
 }
