@@ -163,5 +163,9 @@
     "comment": [
       "text"
     ]
+  },
+  "GET users/show": {
+  },
+  "GET resources/search/show": {
   }
 }
