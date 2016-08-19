@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160819190120) do
+ActiveRecord::Schema.define(version: 20160819193633) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -244,6 +244,7 @@ ActiveRecord::Schema.define(version: 20160819190120) do
       SELECT activity_logs.id AS searchable_id,
       'ActivityLog'::text AS searchable_type,
       participations.challenge_id,
+      activity_logs.user_id,
       activity_logs.created_at
      FROM (activity_logs
        JOIN participations ON ((participations.id = activity_logs.participation_id)))
@@ -251,6 +252,7 @@ ActiveRecord::Schema.define(version: 20160819190120) do
    SELECT activity_log_comments.id AS searchable_id,
       'ActivityLog::Comment'::text AS searchable_type,
       participations.challenge_id,
+      activity_log_comments.user_id,
       activity_log_comments.created_at
      FROM ((activity_log_comments
        JOIN activity_logs ON ((activity_logs.id = activity_log_comments.activity_log_id)))
@@ -259,6 +261,7 @@ ActiveRecord::Schema.define(version: 20160819190120) do
    SELECT participations.id AS searchable_id,
       'Participation'::text AS searchable_type,
       participations.challenge_id,
+      participations.user_id,
       participations.created_at
      FROM participations;
   SQL

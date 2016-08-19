@@ -1,0 +1,15 @@
+- item = activity_feed_item
+
+div id='#{dom_id(item)}'
+  .list-group-item.clearfix
+    .row
+      .col-sm-10
+        = render "activity_feed_items/#{item.searchable.to_partial_path}", item: item.searchable
+        div: small.text-muted = l item.created_at, format: "%A, %b %d"
+      .col-sm-2.text-xs-center
+        - if item.user.avatar.present?
+          = image_tag item.user.avatar.url(:display), style: 'max-width: 50px'
+        small= item.user.name
+
+
+

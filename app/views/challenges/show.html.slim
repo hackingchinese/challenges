@@ -24,7 +24,7 @@ ul class="nav nav-tabs" role="tablist"
 
     .list-group
       - @feed.each do |item|
-        = render "activity_feed_items/#{item.searchable.to_partial_path}", item: item.searchable
+        = render item
     = paginate @feed
 
   .tab-pane#leaderboard

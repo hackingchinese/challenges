@@ -27,7 +27,8 @@ h3.text-xs-center.m-t-2 Profile &amp; Challenges
           p
             strong.text-caps Profile
             br
-            .text-truncate = link_to @user.profile_link, rel: 'nofollow'
+            .text-truncate = link_to @user.profile_link, rel: 'nofollow' do
+              = @user.profile_link
         - if @user.about?
           p
             strong.text-caps About

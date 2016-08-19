@@ -1,12 +1,2 @@
-div id='#{dom_id(item)}'
-  .list-group-item.clearfix
-    .row
-      .col-sm-10
-        |#{item.user.name} joined the challenge!
-        br
-        small.text-muted = l item.created_at, format: "%A, %b %d"
-
-      .col-sm-2.text-xs-center
-        - if item.user.avatar.present?
-          = image_tag item.user.avatar.url(:display), style: 'max-width: 50px'
-        small= item.user.name
+p
+  |#{link_to item.user.name, item.user} joined the challenge!
