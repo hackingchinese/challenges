@@ -78,6 +78,9 @@ class StoryFetcher
     @title = doc.at('title, h1').try(:text).try(:strip)
     @description = text.try(:strip)
     @image = image
+    if @image and @image.starts_with?("/")
+      @image = Addressable::URI.join(response.request.url, @image).to_s
+    end
   end
 
   def screenshot

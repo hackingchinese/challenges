@@ -11,6 +11,16 @@ describe StoryFetcher do
     expect(s.description).to be_present
     expect(s.image_cache).to be_present
     expect(File.exists?("public/uploads/tmp/" + s.image_cache)).to be == true
-
   end
+
+  specify 'relative urls in image' do
+    s = StoryFetcher.new('https://www.stefanwienert.de/', nil)
+    VCR.use_cassette 'hc.2', record: :new_episodes do
+      s.run
+    end
+    expect(s.valid?).to be == true
+    expect(s.image_cache).to be_present
+    expect(File.exists?("public/uploads/tmp/" + s.image_cache)).to be == true
+  end
+
 end
