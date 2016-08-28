@@ -29,18 +29,21 @@ $(document).on 'click', '.js-fetch-url', (event) ->
   el.html """
     <i class='fa fa-fw fa-spinner fa-spin'></i>
   """
+  id = window.location.pathname.match(/stories\/(\d+)/)
   $.ajax
     method: 'POST'
     url: el.attr('href')
     data:
       url: form.find('#resources_story_url').val()
-      id: window.location.pathname.match(/stories\/(\d+)/)[1]
+      id: id && id[1]
     error: (xhr,textResponse,error) ->
     success: (data) ->
       setError null
       form.find('input[name*=title]').val(data.title)
       form.find('textarea[name*=description]').val(data.description)
       form.find('input[name*=image_cache]').val(data.image_cache)
-      img = $("<img class='story-fetcher-preview' src=''/>")
-      img.attr('src', "/uploads/tmp/#{data.image_cache}")
-      $('.js-image-preview').html(img)
+      el.html("Fetch again")
+      if data.image_cache != null
+        img = $("<img class='story-fetcher-preview' src=''/>")
+        img.attr('src', "/uploads/tmp/#{data.image_cache}")
+        $('.js-image-preview').html(img)
