@@ -36,10 +36,7 @@ class ResourcesFilter
   end
 
   def tag_count_before_filter(tag)
-    t = (@selected_tag_ids || []).sort.join('-')
-    Rails.cache.fetch("tag_counts.#{tag.id}.#{t}", expires_in: 3.day) do
-      story_sql(extra_tiers: { tag.tier => [ tag ]}).count
-    end
+    story_sql(extra_tiers: { tag.tier => [ tag ]}).count
   end
 
   def story_sql(extra_tiers: {})
