@@ -55,7 +55,6 @@
   "POST resources/stories/update": {
     "resources_story": [
       "description",
-      "image",
       "image_cache",
       "title",
       "url",
