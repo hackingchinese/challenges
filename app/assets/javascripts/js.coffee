@@ -37,6 +37,8 @@ $(document).on 'click', '.js-fetch-url', (event) ->
       url: form.find('#resources_story_url').val()
       id: id && id[1]
     error: (xhr,textResponse,error) ->
+      setError xhr.responseJSON.error
+      el.html("Fetch again")
     success: (data) ->
       setError null
       form.find('input[name*=title]').val(data.title)

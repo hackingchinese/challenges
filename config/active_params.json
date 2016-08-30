@@ -72,6 +72,7 @@
     "resources_story": [
       "description",
       "image_cache",
+      "image",
       "title",
       "url",
       {

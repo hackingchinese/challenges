@@ -8,7 +8,6 @@ class Resources::UtilitiesController < ApplicationController
         title: fetcher.title,
         description: fetcher.description,
         image_cache: fetcher.image_cache,
-        image_base64: fetcher.image_base64
       }
     else
       render json: {
