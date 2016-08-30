@@ -10,7 +10,7 @@ class Resources::Story < ApplicationRecord
   has_many :liked_by, class_name: "User", through: :likes, source: :user
   has_many :comments, class_name: "Resources::Comment", dependent: :destroy, counter_cache: true
 
-  validates :url, presence: true
+  validates :url, presence: true, uniqueness: true
   validates :title, presence: true
   validates :description, presence: true
   validate :check_tags
