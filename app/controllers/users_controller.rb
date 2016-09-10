@@ -25,6 +25,6 @@ class UsersController < ApplicationController
       order('like_count desc').
       page(params[:story_page]).per(18)
 
-    @page_title = @user.name + " submissions"
+    @page_title = (@user.name || "new user") + "'s submissions"
   end
 end
