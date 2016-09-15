@@ -16,7 +16,7 @@ class UsersController < ApplicationController
       order('resources_likes.created_at desc').
       page(params[:like_page]).per(18)
 
-    @page_title = @user.name + " liked"
+    @page_title = (@user.name || "new user") + "'s liked"
   end
 
   def submissions
