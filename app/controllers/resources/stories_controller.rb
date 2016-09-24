@@ -2,6 +2,11 @@ class Resources::StoriesController < ResourcesController
 
   def index
     @filter = ResourcesFilter.new(params)
+    respond_to do |f|
+      f.html
+      f.rss {
+      }
+    end
   end
 
   def new

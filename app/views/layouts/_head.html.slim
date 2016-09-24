@@ -25,3 +25,5 @@ meta name="msapplication-square70x70logo" content=image_path("favicons/icon70.pn
 meta name="msapplication-square150x150logo" content=image_path("favicons/icon150.png")
 meta name="msapplication-wide310x150logo" content=image_path("favicons/tile-wide.png")
 meta name="msapplication-square310x310logo" content=image_path("favicons/icon310.png")
+
+= yield(:head) if content_for?(:head)

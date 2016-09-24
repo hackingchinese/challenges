@@ -23,6 +23,10 @@ class ResourcesFilter
     search_path(options)
   end
 
+  def current_path
+    search_path(@link_map.deep_dup)
+  end
+
   def disable_filter_path(tag)
     options = @link_map.deep_dup
     options[ tag.tier ].delete tag.name
@@ -48,6 +52,14 @@ class ResourcesFilter
       end
     end
     sql
+  end
+
+  def title
+    if @selected_tag_ids == []
+      "all topics"
+    else
+      "#{@link_map.values.flatten.sort.to_sentence}"
+    end
   end
 
   def stories
