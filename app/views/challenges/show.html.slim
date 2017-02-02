@@ -1,7 +1,13 @@
 - @title = @challenge.title
 
 .stand-out
-  = markdown @challenge.description
+  .row
+    .col-sm-9
+      = markdown @challenge.description
+    .col-sm-3
+      - if @challenge.link? and @challenge.link.starts_with?("http")
+        a.btn.btn-primary<> href=@challenge.link
+          i.fa.fa-fw.fa-file-text-o title='Blog post'
 
 - if current_participation && can?(:create, ActivityLog, participation_id: current_participation.id)
   = link_to [:new, @challenge, current_participation, :activity_log], class: 'btn btn-primary' do
