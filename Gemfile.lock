@@ -47,13 +47,14 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.4.0)
     arel (7.1.1)
-    autoprefixer-rails (6.4.0.2)
+    autoprefixer-rails (8.5.0)
       execjs
     bcrypt (3.1.11)
-    bootstrap (4.0.0.alpha3.1)
+    bootstrap (4.1.1)
       autoprefixer-rails (>= 6.0.3)
-      sass (>= 3.4.19)
-    builder (3.2.2)
+      popper_js (>= 1.12.9, < 2)
+      sass (>= 3.5.2)
+    builder (3.2.3)
     cancancan (1.15.0)
     capybara (2.8.0)
       addressable
@@ -78,9 +79,10 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.10.0)
-    concurrent-ruby (1.0.2)
+    concurrent-ruby (1.0.5)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
+    crass (1.0.4)
     daemons (1.2.4)
     database_cleaner (1.0.1)
     devise (4.2.0)
@@ -89,7 +91,7 @@ GEM
       railties (>= 4.1.0, < 5.1)
       responders
       warden (~> 1.2.3)
-    diff-lcs (1.2.5)
+    diff-lcs (1.3)
     docile (1.1.5)
     email_spec (2.1.0)
       htmlentities (~> 4.3.3)
@@ -114,12 +116,13 @@ GEM
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     hashdiff (0.3.0)
-    hashie (3.4.4)
+    hashie (3.5.7)
     headless (2.2.3)
     highcharts-rails (3.0.10)
       railties (>= 3.1)
     htmlentities (4.3.4)
-    i18n (0.7.0)
+    i18n (0.9.5)
+      concurrent-ruby (~> 1.0)
     interception (0.5)
     jquery-rails (4.2.1)
       rails-dom-testing (>= 1, < 3)
@@ -136,7 +139,8 @@ GEM
       actionpack (>= 4, < 5.1)
       activesupport (>= 4, < 5.1)
       railties (>= 4, < 5.1)
-    loofah (2.0.3)
+    loofah (2.2.2)
+      crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
@@ -148,15 +152,14 @@ GEM
     mime-types-data (3.2016.0521)
     mimemagic (0.3.2)
     mini_magick (4.5.1)
-    mini_portile2 (2.1.0)
-    minitest (5.9.0)
+    mini_portile2 (2.3.0)
+    minitest (5.11.3)
     multi_json (1.12.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     nio4r (1.2.1)
-    nokogiri (1.6.8)
-      mini_portile2 (~> 2.1.0)
-      pkg-config (~> 1.1.7)
+    nokogiri (1.8.2)
+      mini_portile2 (~> 2.3.0)
     oauth (0.5.1)
     oauth2 (1.2.0)
       faraday (>= 0.8, < 0.10)
@@ -164,9 +167,9 @@ GEM
       multi_json (~> 1.3)
       multi_xml (~> 0.5)
       rack (>= 1.2, < 3)
-    omniauth (1.3.1)
-      hashie (>= 1.2, < 4)
-      rack (>= 1.0, < 3)
+    omniauth (1.8.1)
+      hashie (>= 3.4.6, < 3.6.0)
+      rack (>= 1.6.2, < 3)
     omniauth-facebook (4.0.0)
       omniauth-oauth2 (~> 1.2)
     omniauth-oauth (1.1.0)
@@ -186,25 +189,22 @@ GEM
       arel
     phantomjs-binaries (2.1.1.0)
       sys-uname (= 0.9.0)
-    pkg-config (1.1.7)
     poltergeist (1.10.0)
       capybara (~> 2.1)
       cliver (~> 0.3.1)
       websocket-driver (>= 0.2.0)
+    popper_js (1.12.9)
     pry (0.10.4)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
-    pry-doc (0.9.0)
-      pry (~> 0.9)
-      yard (~> 0.8)
     pry-rails (0.3.4)
       pry (>= 0.9.10)
     pry-rescue (1.4.4)
       interception (>= 0.5)
       pry
     quilt (0.1.0)
-    rack (2.0.1)
+    rack (2.0.5)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (5.0.0.1)
@@ -221,11 +221,11 @@ GEM
       sprockets-rails (>= 2.0.0)
     rails-assets-dragula (3.7.1)
     rails-assets-tether (1.3.4)
-    rails-dom-testing (2.0.1)
-      activesupport (>= 4.2.0, < 6.0)
-      nokogiri (~> 1.6.0)
-    rails-html-sanitizer (1.0.3)
-      loofah (~> 2.0)
+    rails-dom-testing (2.0.3)
+      activesupport (>= 4.2.0)
+      nokogiri (>= 1.6)
+    rails-html-sanitizer (1.0.4)
+      loofah (~> 2.2, >= 2.2.2)
     rails_layout (1.0.29)
     railties (5.0.0.1)
       actionpack (= 5.0.0.1)
@@ -233,30 +233,37 @@ GEM
       method_source
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-    rake (11.2.2)
+    rake (12.3.1)
+    rb-fsevent (0.10.3)
+    rb-inotify (0.9.10)
+      ffi (>= 0.5.0, < 2)
     redcarpet (3.3.4)
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
     rmagick (2.16.0)
-    rspec-core (3.5.2)
-      rspec-support (~> 3.5.0)
-    rspec-expectations (3.5.0)
+    rspec-core (3.7.1)
+      rspec-support (~> 3.7.0)
+    rspec-expectations (3.7.0)
       diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.5.0)
-    rspec-mocks (3.5.0)
+      rspec-support (~> 3.7.0)
+    rspec-mocks (3.7.0)
       diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.5.0)
-    rspec-rails (3.5.1)
+      rspec-support (~> 3.7.0)
+    rspec-rails (3.7.2)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       railties (>= 3.0)
-      rspec-core (~> 3.5.0)
-      rspec-expectations (~> 3.5.0)
-      rspec-mocks (~> 3.5.0)
-      rspec-support (~> 3.5.0)
-    rspec-support (3.5.0)
+      rspec-core (~> 3.7.0)
+      rspec-expectations (~> 3.7.0)
+      rspec-mocks (~> 3.7.0)
+      rspec-support (~> 3.7.0)
+    rspec-support (3.7.1)
     safe_yaml (1.0.4)
-    sass (3.4.22)
+    sass (3.5.6)
+      sass-listen (~> 4.0.0)
+    sass-listen (4.0.0)
+      rb-fsevent (~> 0.9, >= 0.9.4)
+      rb-inotify (~> 0.9, >= 0.9.7)
     sass-rails (5.0.6)
       railties (>= 4.0.0, < 6)
       sass (~> 3.1)
@@ -270,9 +277,9 @@ GEM
       thor (~> 0.14)
     simple_captcha2 (0.4.0)
       rails (>= 4.1)
-    simple_form (3.2.1)
-      actionpack (> 4, < 5.1)
-      activemodel (> 4, < 5.1)
+    simple_form (4.0.1)
+      actionpack (>= 5.0)
+      activemodel (>= 5.0)
     simplecov (0.12.0)
       docile (~> 1.1.0)
       json (>= 1.8, < 3)
@@ -303,8 +310,8 @@ GEM
       daemons (~> 1.0, >= 1.0.9)
       eventmachine (~> 1.0, >= 1.0.4)
       rack (>= 1, < 3)
-    thor (0.19.1)
-    thread_safe (0.3.5)
+    thor (0.20.0)
+    thread_safe (0.3.6)
     tilt (2.0.5)
     timecop (0.8.1)
     turbolinks (5.0.1)
@@ -312,7 +319,7 @@ GEM
     turbolinks-source (5.0.0)
     typhoeus (1.1.0)
       ethon (>= 0.9.0)
-    tzinfo (1.2.2)
+    tzinfo (1.2.5)
       thread_safe (~> 0.1)
     uglifier (3.0.1)
       execjs (>= 0.3.0, < 3)
@@ -331,7 +338,6 @@ GEM
     wkhtmltoimage-binary (0.12.2)
     xpath (2.0.0)
       nokogiri (~> 1.3)
-    yard (0.9.5)
 
 PLATFORMS
   ruby
@@ -339,7 +345,7 @@ PLATFORMS
 DEPENDENCIES
   active_params!
   autoprefixer-rails
-  bootstrap (~> 4.0.0.alpha3)
+  bootstrap (~> 4.1)
   cancancan (~> 1.7)
   capybara
   carrierwave
@@ -365,7 +371,6 @@ DEPENDENCIES
   pg_search
   phantomjs-binaries (~> 2.1)
   poltergeist
-  pry-doc
   pry-rails
   pry-rescue
   quilt
@@ -375,12 +380,12 @@ DEPENDENCIES
   rails_layout
   redcarpet
   rmagick
-  rspec-rails (>= 3.5.0.beta4)
+  rspec-rails (>= 3.6.0)
   sass-rails
   scenic
   select2-rails
   simple_captcha2 (~> 0.3)
-  simple_form
+  simple_form (>= 4.0.0)
   simplecov
   sitemap_generator
   slim-rails
@@ -396,4 +401,4 @@ DEPENDENCIES
   wkhtmltoimage-binary
 
 BUNDLED WITH
-   1.11.2
+   1.16.1

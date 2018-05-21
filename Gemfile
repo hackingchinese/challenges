@@ -7,11 +7,10 @@ gem "rails", "~> 5.0.0"
 gem "pg"
 gem "pg_search"
 gem "slim-rails"
-gem "simple_form"
+gem "simple_form", '>= 4.0.0'
 gem "scenic"
 # wait for > 0.1.1
 gem "active_params", github: 'choonkeat/active_params'
-
 
 ## User Auth
 #
@@ -28,7 +27,7 @@ gem "uglifier", ">= 1.3.0"
 gem "coffee-rails", "~> 4.0"
 gem "jquery-rails"
 gem "turbolinks", '~> 5.0.0.beta'
-gem "bootstrap", "~> 4.0.0.alpha3"
+gem "bootstrap", "~> 4.1"
 source "https://rails-assets.org" do
   gem "rails-assets-tether", ">= 1.1.0"
   gem "rails-assets-dragula"
@@ -66,8 +65,7 @@ group :development, :test do
   gem "fabrication"
   gem "pry-rails"
   gem "pry-rescue"
-  gem "pry-doc"
-  gem "rspec-rails", ">= 3.5.0.beta4"
+  gem "rspec-rails", ">= 3.6.0"
   gem "thin"
   gem "vcr"
   gem "webmock"

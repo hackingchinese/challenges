@@ -20,9 +20,9 @@ ActiveRecord::Schema.define(version: 20160819193633) do
 
   create_table "account_connections", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "provider",   limit: 255
-    t.string   "uid",        limit: 255
-    t.string   "token",      limit: 255
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "token"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["user_id"], name: "index_account_connections_on_user_id", using: :btree
@@ -52,9 +52,9 @@ ActiveRecord::Schema.define(version: 20160819193633) do
     t.integer  "user_id"
     t.integer  "participation_id"
     t.decimal  "hours_spent"
-    t.string   "hour_measure",       limit: 255
+    t.string   "hour_measure"
     t.integer  "units_accomplished"
-    t.string   "units_measure",      limit: 255
+    t.string   "units_measure"
     t.text     "comment"
     t.float    "score"
     t.datetime "created_at"
@@ -72,16 +72,16 @@ ActiveRecord::Schema.define(version: 20160819193633) do
   end
 
   create_table "challenges", force: :cascade do |t|
-    t.string   "title",                 limit: 255
+    t.string   "title"
     t.date     "from_date"
     t.date     "to_date"
-    t.string   "type",                  limit: 255
+    t.string   "type"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "visible"
     t.text     "description"
     t.integer  "goal_type"
-    t.string   "link",                  limit: 255
+    t.string   "link"
     t.integer  "time_quality_table_id"
     t.integer  "unit_quality_table_id"
     t.integer  "unit_type_id"
@@ -123,7 +123,7 @@ ActiveRecord::Schema.define(version: 20160819193633) do
   end
 
   create_table "quality_tables", force: :cascade do |t|
-    t.string   "name",       limit: 255
+    t.string   "name"
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -206,31 +206,31 @@ ActiveRecord::Schema.define(version: 20160819193633) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                      limit: 255, default: "",    null: false
-    t.string   "encrypted_password",         limit: 255, default: "",    null: false
-    t.string   "reset_password_token",       limit: 255
+    t.string   "email",                      default: "",    null: false
+    t.string   "encrypted_password",         default: "",    null: false
+    t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                          default: 0,     null: false
+    t.integer  "sign_in_count",              default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip",         limit: 255
-    t.string   "last_sign_in_ip",            limit: 255
-    t.string   "confirmation_token",         limit: 255
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.string   "unconfirmed_email",          limit: 255
-    t.integer  "failed_attempts",                        default: 0,     null: false
-    t.string   "unlock_token",               limit: 255
+    t.string   "unconfirmed_email"
+    t.integer  "failed_attempts",            default: 0,     null: false
+    t.string   "unlock_token"
     t.datetime "locked_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name",                       limit: 255
-    t.string   "role",                       limit: 255
-    t.string   "profile_link",               limit: 255
-    t.string   "avatar",                     limit: 255
-    t.boolean  "no_mails",                               default: false
-    t.integer  "imported_from_resources_id",                                          comment: "user-id by former resources.hc website"
+    t.string   "name"
+    t.string   "role"
+    t.string   "profile_link"
+    t.string   "avatar"
+    t.boolean  "no_mails",                   default: false
+    t.integer  "imported_from_resources_id",                              comment: "user-id by former resources.hc website"
     t.text     "about"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["name"], name: "index_users_on_name", unique: true, using: :btree

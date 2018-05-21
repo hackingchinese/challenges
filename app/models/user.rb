@@ -2,19 +2,20 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :lockable
+    :recoverable, :rememberable, :trackable, :validatable, :lockable
   mount_uploader :avatar, AvatarUploader
 
   has_many :participations, dependent: :destroy
   has_many :challenges, through: :participations
   has_many :activity_logs, dependent: :destroy
   has_many :account_connections, dependent: :destroy
-  has_many :stories, class_name: 'Resources::Story'
-  has_one :mail_preference
+  has_many :stories, class_name: 'Resources::Story', dependent: :nullify
+  has_one :mail_preference, dependent: :destroy
 
-  has_many :likes, class_name: 'Resources::Like'
+  has_many :likes, class_name: 'Resources::Like', dependent: :nullify
 
   validates :name, presence: true, uniqueness: true
+  validates :privacy, acceptance: true, on: :create
   after_create :set_mail_preference
   after_create :generate_random_image
 
@@ -25,7 +26,7 @@ class User < ApplicationRecord
   end
 
   def set_mail_preference
-    self.mail_preference || create_mail_preference
+    mail_preference || create_mail_preference
   end
 
   def admin?
@@ -35,6 +36,6 @@ class User < ApplicationRecord
   def generate_random_image
     image_file = RandomImageGenerator.generate email
     self.avatar = image_file
-    self.save! validate: false
+    save! validate: false
   end
 end

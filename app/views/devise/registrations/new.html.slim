@@ -18,6 +18,7 @@ h2 Sign up via E-Mail
   = f.input :email, :required => true
   = f.input :password, :required => true
   = f.input :password_confirmation, :required => true
+  = f.input :privacy, as: :boolean, label: t('simple_form.labels.user.privacy').html_safe
   = show_simple_captcha(input_html: { class: 'form-control'})
 
   = f.button :submit, 'Sign up', :class => 'btn-primary'

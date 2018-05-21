@@ -170,5 +170,16 @@
   "GET resources/search/show": {
   },
   "GET users/submissions": {
+  },
+  "GET registrations/new": {
+  },
+  "POST registrations/create": {
+    "user": [
+      "name",
+      "email",
+      "password",
+      "password_confirmation",
+      "privacy"
+    ]
   }
 }
