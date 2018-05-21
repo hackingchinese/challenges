@@ -45,18 +45,18 @@ en:
 
         <p>The Challenge Engine was created for <a href="http://www.hackingchinese.com">Hacking Chinese</a> by:<br></p>
         <div class="card-group">
-          <div class="card card-block">
+          <div class="card"><div class="card-body">
             <a href="//www.stefanwienert.de">Stefan Wienert</a><br/>
             <small class="text-muted">coding + maintenance</small>
-          </div>
-          <div class="card card-block">
+          </div></div>
+          <div class="card"><div class="card-body">
             <a href="http://www.hackingchinese.com">Olle Linge</a><br/>
             <small class="text-muted">product development and testing </small>
-          </div>
-          <div class="card card-block">
+          </div></div>
+          <div class="card"><div class="card-body">
             <a href="http://www.marcopoloproject.org">Julien Leyre</a><br/>
             <small class="text-muted">product development and testing</small>
-          </div>
+          </div></div>
         </div>
         <br/>
         <p> Inspiration from <a href="http://www.readmod.wordpress.com">Andre Smith</a></p>

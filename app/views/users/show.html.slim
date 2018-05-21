@@ -6,7 +6,7 @@ h3.text-xs-center.m-t-2 Profile &amp; Challenges
   .col-sm-6
     .card
       - if @participations.any?
-        .card-block
+        .card-body
           p.card-text #{@user.name} took part in this challenges:
         ul.list-group.list-group-flush
           - @participations.each do |participation|
@@ -14,12 +14,12 @@ h3.text-xs-center.m-t-2 Profile &amp; Challenges
               = link_to [participation.challenge, participation] do
                 = participation.challenge.title
       - else
-        .card-block
+        .card-body
           |Not participated in any challenges, yet.
   .col-sm-6
     .card
       = image_tag @user.avatar.url(:display), class: 'card-img-top'
-      .card-block
+      .card-body
         p.text-xs-center.text-caps
           = @user.name
           br
@@ -35,7 +35,3 @@ h3.text-xs-center.m-t-2 Profile &amp; Challenges
             = markdown @user.about
         p
           strong.text-caps #{@user.activity_logs.sum(:hours_spent).to_i} Hours logged
-
-
-
-

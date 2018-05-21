@@ -23,7 +23,7 @@
     = f.association :tags, collection: Resources::Tag.send(t), label: t("resources.tiers.#{t}"), hint: t("resources.tier_help.#{t}")
 
 
-  .card.card-block
+  .card: .card-body
     a href='#guidelines' data-toggle='collapse'
       | Story submission guidelines
     .card-text.collapse#guidelines class='#{current_user.stories.count > 5 ? '' : 'in'}'

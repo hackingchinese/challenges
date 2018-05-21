@@ -1,6 +1,6 @@
 - if @story
   .card
-    .card-block
+    .card-body
       .row
         .col-md-3
           .text-xs-center
@@ -13,7 +13,7 @@
           = markdown comment.comment
 - else
   .card
-    .card-block
+    .card-body
       .text-xs-center
         div= image_tag comment.user.avatar.url(:display), style: 'max-width: 50px'
         = link_to user_path(comment.user)

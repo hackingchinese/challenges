@@ -1,14 +1,14 @@
 
 - content_for :sidebar do
   .card
-    .card-block
+    .card-body
       p
         a.btn.btn-primary.btn-large(href='/auth/twitter' data-no-turbolinks)
           i.fa.fa-twitter.fa-2x.fa-fw
         = ' '
         a.btn.btn-primary.btn-large(href='/auth/facebook' data-no-turbolinks)
           i.fa.fa-facebook.fa-2x.fa-fw
-    .card-block
+    .card-footer
       = render "devise/shared/links"
       br
 

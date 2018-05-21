@@ -19,6 +19,7 @@ gem "omniauth"
 gem "omniauth-twitter"
 gem "omniauth-facebook"
 gem "cancancan", "~> 1.7"
+gem "bootsnap", require: false
 
 ### Frontend
 #

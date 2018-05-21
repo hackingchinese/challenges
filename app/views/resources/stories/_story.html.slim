@@ -1,6 +1,6 @@
 - @_tag_sort_order ||= Resources::Tag.tag_sort_order
 .story.card id='#{dom_id(story)}'
-  .card-block
+  .card-body
     h4.card-title style='font-size: 1.1rem'
       = link_to story.url do
         = highlight_search_term story.title

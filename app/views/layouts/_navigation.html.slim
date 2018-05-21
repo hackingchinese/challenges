@@ -1,10 +1,10 @@
-nav.navbar.bg-faded.navbar-fixed-top.navbar-expand-lg
-  a.navbar-brand href='/'
+nav.navbar.bg-faded.navbar-fixed-top.navbar-expand-md(style='min-height: 3.5rem')
+  a.navbar-brand( href='/')
     .icon.icon-zhongwen-jiemi style='font-size: 2.5rem'
-  button.navbar-toggler type="button" data-toggle="collapse" data-target="#navbar-collapse" style='font-size: 2.5rem'
-    span.navbar-toggler-icon
+  button.navbar-toggler type="button" data-toggle="collapse" data-target="#navbar-collapse" style='font-size: 2.5rem; position: absolute; right: 5px'
+    span.navbar-toggler-icon &#9776;
 
-  #navbar-collapse.navbar-collapse.collapse
+  #navbar-collapse.navbar-collapse.collapse(style='flex-direction: column; align-items: flex-start;')
     ul.navbar-nav.main-menu.clearfix
       li.nav-item
         a.nav-link href="//www.hackingchinese.com/blog/"  Blog
@@ -20,7 +20,7 @@ nav.navbar.bg-faded.navbar-fixed-top.navbar-expand-lg
       li.nav-item
         a.nav-link href="//www.hackingchinese.com/about/"  About
 
-    div.clearfix: ul.nav.navbar-nav.sub-menu
+    ul.nav.navbar-nav.sub-menu
       - if navigation_name == 'challenges'
         = render "layouts/navigation_challenge"
       - else
