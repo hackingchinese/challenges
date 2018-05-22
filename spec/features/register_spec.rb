@@ -18,7 +18,7 @@ describe 'Registration', js: true do
       expect(user.email).to eql 'info@stefanwienert.de'
       expect(user.role).to be_nil
       expect(user.avatar).to be_present
-      expect(user.gdpr_consent_given_on).to be_a DateTime
+      expect(user.gdpr_consent_given_on).to be >= 1.day.ago
     end
 
     logout!

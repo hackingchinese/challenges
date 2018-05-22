@@ -76,7 +76,9 @@ end
 group :test do
   gem "simplecov", require: false
   gem "capybara"
-  gem "poltergeist"
+  gem 'chromedriver-helper'
+  gem 'capybara-selenium'
+  gem 'selenium-webdriver'
   gem "database_cleaner", "1.0.1"
   gem "email_spec"
   gem "timecop"

@@ -183,5 +183,20 @@
   "GET users/liked": {
   },
   "POST devise/sessions/destroy": {
+  },
+  "GET registrations/edit": {
+  },
+  "POST registrations/update": {
+    "user": [
+      "name",
+      "profile_link",
+      "about",
+      "email",
+      "password",
+      "password_confirmation",
+      "avatar"
+    ]
+  },
+  "GET mail_preferences/edit": {
   }
 }

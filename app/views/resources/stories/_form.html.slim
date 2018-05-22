@@ -12,7 +12,7 @@
   = f.input :description, hint: 'Markdown enabled'
   .row.mb-1
     .col-sm-8
-      = f.input :image, as: :file_hack
+      = f.input :image, as: :file
       = f.hidden_field :image_cache
     .col-sm-4.js-image-preview
       - if @story.image.present?
