@@ -100,6 +100,7 @@ $comment-distance: 20px
     padding: 0.15rem 0.3rem
     font-size: 0.8rem
 .story
+  margin-bottom: 1rem
   line-height: 1
   transition: box-shadow .5s ease
   .tags
@@ -140,6 +141,13 @@ $comment-distance: 20px
 .story-image
   text-align: right
   display: inline-block
+
+.label
+  @extend .badge
+.label-default
+  @extend .badge-secondary
+.btn-secondary
+  @extend .btn-outline-secondary
 
 // .boolean
 //   label
