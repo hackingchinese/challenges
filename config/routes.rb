@@ -22,7 +22,7 @@ HnChallenge::Application.routes.draw do
   end
 
   namespace :resources do
-    match 'search' => 'search#show', via: [:get, :post]
+    match 'search' => 'search#show', via: [:get, :post], as: :search
     resources :stories do
       member do
         post :toggle_like
@@ -53,7 +53,8 @@ HnChallenge::Application.routes.draw do
   get 'mail_preference' => 'mail_preferences#edit'
   post 'mail_preference' => 'mail_preferences#update'
 
-  devise_for :users, :controllers => { :registrations => "registrations" }
+  devise_for :users, controllers: { registrations: "registrations" }
+  get 'users' => 'users/sign_up'
   get '/auth/:provider/callback', to: 'account_connections#omniauth'
   root to: 'pages#index'
 end

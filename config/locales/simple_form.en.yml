@@ -25,7 +25,7 @@ en:
         resource_comment_on_thread: "Receive a notification, if someone writes a new comment on a resource discussion you are taking part"
       user:
         no_mails: Check to disable challenge reminders via e-mail
-        privacy: I have read and accept the <a href='/privacy'>privacy policy</a>.
+        privacy: I have read the <a href='//www.hackingchinese.com/privacy-policy/'>privacy policy</a>, accept the <a href='//www.hackingchinese.com/terms-and-conditions/'>Terms and conditions</a> and confirm that I am over 18 years old or have the consent of my parents.
       activity_log:
         units_accomplished: "How many %{units} did you finish?"
         minutes: Minutes

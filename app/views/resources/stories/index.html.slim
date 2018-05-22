@@ -8,28 +8,32 @@ p Click one or more tags to show relevant resources. Follow #{link_to '@ChineseL
 
 h4: small Filter
 
-.resource-filter
-  - Resources::Tag.tiers.keys.each do |tier|
-    - next if tier == 'extra' && @filter.selected_tag_ids.blank?
-    .row
-      .col-sm-2: strong = t "resources.tiers.#{tier}"
-      .col-sm-9
-        - Resources::Tag.send(tier).each do |tag|
-          - if @filter.tag_active?(tag)
-            a.btn.active.btn-secondary.btn-xs<> href='#{@filter.disable_filter_path(tag)}' rel='#{@filter.selected_tag_ids.count < 4 ? '' : 'nofllow'}'
-              = tag.name
-          - else
-            - count = @filter.tag_count_before_filter(tag)
-            - if count == 0
-              a.btn.disabled.btn-secondary.btn-xs<> href='#{@filter.enable_filter_path(tag)}' disabled='disabled' rel='nofollow'
-                = tag.name
-                small.text-muted<
-                  | (#{count})
-            - else
-              a.btn.btn-secondary.btn-xs<> href='#{@filter.enable_filter_path(tag)}' rel='#{@filter.selected_tag_ids.count < 4 ? '' : 'nofollow'}'
-                = tag.name
-                small.text-muted<
-                  | (#{count})
+.row
+  .col-md-8
+    .resource-filter
+      - Resources::Tag.tiers.keys.each do |tier|
+        - next if tier == 'extra' && @filter.selected_tag_ids.blank?
+        .row
+          .col-sm-2: strong = t "resources.tiers.#{tier}"
+          .col-sm-9
+            - Resources::Tag.send(tier).each do |tag|
+              - if @filter.tag_active?(tag)
+                a.btn.active.btn-secondary.btn-xs<> href='#{@filter.disable_filter_path(tag)}' rel='#{@filter.selected_tag_ids.count < 4 ? '' : 'nofllow'}'
+                  = tag.name
+              - else
+                - count = @filter.tag_count_before_filter(tag)
+                - if count == 0
+                  a.btn.disabled.btn-secondary.btn-xs<> href='#{@filter.enable_filter_path(tag)}' disabled='disabled' rel='nofollow'
+                    = tag.name
+                    small.text-muted<
+                      | (#{count})
+                - else
+                  a.btn.btn-secondary.btn-xs<> href='#{@filter.enable_filter_path(tag)}' rel='#{@filter.selected_tag_ids.count < 4 ? '' : 'nofollow'}'
+                    = tag.name
+                    small.text-muted<
+                      | (#{count})
+  .col-md-4
+    = render 'resources/search/search'
 
 
 .float-right.small

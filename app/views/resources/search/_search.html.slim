@@ -1,0 +1,6 @@
+= form_tag resources_search_path, class: 'form-inline', method: 'get' do
+  fieldset.form-group
+    input.form-control type='text' name='q' value=params[:q] placeholder='search term'
+
+  button.btn.btn-primary type='submit'
+    | Search
