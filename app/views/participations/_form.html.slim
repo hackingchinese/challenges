@@ -7,7 +7,7 @@
     - else
       = f.input :goal_units, label: "How many #{@challenge.unit_type.plural} do you want to #{@challenge.unit_type.verb_present}?"
 
-  .form-actions.m-b-2.m-t-1
+  .form-actions.mb-2.mt-1
     = f.submit 'Take part', class: 'btn btn-primary'
 
 = render @challenge

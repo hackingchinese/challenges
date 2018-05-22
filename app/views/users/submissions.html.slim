@@ -1,8 +1,8 @@
 = render "nav"
-h3.text-xs-center.m-t-2.m-b-1 Resources submitted
+h3.text-center.mt-2.mb-1 Resources submitted
 
 = render "resources/stories/story_collection", stories: @resources, short: true
-.text-xs-center
+.text-center
   = paginate @resources, :param_name => :story_page
 
 

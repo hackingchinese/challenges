@@ -8,11 +8,11 @@ h2
   = f.input :profile_link
   = f.input :about
   = f.input :email, required: true
-  a.btn.btn-secondary.btn-xs.m-t-1 href='#password' data-toggle='collapse'
+  a.btn.btn-secondary.btn-xs.mt-1 href='#password' data-toggle='collapse'
     i.fa.fa-arrow-circle-o-down.fa-fw>
     | Change password
 
-  #password.collapse.m-y-1
+  #password.collapse.my-1
     = f.input :password, :autocomplete => "off", :hint => "leave it blank if you don't want to change it", :required => false
     = f.input :password_confirmation, :required => false
   br

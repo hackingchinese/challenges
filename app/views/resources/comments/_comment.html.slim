@@ -3,7 +3,7 @@
     .card-body
       .row
         .col-md-3
-          .text-xs-center
+          .text-center
             div= image_tag comment.user.avatar.url(:display), style: 'max-width: 50px'
             = link_to user_path(comment.user)
               small.text-muted= comment.user.name
@@ -14,7 +14,7 @@
 - else
   .card
     .card-body
-      .text-xs-center
+      .text-center
         div= image_tag comment.user.avatar.url(:display), style: 'max-width: 50px'
         = link_to user_path(comment.user)
           small.text-muted= comment.user.name

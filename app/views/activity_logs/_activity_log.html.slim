@@ -18,7 +18,7 @@ div id='#{dom_id(activity_log)}'
           = simple_format activity_log.comment
 
 
-        .clearfix.m-t-1
+        .clearfix.mt-1
           - if can? :update, activity_log
             = link_to [:edit, activity_log.challenge, activity_log.participation, activity_log], title: 'Edit', class: 'btn btn-secondary btn-xs' do
               i.fa.fa-edit.fa-fw
@@ -38,7 +38,7 @@ div id='#{dom_id(activity_log)}'
                 i.fa.fa-fw.fa-commenting-o
 
           - if can? :comment, activity_log
-            .collapse.m-t-1 id=d
+            .collapse.mt-1 id=d
               - comment = ActivityLog::Comment.new
               = form_tag challenge_participation_activity_log_comments_path(activity_log.challenge, activity_log.participation, activity_log, comment), class: '' do
                 .row
@@ -49,7 +49,7 @@ div id='#{dom_id(activity_log)}'
                       | Send
 
     .card-footer
-      small.text-xs-center.text-muted
+      small.text-center.text-muted
         = l activity_log.date, format: "%A, %b %d"
       - if activity_log.liked_by.any?
         .pull-right: small.text-muted

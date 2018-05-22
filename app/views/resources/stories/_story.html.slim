@@ -14,7 +14,7 @@
         p.domain-name: small = story.domain_name
         - if story.image.present?
           = image_tag story.image.url(:medium), class: 'story-image'
-    p.card-text.tags.m-t-1
+    p.card-text.tags.mt-1
       - story.tags.sort_by{|tag| @_tag_sort_order.index(tag.id) }.each do |tag|
         span.label.label-default<> = tag.name
     .pull-right

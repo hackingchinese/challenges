@@ -1,6 +1,6 @@
 = render "nav"
 
-h3.text-xs-center.m-t-2 Profile &amp; Challenges
+h3.text-center.mt-2 Profile &amp; Challenges
 
 .row
   .col-sm-6
@@ -20,7 +20,7 @@ h3.text-xs-center.m-t-2 Profile &amp; Challenges
     .card
       = image_tag @user.avatar.url(:display), class: 'card-img-top'
       .card-body
-        p.text-xs-center.text-caps
+        p.text-center.text-caps
           = @user.name
           br
         - if @user.profile_link?

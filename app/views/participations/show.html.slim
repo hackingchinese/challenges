@@ -5,7 +5,7 @@
       br
       small.text-muted
         |in #{@participation.challenge.title}
-  .col-sm-4.text-xs-center
+  .col-sm-4.text-center
     = image_tag @participation.user.avatar.url(:display), style: 'max-width: 50px'
     = link_to @participation.user
       = @participation.user.name
@@ -22,7 +22,7 @@ ul class="nav nav-tabs" role="tablist"
 .tab-content
   .tab-pane.active id='logs' role="tabpanel"
     - if current_user && can?(:create, ActivityLog.new(participation_id: @participation.id))
-      = link_to [:new, @challenge, @participation, :activity_log], class: 'btn btn-primary m-y-1' do
+      = link_to [:new, @challenge, @participation, :activity_log], class: 'btn btn-primary my-1' do
         i.fa.fa-fw.fa-plus>
         | Report progress
     - if @participation.activity_logs.count == 0
