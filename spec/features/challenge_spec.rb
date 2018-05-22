@@ -40,8 +40,11 @@ describe 'Challenge', js: true do
     expect(challenge.running?).to eql true
     login user.email, 'password123'
     click_on 'Enroll!'
+    expect(page).to have_content 'How many pages'
     fill_in 'pages', with: 50
+    screenshot
     click_on 'Take part'
+    expect(page).to have_content "Report progress"
     all('a', text: 'Report progress').first.click
 
     fill_in 'pages', with: '5'

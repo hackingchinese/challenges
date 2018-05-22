@@ -2,7 +2,7 @@ Fabricator :user do
   name 'Stefan'
   email 'info@stefanwienert.de'
   password 'password123'
-  password_confirmation do |a,b|
+  password_confirmation do |a, _|
     a[:password]
   end
   created_at { 1.year.ago }

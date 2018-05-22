@@ -44,5 +44,4 @@ class ParticipationsController < ApplicationController
     authorize! :destroy, @participation
     redirect_to c, notice: "Left the challenge"
   end
-
 end

@@ -3,6 +3,7 @@
   },
   "POST activity_logs/create": {
     "activity_log": [
+      "units_accomplished",
       "minutes",
       "date",
       "comment"
@@ -103,7 +104,8 @@
   },
   "POST participations/create": {
     "participation": [
-      "goal_hours"
+      "goal_hours",
+      "goal_units"
     ]
   },
   "POST participations/update": {
