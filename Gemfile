@@ -67,7 +67,7 @@ group :development, :test do
   gem "pry-rails"
   gem "pry-rescue"
   gem "rspec-rails", ">= 3.6.0"
-  gem "thin"
+  gem "puma"
   gem "vcr"
   gem "webmock"
   gem 'phantomjs-binaries', '~> 2.1'
