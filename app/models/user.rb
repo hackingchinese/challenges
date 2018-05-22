@@ -17,7 +17,7 @@ class User < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   validates :privacy, acceptance: true, if: :new_record?
   after_create :set_mail_preference
-  after_create :generate_random_image
+  before_create :generate_random_image
 
   scope :with_email, -> { where('no_mails = ?', false).where('email not like ?', '%@changeme.com') }
 

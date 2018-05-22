@@ -10,6 +10,7 @@ Bundler.require(*Rails.groups)
 module HnChallenge
   class Application < Rails::Application
     config.load_defaults 5.0
+    config.active_record.belongs_to_required_by_default = false
 
     # don't generate RSpec tests for views and helpers
     config.generators do |g|
