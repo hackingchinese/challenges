@@ -2,16 +2,18 @@ class RegistrationsController < Devise::RegistrationsController
   before_action :configure_permitted_parameters
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up) { |u|
-      u.permit(:name, :avatar, :email, :password, :password_confirmation, :profile_link, :no_mails)
+      u.permit(:name, :avatar, :email, :password, :password_confirmation, :profile_link, :no_mails, :privacy)
     }
-    devise_parameter_sanitizer.permit(:account_update){ |u|
+    devise_parameter_sanitizer.permit(:account_update) { |u|
       u.permit(:name, :avatar, :email, :password, :password_confirmation, :profile_link, :no_mails)
     }
   end
 
   def create
     if simple_captcha_valid?
-      super
+      super do |user|
+        user.gdpr_consent_given_on = Time.zone.now if resource.persisted?
+      end
     else
       build_resource(sign_up_params)
       clean_up_passwords(resource)

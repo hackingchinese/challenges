@@ -15,7 +15,7 @@ class User < ApplicationRecord
   has_many :likes, class_name: 'Resources::Like', dependent: :nullify
 
   validates :name, presence: true, uniqueness: true
-  validates :privacy, acceptance: true, on: :create
+  validates :privacy, acceptance: true, if: :new_record?
   after_create :set_mail_preference
   after_create :generate_random_image
 

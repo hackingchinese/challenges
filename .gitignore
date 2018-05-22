@@ -83,3 +83,4 @@ public/*jpg
 public/uploads
 config/secrets.yml
 /export
+.rspec.failed.txt

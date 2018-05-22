@@ -1,11 +1,10 @@
 class AvatarUploader < ApplicationUploader
-
   version :display do
-    process :resize_to_fit => [200, 200]
+    process resize_to_fit: [200, 200]
   end
 
   version :thumb do
-    process :resize_to_fit => [25, 25]
+    process resize_to_fit: [25, 25]
   end
 
   def extension_white_list
@@ -16,8 +15,10 @@ class AvatarUploader < ApplicationUploader
     "avatar.jpg" if original_filename
   end
 
-  def url(options={})
-    super.split("?v=")[0]+"?v=#{model.updated_at.to_time.to_i}" rescue super
+  def url(options = {})
+    super.split("?v=")[0] + "?v=#{model.updated_at.to_time.to_i}"
+  rescue
+    super
   end
 
   def get_version_dimensions
@@ -28,4 +29,3 @@ class AvatarUploader < ApplicationUploader
     end
   end
 end
-

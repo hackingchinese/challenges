@@ -1,6 +1,5 @@
 require "spec_helper"
 describe 'Registration', js: true do
-
   specify 'default registration' do
     visit '/'
     within 'main' do
@@ -10,6 +9,7 @@ describe 'Registration', js: true do
     fill_in 'Email', with: 'info@stefanwienert.de'
     fill_in 'user[password]', with: 'password123'
     fill_in 'Password confirmation', with: 'password123'
+    check 'I have read'
     click_button 'Sign up'
     expect(page).to have_content 'successfully'
 
@@ -18,6 +18,7 @@ describe 'Registration', js: true do
       expect(user.email).to eql 'info@stefanwienert.de'
       expect(user.role).to be_nil
       expect(user.avatar).to be_present
+      expect(user.gdpr_consent_given_on).to be_a DateTime
     end
 
     logout!
@@ -54,5 +55,4 @@ describe 'Registration', js: true do
     expect(page).to have_content 'Logout'
     expect(page).to have_content 'successfully'
   end
-
 end

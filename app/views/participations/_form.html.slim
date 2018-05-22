@@ -1,4 +1,4 @@
-= simple_form_for([@challenge, @participation], html: { class: 'form-inline'}) do |f|
+= simple_form_for([@challenge, @participation]) do |f|
   = f.error_notification
 
   .form-inputs
@@ -10,4 +10,3 @@
   .form-actions.mb-2.mt-1
     = f.submit 'Take part', class: 'btn btn-primary'
 
-= render @challenge

@@ -54,7 +54,7 @@ HnChallenge::Application.routes.draw do
   post 'mail_preference' => 'mail_preferences#update'
 
   devise_for :users, controllers: { registrations: "registrations" }
-  get 'users' => 'users/sign_up'
+  get 'users' => redirect('users/sign_up')
   get '/auth/:provider/callback', to: 'account_connections#omniauth'
   root to: 'pages#index'
 end

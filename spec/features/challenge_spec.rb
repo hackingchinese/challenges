@@ -1,6 +1,5 @@
 require "spec_helper"
 describe 'Challenge', js: true do
-
   let(:user) { Fabricate :user, email: 'info@foobar.com', password: 'password123' }
 
   specify 'Participate - Time Challenge' do

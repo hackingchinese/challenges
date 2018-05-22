@@ -26,7 +26,7 @@
   .card: .card-body
     a href='#guidelines' data-toggle='collapse'
       | Story submission guidelines
-    .card-text.collapse#guidelines class='#{current_user.stories.count > 5 ? '' : 'in'}'
+    .card-text.collapse#guidelines class='#{current_user.stories.count > 5 ? '' : 'show'}'
       = markdown t('text.guidelines' )
 
   = f.submit 'Submit story', class: 'btn btn-primary'

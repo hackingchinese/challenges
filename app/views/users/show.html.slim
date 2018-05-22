@@ -18,7 +18,7 @@ h3.text-center.mt-2 Profile &amp; Challenges
           |Not participated in any challenges, yet.
   .col-sm-6
     .card
-      = image_tag @user.avatar.url(:display), class: 'card-img-top'
+      = image_tag @user.avatar.url(:display), class: 'card-img-top rounded mx-auto d-block', style: 'max-width: 200px'
       .card-body
         p.text-center.text-caps
           = @user.name

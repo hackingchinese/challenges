@@ -1,7 +1,11 @@
-h1
-  | Joining #{@challenge.title}
+.card.mb-2
+  .card-header
+    h4.card-title
+      | Joining #{@challenge.title}
+  .card-body
 
 
-p = t 'participations.new.welcome_text'
+    p = t 'participations.new.welcome_text'
 
-= render 'form'
+    = render 'form'
+= render @challenge

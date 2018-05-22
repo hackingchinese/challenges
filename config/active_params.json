@@ -3,7 +3,6 @@
   },
   "POST activity_logs/create": {
     "activity_log": [
-      "units_accomplished",
       "minutes",
       "date",
       "comment"
@@ -104,7 +103,6 @@
   },
   "POST participations/create": {
     "participation": [
-      "goal_units",
       "goal_hours"
     ]
   },
@@ -181,5 +179,9 @@
       "password_confirmation",
       "privacy"
     ]
+  },
+  "GET users/liked": {
+  },
+  "POST devise/sessions/destroy": {
   }
 }
