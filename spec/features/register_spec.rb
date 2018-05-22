@@ -12,6 +12,9 @@ describe 'Registration', js: true do
     check 'I have read'
     click_button 'Sign up'
     expect(page).to have_content 'successfully'
+    visit user_path(User.first)
+    click_on 'Resources submitted'
+    click_on 'Resources liked'
 
     expect(User.count).to eql 1
     User.first.tap do |user|

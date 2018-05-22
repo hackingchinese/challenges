@@ -1,3 +1,4 @@
+#:nocov:
 class ResourcesImport
   def self.run
     new.run

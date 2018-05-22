@@ -2,13 +2,14 @@ require_relative 'boot'
 
 require 'rails/all'
 
-ActiveSupport::Deprecation.debug = true
+# ActiveSupport::Deprecation.debug = true
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
 module HnChallenge
   class Application < Rails::Application
+    config.load_defaults 5.0
 
     # don't generate RSpec tests for views and helpers
     config.generators do |g|

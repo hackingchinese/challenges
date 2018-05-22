@@ -3,7 +3,7 @@ source "https://rubygems.org"
 ## Basic
 #
 # gem "rails", "~> 4.2.0"
-gem "rails", "~> 5.0.0"
+gem "rails", "~> 5.1.0"
 gem "pg"
 gem "pg_search"
 gem "slim-rails"
@@ -38,7 +38,6 @@ gem "highcharts-rails", "~> 3.0.0"
 gem "select2-rails"
 gem "autoprefixer-rails"
 
-
 ### Rails plugins
 gem "kaminari"
 gem "carrierwave"
@@ -59,6 +58,7 @@ gem "sitemap_generator"
 
 group :development do
   gem "rails_layout"
+  gem "listen"
 end
 
 group :development, :test do
@@ -88,4 +88,3 @@ group :production do
   gem "lograge"
   gem "exception_notification"
 end
-
