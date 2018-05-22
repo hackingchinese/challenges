@@ -1,5 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
   before_action :configure_permitted_parameters
+  skip_before_action :check_gdpr_consent
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up) { |u|
       u.permit(:name, :avatar, :email, :password, :password_confirmation, :profile_link, :no_mails, :privacy)

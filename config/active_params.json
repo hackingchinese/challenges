@@ -198,5 +198,9 @@
     ]
   },
   "GET mail_preferences/edit": {
+  },
+  "GET gdpr_consents/new": {
+  },
+  "POST gdpr_consents/create": {
   }
 }

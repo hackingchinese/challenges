@@ -27,10 +27,17 @@ class ApplicationController < ActionController::Base
   end
 
   before_action :check_valid_email
+  before_action :check_gdpr_consent
 
   def check_valid_email
     if current_user && current_user.fake_email?
       @fake_email = true
+    end
+  end
+
+  def check_gdpr_consent
+    if current_user && !current_user.gdpr_consent_given_on
+      redirect_to new_gdpr_consent_path
     end
   end
 

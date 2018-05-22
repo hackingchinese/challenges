@@ -53,6 +53,8 @@ HnChallenge::Application.routes.draw do
   get 'mail_preference' => 'mail_preferences#edit'
   post 'mail_preference' => 'mail_preferences#update'
 
+  resource :gdpr_consent, only: [:new, :create]
+
   devise_for :users, controllers: { registrations: "registrations" }
   get 'users' => redirect('users/sign_up')
   get '/auth/:provider/callback', to: 'account_connections#omniauth'

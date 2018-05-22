@@ -6,6 +6,7 @@ Fabricator :user do
     a[:password]
   end
   created_at { 1.year.ago }
+  gdpr_consent_given_on { Time.zone.now }
 end
 
 Fabricator :generated_user, from: :user do

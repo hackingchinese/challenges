@@ -13,6 +13,7 @@ class Ability
     if user.admin?
       can :manage, :all
     else
+      can :manage, :gdpr_consent
       can :like, Resources::Story
       if user.created_at < 1.day.ago
         can :create, Resources::Comment

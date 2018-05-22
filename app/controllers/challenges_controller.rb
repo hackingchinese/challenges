@@ -1,5 +1,6 @@
 class ChallengesController < ApplicationController
   load_and_authorize_resource
+  before_action :check_gdpr_consent
 
   def new
   end
