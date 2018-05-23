@@ -6,6 +6,8 @@ rvm:
   - 2.2.3
 addons:
   postgresql: "9.4"
+  chrome: stable
+
 # services: [ redis ]
 before_script:
 - cp config/database.travis.yml config/database.yml
