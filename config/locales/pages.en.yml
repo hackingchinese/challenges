@@ -1,4 +1,24 @@
 en:
+  gdpr:
+    new:
+      title: Updated privacy policy and terms of service
+      text: |
+        <p>
+        We collect a minimum amount of personal data from our users to be able
+        to provide good services. In accordance with current law, we’re
+        required to acquire your consent to our <a target='_blank' href='//www.hackingchinese.com/privacy-policy/'>privacy policy</a>, as well as our
+        <a href='//www.hackingchinese.com/terms-of-service/'>terms and conditions</a>.
+        </p>
+        %{continue_link}
+        <br>
+        <br>
+        <p class='mt-2'>
+        We only keep a minimum of data about our users that is necessary to
+        provide good services. If you’re have any questions, you’re welcome to
+        contact us at <a href='mailto:editor@hackingchinese.com'>editor@hackingchinese.com</a>.
+        If you don’t want to continue using Hacking Chinese Resources / Challenges, you can also
+        <a href="%{delete_link}" data-confirm="Are you sure? Clicking yes will delete your account and all activities immediately." data-method="delete">delete your account</a>.
+
   resources:
     tiers:
       type: Type

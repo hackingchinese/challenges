@@ -1,20 +1,4 @@
-h2 We changed our privacy policy
+h2 = t('gdpr.new.title')
 
-p The EU General Data Protection Regulation (GDPR) came into effect on May 25th, 2018. In accordance to law, every website that handles user data must provide a privacy policy.
-
-p To continue using Hacking Chinese resources / challenges, you have to agree to our privacy policy and terms of services.
-
-ul
-  li = link_to "//www.hackingchinese.com/privacy-policy/", target: '_blank' do
-    |Privacy Policy
-  li = link_to "//www.hackingchinese.com/terms-of-service/", target: '_blank' do
-    |Terms of Service
-
-= link_to 'Accept & Continue', gdpr_consent_path, data: { method: :post }, class: 'btn btn-primary btn-lg'
-br
-br
-p.mt-2
-  |We only keep a minimum of data about our users that is necessary to provide good services. If you're have any questions, you're welcome to contact us at #{mail_to 'editor@hackingchinese.com'}. If you don't want to continue using Hacking Chinese Resources / Challenges, you can also
-  span<
-    = link_to 'delete your account', registration_path(:user), data: { confirm: "Are you sure? Clicking yes will delete your account and all activities immediately", method: :delete }
-  |.
+== t('gdpr.new.text', continue_link: link_to('Accept & Continue', gdpr_consent_path, data: { method: :post }, class: 'btn btn-primary btn-lg'),
+  delete_link: registration_path(:user))

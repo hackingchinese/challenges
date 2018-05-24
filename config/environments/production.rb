@@ -109,4 +109,5 @@ Rails.application.configure do
       sender_address: %{"challenge" <challenges@hackingchinese.com>},
       exception_recipients: %w{info@stefanwienert.de}
     }
+  config.force_ssl = true
 end
