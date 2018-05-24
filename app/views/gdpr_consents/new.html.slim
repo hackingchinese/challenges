@@ -2,7 +2,7 @@ h2 We changed our privacy policy
 
 p The EU General Data Protection Regulation (GDPR) came into effect on May 25th, 2018. In accordance to law, every website that handles user data must provide a privacy policy.
 
-p To continue using Hacking Chinese resources / challenges, you have to agree to our privacy policy and Terms of services.
+p To continue using Hacking Chinese resources / challenges, you have to agree to our privacy policy and terms of services.
 
 ul
   li = link_to "//www.hackingchinese.com/privacy-policy/", target: '_blank' do
@@ -14,4 +14,7 @@ ul
 br
 br
 p.mt-2
-  | Unhappy? #{link_to "Delete my account", registration_path(:user), data: { confirm: "Are you sure?" }, method: :delete }.
+  |We only keep a minimum of data about our users that is necessary to provide good services. If you're have any questions, you're welcome to contact us at #{mail_to 'editor@hackingchinese.com'}. If you don't want to continue using Hacking Chinese Resources / Challenges, you can also
+  span<
+    = link_to 'delete your account', registration_path(:user), data: { confirm: "Are you sure? Clicking yes will delete your account and all activities immediately", method: :delete }
+  |.
