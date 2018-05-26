@@ -8,7 +8,7 @@ class Resources::Story < ApplicationRecord
 	has_many :tags, through: :taggings
   has_many :likes, class_name: "Resources::Like", as: :likeable, dependent: :destroy, counter_cache: :like_count
   has_many :liked_by, class_name: "User", through: :likes, source: :user
-  has_many :comments, class_name: "Resources::Comment", dependent: :destroy, counter_cache: true
+  has_many :comments, class_name: "Resources::Comment", dependent: :destroy, counter_cache: :comments_count
 
   validates :url, presence: true, uniqueness: true
   validates :title, presence: true
