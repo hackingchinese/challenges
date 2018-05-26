@@ -83,6 +83,7 @@ class Resources::StoriesController < ResourcesController
   def destroy
     @story = Resources::Story.find(params[:id])
     authorize! :destroy, @story
+    @story.destroy
     redirect_to resources_path
   end
 
