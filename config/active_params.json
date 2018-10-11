@@ -204,5 +204,13 @@
   "GET gdpr_consents/new": {
   },
   "POST gdpr_consents/create": {
+  },
+  "GET admin/users/index": {
+  },
+  "POST resources/stories/destroy": {
+  },
+  "POST admin/users/destroy": {
+  },
+  "DELETE admin/users/destroy": {
   }
 }

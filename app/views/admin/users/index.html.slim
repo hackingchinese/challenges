@@ -6,7 +6,16 @@ table.table.table-striped
       th Last seen
   tbody
     - @users.each do |user|
-      tr
-        td = user.name
-        td = user.email
+      tr(id='#{dom_id(user)}')
+        td = link_to user_path(user) do
+          = user.name
+        td
+          - user.account_connections.map(&:provider).each do |prov|
+            i.fa.fa-fw<>(class='fa-#{prov}')
+          = user.email
+
         td = user.last_sign_in_at
+        td
+          - unless user.admin?
+            = link_to [:admin, user], data: { method: :delete, confirm: "Do you really want to delete the user?", remote: true } do
+              |delete

@@ -1,16 +1,13 @@
 source "https://rubygems.org"
 
 ## Basic
-#
-# gem "rails", "~> 4.2.0"
 gem "rails", "~> 5.1.0"
 gem "pg"
 gem "pg_search"
 gem "slim-rails"
 gem "simple_form", '>= 4.0.0'
 gem "scenic"
-# wait for > 0.1.1
-gem "active_params", github: 'choonkeat/active_params'
+gem "active_params", '~> 1.0.0'
 
 ## User Auth
 #
