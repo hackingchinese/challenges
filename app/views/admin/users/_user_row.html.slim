@@ -1,0 +1,20 @@
+tr(id='#{dom_id(user)}')
+  td = link_to user_path(user) do
+    = user.name
+  td
+    - user.account_connections.map(&:provider).each do |prov|
+      i.fa.fa-fw<>(class='fa-#{prov}')
+    = user.email
+
+  - gets_mail = (!user.fake_email? && (user.mail_preference.challenge_started == '1' || user.mail_preference.challenge_starts_soon == '1'))
+  td = gets_mail ? "Yes" : ""
+  td = user.last_sign_in_at
+  td
+    - unless user.admin?
+      - if gets_mail
+        = link_to admin_user_path(user, disable_email: 1), data: { method: :patch, remote: true }, class: 'btn btn-sm btn-outline-primary' do
+          |disable email
+      br
+      = link_to [:admin, user], data: { method: :delete, confirm: "Do you really want to delete the user?", remote: true }, class: 'btn btn-sm btn-outline-danger mt-1' do
+        |delete
+

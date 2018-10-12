@@ -212,5 +212,7 @@
   "POST admin/users/destroy": {
   },
   "DELETE admin/users/destroy": {
+  },
+  "PATCH admin/users/update": {
   }
 }

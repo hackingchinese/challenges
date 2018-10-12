@@ -17,6 +17,13 @@ class MailPreference < ApplicationRecord
     store_accessor :mails_enabled, mail
   end
 
+  def disable!
+    MAILS.each do |mail|
+      self.send("#{mail}=", '0')
+    end
+    save
+  end
+
   def set_defaults
     self.liked = '1' if liked.nil?
     self.commented = '1' if commented.nil?

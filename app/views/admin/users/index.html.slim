@@ -3,19 +3,8 @@ table.table.table-striped
     tr
       th Name
       th E-Mail
+      th Wants Challenge E-mail?
       th Last seen
   tbody
     - @users.each do |user|
-      tr(id='#{dom_id(user)}')
-        td = link_to user_path(user) do
-          = user.name
-        td
-          - user.account_connections.map(&:provider).each do |prov|
-            i.fa.fa-fw<>(class='fa-#{prov}')
-          = user.email
-
-        td = user.last_sign_in_at
-        td
-          - unless user.admin?
-            = link_to [:admin, user], data: { method: :delete, confirm: "Do you really want to delete the user?", remote: true } do
-              |delete
+      = render "user_row", user: user

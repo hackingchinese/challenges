@@ -1,0 +1,1 @@
+$('#<%= dom_id(@user) %>').replaceWith(<%= raw render('user_row.html', user: @user).to_json %>)
