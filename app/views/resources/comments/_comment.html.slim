@@ -4,9 +4,10 @@
       .row
         .col-md-3
           .text-center
-            div= image_tag comment.user.avatar.url(:display), style: 'max-width: 50px'
-            = link_to user_path(comment.user)
-              small.text-muted= comment.user.name
+            - if comment.user
+              div= image_tag comment.user.avatar.url(:display), style: 'max-width: 50px'
+              = link_to user_path(comment.user)
+                small.text-muted= comment.user.name
         .col-md-9
           p
             small.text-muted= l comment.created_at, format: :long
@@ -15,9 +16,10 @@
   .card
     .card-body
       .text-center
-        div= image_tag comment.user.avatar.url(:display), style: 'max-width: 50px'
-        = link_to user_path(comment.user)
-          small.text-muted= comment.user.name
+        - if comment.user
+          div= image_tag comment.user.avatar.url(:display), style: 'max-width: 50px'
+          = link_to user_path(comment.user)
+            small.text-muted= comment.user.name
       p.text-muted Comment on #{link_to comment.story.title, comment.story}
       - if params[:q]
         = highlight(markdown(comment.comment), params[:q].split(" "))
