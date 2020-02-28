@@ -218,7 +218,7 @@ GEM
       interception (>= 0.5)
       pry
     public_suffix (3.0.2)
-    puma (3.11.4)
+    puma (3.12.3)
     quilt (0.1.0)
     rack (2.0.7)
     rack-test (1.1.0)
