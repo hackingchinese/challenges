@@ -84,3 +84,5 @@ group :production do
   gem "lograge"
   gem "exception_notification"
 end
+
+gem "rack-attack", "~> 6.3"

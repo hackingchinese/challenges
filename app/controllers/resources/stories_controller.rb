@@ -1,4 +1,7 @@
 class Resources::StoriesController < ResourcesController
+  rescue_from ActionController::InvalidAuthenticityToken do
+    redirect_to '/resources/stories', alert: "Your request has expired, please try again"
+  end
   def index
     @filter = ResourcesFilter.new(params)
     respond_to do |f|
