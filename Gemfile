@@ -43,6 +43,7 @@ gem "simple_captcha2", "~> 0.3", require: "simple_captcha"
 ### Utils
 gem "mini_magick"
 gem "quilt"
+gem "rmagick" # dep of quilt
 gem "redcarpet"
 gem "whenever"
 gem "stringex"
