@@ -20,6 +20,7 @@ class User < ApplicationRecord
   after_create :generate_random_image
 
   scope :with_email, -> { where('no_mails = ?', false).where('email not like ?', '%@changeme.com') }
+  scope :blocked, -> { where blocked: true }
 
   def fake_email?
     !email || email[/@changeme/]

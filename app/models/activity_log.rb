@@ -1,5 +1,4 @@
 class ActivityLog < ApplicationRecord
-
   belongs_to :user
   belongs_to :participation
   has_one :challenge, through: :participation
@@ -8,12 +7,16 @@ class ActivityLog < ApplicationRecord
   has_many :comments, class_name: "ActivityLog::Comment", dependent: :destroy
 
   validates_presence_of :user_id, :participation_id
-  validates :units_accomplished, numericality: { greater_than: 0 }, if: ->(r){ r.challenge.goal_unit? }
-  validates :minutes, numericality: { greater_than: 0 }, if: ->(r){ r.challenge.goal_time? }
+  validates :units_accomplished, numericality: { greater_than: 0, less_than_or_equal_to: 3600 }, if: ->(r){ r.challenge.goal_unit? }
+  validates :minutes, numericality: { greater_than: 0, less_than_or_equal_to: 3600 }, if: ->(r){ r.challenge.goal_time? }
   validate :date_valid
 
   before_save :set_score
   after_save :update_participation_score
+
+  scope :unblocked, -> {
+    where.not(user_id: User.blocked.select(:id))
+  }
 
   delegate :unit_type, to: :challenge
   def date_valid

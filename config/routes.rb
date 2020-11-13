@@ -10,7 +10,12 @@ HnChallenge::Application.routes.draw do
     end
   end
   namespace :admin do
-    resources :users
+    resources :users do
+      member do
+        post :block
+        delete :unblock
+      end
+    end
     resources :quality_tables
     namespace :resources do
       resources :tags do

@@ -6,6 +6,9 @@ class Participation < ApplicationRecord
   validates :challenge_id, uniqueness: { scope: :user_id }
   has_many :activity_logs
 
+  scope :unblocked, -> {
+    where.not(user_id: User.blocked.select(:id))
+  }
   scope :leaderboard, -> {
     where('score is not null').order('score desc')
   }

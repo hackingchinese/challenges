@@ -8,6 +8,7 @@ gem "slim-rails"
 gem "simple_form", '>= 4.0.0'
 gem "scenic"
 gem "active_params", '~> 1.0.0'
+gem 'datagrid'
 
 ## User Auth
 #

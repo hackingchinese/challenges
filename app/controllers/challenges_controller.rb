@@ -20,7 +20,7 @@ class ChallengesController < ApplicationController
     @max = [ 1 ,@challenge.participations.maximum('score') || 0 ].max
     @page_title = @challenge.title
 
-    @feed = @challenge.activity_feed_items.sorted.page(params[:page]).per(25)
+    @feed = @challenge.activity_feed_items.where.not(user_id: User.blocked.select(:id)).sorted.page(params[:page]).per(25)
   end
 
   def edit

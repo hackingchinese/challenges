@@ -2,7 +2,10 @@ class Admin::UsersController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @users = User.order('last_sign_in_at is null, last_sign_in_at desc').includes(:account_connections, :mail_preference)
+    grid_params = params.fetch(:users_grid, {}).permit!
+    @grid = UsersGrid.new(grid_params) do |scope|
+      scope.page(params[:page])
+    end
   end
 
   def update
@@ -27,5 +30,15 @@ class Admin::UsersController < ApplicationController
       }
       f.js
     end
+  end
+
+  def block
+    @user.update_attribute(:blocked, true)
+    redirect_back fallback_location: '/admin/users', notice: 'User has been blocked/hidden from leaderboards'
+  end
+
+  def unblock
+    @user.update_attribute(:blocked, false)
+    redirect_back fallback_location: '/admin/users', notice: 'User has been unblocked/shows now in leaderboards'
   end
 end

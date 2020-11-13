@@ -24,6 +24,10 @@ class MailPreference < ApplicationRecord
     save
   end
 
+  def any?
+    [liked, commented , comment_on_watched_thread , challenge_starts_soon , challenge_started , resource_comment_on_story , resource_comment_on_thread].any? { |i| i == '1' }
+  end
+
   def set_defaults
     self.liked = '1' if liked.nil?
     self.commented = '1' if commented.nil?

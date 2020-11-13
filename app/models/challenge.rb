@@ -49,7 +49,7 @@ class Challenge < ApplicationRecord
   end
 
   def leaderboard
-    participations.leaderboard
+    participations.unblocked.leaderboard
   end
 
   def time_progress

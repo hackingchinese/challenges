@@ -206,6 +206,11 @@
   "POST gdpr_consents/create": {
   },
   "GET admin/users/index": {
+    "users_grid": [
+      "email",
+      "name",
+      "blocked"
+    ]
   },
   "POST resources/stories/destroy": {
   },
@@ -214,5 +219,7 @@
   "DELETE admin/users/destroy": {
   },
   "PATCH admin/users/update": {
+  },
+  "POST admin/users/block": {
   }
 }
