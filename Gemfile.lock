@@ -306,7 +306,7 @@ GEM
       rubyzip (~> 1.2)
     simple_captcha2 (0.4.3)
       rails (>= 4.1)
-    simple_form (4.0.1)
+    simple_form (5.0.0)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
     simplecov (0.16.1)
