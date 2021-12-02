@@ -60,6 +60,10 @@ class Challenge < ApplicationRecord
     from_date >= Date.today
   end
 
+  def past?
+    to_date.past?
+  end
+
   def days_left
     (to_date - Date.today).to_i
   end

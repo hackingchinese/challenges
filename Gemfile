@@ -63,7 +63,6 @@ group :development, :test do
   gem "faker"
   gem "fabrication"
   gem "pry-rails"
-  gem "pry-rescue"
   gem "rspec-rails", ">= 3.6.0"
   gem "puma"
   gem "vcr"
@@ -88,3 +87,4 @@ group :production do
 end
 
 gem "rack-attack", "~> 6.3"
+gem "redis"

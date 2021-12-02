@@ -1,22 +1,22 @@
 .card.mb-2
   .card-body
-    = cache [challenge, challenge.activity_logs.maximum(:updated_at)] do
-      h3.card-title
-        = link_to challenge do
-          = challenge.title
-      small.text-muted
-        |#{l challenge.from_date, format: :long} &ndash; #{l challenge.to_date, format: :long}
+    h3.card-title
+      = link_to challenge do
+        = challenge.title
+    small.text-muted
+      |#{l challenge.from_date, format: :long} &ndash; #{l challenge.to_date, format: :long}
+      - if challenge.running?
+        span.label.label-default<> #{challenge.days_left} Days left
+    .card-text
+      p
+        - if challenge.users.include?(current_user)
+          span.label.label-primary> Enrolled
         - if challenge.running?
-          span.label.label-default<> #{challenge.days_left} Days left
-      .card-text
-        p
-          - if challenge.users.include?(current_user)
-            span.label.label-primary> Enrolled
-          - if challenge.running?
-            span.label.label-primary> Running
-          - if challenge.upcoming?
-            span.label.label-primary> Upcoming
-          - if !challenge.future?
+          span.label.label-primary> Running
+        - if challenge.upcoming?
+          span.label.label-primary> Upcoming
+        - if !challenge.future?
+          - cache [challenge, challenge.past? ? "-" : challenge.activity_logs.maximum(:id)] do
             span.label.label-default<> title='Participants'
               |#{challenge.participations.unblocked.count}人
             - if challenge.goal_unit?
@@ -27,13 +27,13 @@
               span.label.label-default<> title='Hours logged'
                 |#{challenge.activity_logs.unblocked.sum(:hours_spent).round}h
 
-        p = truncate challenge.description, length: 400
-    .card-text
-      a.btn.btn-primary> href=challenge_path(challenge)
-        i.fa.fa-fw.fa-list-ol> title='Leaderboard'
-      - if challenge.link? and challenge.link.starts_with?("http")
-        a.btn.btn-secondary<> href=challenge.link
-          i.fa.fa-fw.fa-file-text-o title='Blog post'
-      - if can?(:enroll, challenge)
-        = link_to [:new, challenge, :participation], class: 'btn btn-primary' do
-          = t 'challenges.challenge.enroll'
+      p = truncate challenge.description, length: 400
+  .card-footer
+    a.btn.btn-primary> href=challenge_path(challenge)
+      i.fa.fa-fw.fa-list-ol> title='Leaderboard'
+    - if challenge.link? and challenge.link.starts_with?("http")
+      a.btn.btn-secondary<> href=challenge.link
+        i.fa.fa-fw.fa-file-text-o title='Blog post'
+    - if (challenge.running? || challenge.upcoming?) && can?(:enroll, challenge)
+      = link_to [:new, challenge, :participation], class: 'btn btn-primary' do
+        = t 'challenges.challenge.enroll'

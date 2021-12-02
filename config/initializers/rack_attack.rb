@@ -1,4 +1,9 @@
-Rack::Attack.cache.store = ActiveSupport::Cache::MemoryStore.new
+if Rails.env.production?
+  Rack::Attack.cache.store = ActiveSupport::Cache::RedisCacheStore.new(namespace: "hc.")
+else
+  Rack::Attack.cache.store = ActiveSupport::Cache::MemoryStore.new
+end
+Rack::Attack.cache.store = ActiveSupport::Cache::RedisCacheStore.new(namespace: "hc.")
 
 FILTER_REGEX = %r{/etc/passwd|/proc/self|/etc/hosts/| FROM | INFORMATION_SCHEMA|\.\./\.\.| order by |a=0|UNION ALL|ORDER BY|INFORMATION_SCHEMA|PG_SLEEP|UNION SELECT CHAR|AnD sLeep|UNION}i
 
