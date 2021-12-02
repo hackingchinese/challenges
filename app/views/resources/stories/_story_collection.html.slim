@@ -1,9 +1,3 @@
 - short = false if !defined?(short)
-.row
-  - stories.each_with_index do |story, i|
-    - if i % 2 == 0 && i > 0
-      .clearfix
-    /* - if i % 3 == 0 && i > 0 */
-    /*   .clearfix.hidden-md-down */
-    .col-lg-6
-      = render story, short: short
+.stories-grid
+  = render stories, short: short

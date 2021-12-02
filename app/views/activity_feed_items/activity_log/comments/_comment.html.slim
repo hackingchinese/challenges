@@ -1,6 +1,8 @@
-= link_to [ @challenge, item.activity_log.participation] do
-  - other = item.activity_log.user
-  - if other == item.user
-    | #{item.user.name} commented on one of their activities
-  - else
-    |#{item.user.name} commented on one of #{item.activity_log.user.name}'s activities
+- if item.user
+  = link_to [ @challenge, item.activity_log.participation] do
+    - other = item.activity_log.user
+    - if other
+      - if other == item.user
+        | #{item.user&.name} commented on one of their activities
+      - else
+        |#{item.user&.name} commented on one of #{other.user&.name}'s activities

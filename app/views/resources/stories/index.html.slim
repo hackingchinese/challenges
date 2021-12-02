@@ -18,7 +18,7 @@ h4: small Filter
           .col-sm-9
             - Resources::Tag.send(tier).each do |tag|
               - if @filter.tag_active?(tag)
-                a.btn.active.btn-secondary.btn-xs<> href='#{@filter.disable_filter_path(tag)}' rel='#{@filter.selected_tag_ids.count < 4 ? '' : 'nofllow'}'
+                a.btn.active.btn-secondary.btn-xs<> href='#{@filter.disable_filter_path(tag)}' rel='#{@filter.selected_tag_ids.count < 4 ? '' : 'nofollow'}'
                   = tag.name
               - else
                 - count = @filter.tag_count_before_filter(tag)
@@ -27,11 +27,14 @@ h4: small Filter
                     = tag.name
                     small.text-muted<
                       | (#{count})
-                - else
+                - elsif count > 0
                   a.btn.btn-secondary.btn-xs<> href='#{@filter.enable_filter_path(tag)}' rel='#{@filter.selected_tag_ids.count < 4 ? '' : 'nofollow'}'
                     = tag.name
                     small.text-muted<
                       | (#{count})
+                - else
+                  a.btn.btn-secondary.btn-xs<> href='#{@filter.enable_filter_path(tag)}' rel='#{@filter.selected_tag_ids.count < 4 ? '' : 'nofollow'}'
+                    = tag.name
   .col-md-4
     = render 'resources/search/search'
 

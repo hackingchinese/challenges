@@ -16,3 +16,12 @@
   background: #a3a3a3;
 }
 
+.stories-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 15px;
+  @media (max-width: 800px) {
+    display: block;
+
+  }
+}

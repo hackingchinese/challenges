@@ -1,6 +1,11 @@
 class ActivityLogsController < ApplicationController
   before_action do
+    headers['Cache-Control'] = 'no-cache, max-age=0, must-revalidate, no-store'
     @participation = Participation.find(params[:participation_id])
+  end
+
+  rescue_from ActionController::InvalidAuthenticityToken do
+    redirect_to [@activity_log.challenge, @activity_log.participation], alert: "Sorry, this action was cancelled, because the the form was open to long, please try again!"
   end
 
   def new

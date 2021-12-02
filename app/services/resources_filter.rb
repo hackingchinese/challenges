@@ -49,6 +49,11 @@ class ResourcesFilter
   end
 
   def tag_count_before_filter(tag)
+    if @selected_tags_per_tier.values.flatten.count > 6
+      # security measure
+      return -1
+    end
+
     story_sql(extra_tiers: { tag.tier => [tag] }).count
   end
 
