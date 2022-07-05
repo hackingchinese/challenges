@@ -34,3 +34,9 @@ Rack::Attack.throttle("registrations", limit: 5, period: 15.minutes) do |request
     request.ip
   end
 end
+
+Rack::Attack.throttle("throttle_baidu_bot", limit: 30, period: 602) do |request|
+  if request.path.starts_with?('/resources') && request.path.length > 70 && request.user_agent.to_s['Baiduspider']
+    request.ip.split('.')[0..1].join('.')
+  end
+end
