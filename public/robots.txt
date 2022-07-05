@@ -5,5 +5,8 @@
 # Disallow: /
 Sitemap: https://challenges.hackingchinese.com/system/sitemap.xml.gz
 
+User-agent: *
+Crawl-delay: 5
+
 Disallow /admin
 Disallow /users
