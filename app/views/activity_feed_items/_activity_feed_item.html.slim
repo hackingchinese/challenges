@@ -7,11 +7,15 @@ div id='#{dom_id(item)}'
         = render "activity_feed_items/#{item.searchable.to_partial_path}", item: item.searchable
         div: small.text-muted = l item.created_at, format: "%A, %b %d"
       .col-sm-2.text-right
-        - if item.user.avatar.present?
-          = image_tag item.user.avatar.url(:display), style: 'max-width: 50px', class: 'img-thumbnail'
-          br
-        small.text-muted
-          = item.user.name
+        - if item.user
+          - if item.user.avatar.present?
+            = image_tag item.user.avatar.url(:display), style: 'max-width: 50px', class: 'img-thumbnail'
+            br
+          small.text-muted
+            = item.user.name
+        - else
+          small.text-muted
+            |(deleted user)
 
 
 
