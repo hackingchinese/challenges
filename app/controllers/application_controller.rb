@@ -15,6 +15,9 @@ class ApplicationController < ActionController::Base
     Rails.logger.warn "CANCAN: #{exception.subject} #{exception.action}"
     redirect_to main_app.root_url, :alert => exception.message
   end
+  rescue_from ActionController::BadRequest do |exception|
+    render plain: "Please stop. It's not working", status: 410
+  end
   before_action do
     if request.host == 'resources.hackingchinese.com'
       if request.env['REQUEST_URI'] == '/'
