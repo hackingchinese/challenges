@@ -46,3 +46,4 @@ Rack::Attack.throttle("throttle_baidu_bot", limit: 30, period: 602) do |request|
     request.ip.split('.')[0..1].join('.')
   end
 end
+Rack::Attack.enabled = Rails.env.production?
