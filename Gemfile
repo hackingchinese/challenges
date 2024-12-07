@@ -73,12 +73,10 @@ end
 group :test do
   gem "simplecov", require: false
   gem "capybara"
-  gem 'chromedriver-helper'
-  gem 'capybara-selenium'
-  gem 'selenium-webdriver'
   gem "database_cleaner", "1.0.1"
   gem "email_spec"
   gem "timecop"
+  gem 'pludoni_rspec', git: 'https://github.com/pludoni/pludoni_rspec'
 end
 
 group :production do

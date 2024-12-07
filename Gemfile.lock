@@ -1,3 +1,17 @@
+GIT
+  remote: https://github.com/pludoni/pludoni_rspec
+  revision: 8ffe19d5e962c229cafd5851e57e96adae884aab
+  specs:
+    pludoni_rspec (0.21)
+      capybara (>= 3.13.2)
+      cuprite
+      headless (>= 2.3.1)
+      pry-rails
+      puma
+      rspec_junit_formatter
+      simplecov (>= 0.16.1)
+      simplecov-cobertura
+
 GEM
   remote: https://rails-assets.org/
   specs:
@@ -49,8 +63,8 @@ GEM
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-    addressable (2.8.6)
-      public_suffix (>= 2.0.2, < 6.0)
+    addressable (2.8.7)
+      public_suffix (>= 2.0.2, < 7.0)
     archive-zip (0.11.0)
       io-like (~> 0.3.0)
     arel (9.0.0)
@@ -77,7 +91,7 @@ GEM
     capybara-selenium (0.0.6)
       capybara
       selenium-webdriver
-    carrierwave (2.2.2)
+    carrierwave (2.2.6)
       activemodel (>= 5.0.0)
       activesupport (>= 5.0.0)
       addressable (~> 2.6)
@@ -85,7 +99,6 @@ GEM
       marcel (~> 1.0.0)
       mini_mime (>= 0.1.3)
       ssrf_filter (~> 1.0)
-    childprocess (4.1.0)
     chromedriver-helper (1.2.0)
       archive-zip (~> 0.10)
       nokogiri (~> 1.8)
@@ -98,10 +111,13 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
-    concurrent-ruby (1.2.3)
+    concurrent-ruby (1.3.4)
     crack (0.4.5)
       rexml
     crass (1.0.6)
+    cuprite (0.15.1)
+      capybara (~> 3.0)
+      ferrum (~> 0.15.0)
     database_cleaner (1.0.1)
     datagrid (1.5.8)
       rails (>= 4.0)
@@ -130,7 +146,12 @@ GEM
       i18n (>= 0.7)
     faraday (0.17.0)
       multipart-post (>= 1.2, < 3)
-    ffi (1.15.5)
+    ferrum (0.15)
+      addressable (~> 2.5)
+      concurrent-ruby (~> 1.1)
+      webrick (~> 1.7)
+      websocket-driver (~> 0.7)
+    ffi (1.17.0)
     font-awesome-rails (4.7.0.4)
       railties (>= 3.2, < 6.0)
     globalid (1.1.0)
@@ -141,9 +162,9 @@ GEM
     highcharts-rails (3.0.10)
       railties (>= 3.1)
     htmlentities (4.3.4)
-    i18n (1.14.4)
+    i18n (1.14.6)
       concurrent-ruby (~> 1.0)
-    image_processing (1.12.2)
+    image_processing (1.13.0)
       mini_magick (>= 4.9.5, < 5)
       ruby-vips (>= 2.0.17, < 3)
     io-like (0.3.0)
@@ -171,12 +192,13 @@ GEM
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
       ruby_dep (~> 1.2)
+    logger (1.6.2)
     lograge (0.10.0)
       actionpack (>= 4)
       activesupport (>= 4)
       railties (>= 4)
       request_store (~> 1.0)
-    loofah (2.22.0)
+    loofah (2.23.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
     mail (2.8.1)
@@ -189,10 +211,10 @@ GEM
     meta-tags (2.9.0)
       actionpack (>= 3.2.0, < 5.3)
     method_source (1.0.0)
-    mini_magick (4.11.0)
+    mini_magick (4.13.2)
     mini_mime (1.1.5)
-    mini_portile2 (2.8.6)
-    minitest (5.22.3)
+    mini_portile2 (2.8.8)
+    minitest (5.25.4)
     msgpack (1.5.3)
     multi_json (1.13.1)
     multi_xml (0.6.0)
@@ -206,8 +228,8 @@ GEM
       timeout
     net-smtp (0.4.0.1)
       net-protocol
-    nio4r (2.7.1)
-    nokogiri (1.15.6)
+    nio4r (2.7.4)
+    nokogiri (1.15.7)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     oauth (0.5.4)
@@ -247,12 +269,12 @@ GEM
       method_source (~> 1.0)
     pry-rails (0.3.9)
       pry (>= 0.10.4)
-    public_suffix (5.0.5)
-    puma (6.4.2)
+    public_suffix (5.1.1)
+    puma (6.5.0)
       nio4r (~> 2.0)
     quilt (0.1.0)
-    racc (1.7.3)
-    rack (2.2.9)
+    racc (1.8.1)
+    rack (2.2.10)
     rack-attack (6.3.1)
       rack (>= 1.0, < 3)
     rack-test (2.1.0)
@@ -274,9 +296,9 @@ GEM
       activesupport (>= 5.0.0)
       minitest
       nokogiri (>= 1.6)
-    rails-html-sanitizer (1.6.0)
+    rails-html-sanitizer (1.6.1)
       loofah (~> 2.21)
-      nokogiri (~> 1.14)
+      nokogiri (>= 1.15.7, != 1.16.7, != 1.16.6, != 1.16.5, != 1.16.4, != 1.16.3, != 1.16.2, != 1.16.1, != 1.16.0.rc1, != 1.16.0)
     rails_layout (1.0.42)
     railties (5.2.8.1)
       actionpack (= 5.2.8.1)
@@ -290,13 +312,13 @@ GEM
       ffi (>= 0.5.0, < 2)
     redcarpet (3.5.1)
     redis (4.5.1)
-    regexp_parser (2.9.0)
+    regexp_parser (2.9.3)
     request_store (1.4.1)
       rack (>= 1.4)
     responders (3.0.0)
       actionpack (>= 5.0)
       railties (>= 5.0)
-    rexml (3.2.5)
+    rexml (3.3.9)
     rmagick (5.5.0)
       observer (~> 0.1)
       pkg-config (~> 1.4)
@@ -317,8 +339,11 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.10.3)
-    ruby-vips (2.1.4)
+    rspec_junit_formatter (0.6.0)
+      rspec-core (>= 2, < 4, != 2.12.0)
+    ruby-vips (2.2.2)
       ffi (~> 1.12)
+      logger
     ruby_dep (1.5.0)
     rubyzip (2.3.2)
     sass (3.5.6)
@@ -337,10 +362,10 @@ GEM
       railties (>= 4.0.0)
     select2-rails (4.0.3)
       thor (~> 0.14)
-    selenium-webdriver (4.1.0)
-      childprocess (>= 0.5, < 5.0)
+    selenium-webdriver (4.9.0)
       rexml (~> 3.2, >= 3.2.5)
-      rubyzip (>= 1.2.2)
+      rubyzip (>= 1.2.2, < 3.0)
+      websocket (~> 1.0)
     simple_captcha2 (0.5.0)
       rails (>= 4.1)
     simple_form (5.0.3)
@@ -350,6 +375,8 @@ GEM
       docile (~> 1.1)
       json (>= 1.8, < 3)
       simplecov-html (~> 0.10.0)
+    simplecov-cobertura (1.4.2)
+      simplecov (~> 0.8)
     simplecov-html (0.10.2)
     sitemap_generator (6.0.1)
       builder (~> 3.0)
@@ -367,7 +394,7 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
-    ssrf_filter (1.0.7)
+    ssrf_filter (1.2.0)
     stringex (2.8.4)
     sys-uname (0.9.0)
       ffi (>= 1.0.0)
@@ -393,6 +420,8 @@ GEM
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
+    webrick (1.9.1)
+    websocket (1.2.11)
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -438,6 +467,7 @@ DEPENDENCIES
   pg
   pg_search
   phantomjs-binaries (~> 2.1)
+  pludoni_rspec!
   pry-rails
   puma
   quilt
