@@ -11,30 +11,19 @@ h4: small Filter
 .row
   .col-md-8
     .resource-filter
-      - Resources::Tag.tiers.keys.each do |tier|
-        - next if tier == 'extra' && @filter.selected_tag_ids.blank?
+      - @filter.tags_per_tiers.each do |tier|
         .row
-          .col-sm-2: strong = t "resources.tiers.#{tier}"
+          .col-sm-2
+            strong = tier.label
           .col-sm-9
-            - Resources::Tag.send(tier).each do |tag|
-              - if @filter.tag_active?(tag)
-                a.btn.active.btn-secondary.btn-xs<> href='#{@filter.disable_filter_path(tag)}' rel='#{@filter.selected_tag_ids.count < 2 ? '' : 'nofollow noindex'}'
+            div(style='display: flex; gap: 2px; flex-wrap: wrap;')
+              - tier.tags.each do |tag|
+                a.btn.btn-secondary.btn-xs(href="#{tag.href || '#'}" rel='nofollow noindex' class="#{tag.class_list}")
                   = tag.name
-              - else
-                - count = @filter.tag_count_before_filter(tag)
-                - if count == 0
-                  a.btn.disabled.btn-secondary.btn-xs<> href='#{@filter.enable_filter_path(tag)}' disabled='disabled' rel='nofollow noindex'
-                    = tag.name
+                  = ' '
+                  - if tag.count > 0
                     small.text-muted<
-                      | (#{count})
-                - elsif count > 0
-                  a.btn.btn-secondary.btn-xs<> href='#{@filter.enable_filter_path(tag)}' rel='#{@filter.selected_tag_ids.count < 2 ? '' : 'nofollow noindex'}'
-                    = tag.name
-                    small.text-muted<
-                      | (#{count})
-                - else
-                  a.btn.btn-secondary.btn-xs<> href='#{@filter.enable_filter_path(tag)}' rel='#{@filter.selected_tag_ids.count < 2 ? '' : 'nofollow noindex'}'
-                    = tag.name
+                      | (#{tag.count})
   .col-md-4
     = render 'resources/search/search'
 

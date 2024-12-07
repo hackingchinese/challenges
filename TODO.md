@@ -31,5 +31,4 @@ Rails 4.2 -> Rails 5
 Profile:
 * Languages spoken proficiency
 * Blog
-* Twitter
 * ..? any chinese learning site? Tools i use?

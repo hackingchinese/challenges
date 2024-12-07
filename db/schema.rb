@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201113223326) do
+ActiveRecord::Schema.define(version: 2024_12_07_173729) do
 
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
   enable_extension "fuzzystrmatch"
   enable_extension "pg_trgm"
+  enable_extension "plpgsql"
   enable_extension "unaccent"
 
   create_table "account_connections", id: :serial, force: :cascade do |t|
@@ -176,6 +176,7 @@ ActiveRecord::Schema.define(version: 20201113223326) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "weight", default: 0
+    t.index ["tier"], name: "index_resources_tags_on_tier"
   end
 
   create_table "simple_captcha_data", id: :serial, force: :cascade do |t|
