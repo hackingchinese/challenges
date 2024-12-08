@@ -20,7 +20,7 @@
 
 
   - Resources::Tag.tiers.each do |t, _|
-    = f.association :tags, collection: Resources::Tag.send(t), label: t("resources.tiers.#{t}"), hint: t("resources.tier_help.#{t}")
+    = f.association :tags, collection: Resources::Tag.send(t), label: t("resources.tiers.#{t}"), hint: t("resources.tier_help.#{t}"), input_html: { id: "story_tag_ids_#{t}" }
 
 
   .card: .card-body
@@ -36,4 +36,4 @@ css:
     min-height: 200px;
   }
 javascript:
-  $('select').select2({ theme: "bootstrap" })
+  $('select').select2({ theme: "bootstrap" }) 

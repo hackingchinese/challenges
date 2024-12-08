@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
 ## Basic
-gem "rails", "~> 6.0.0"
+gem "rails", "~> 6.1.0"
 gem "pg"
 gem "pg_search"
 gem "slim-rails"

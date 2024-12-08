@@ -16,6 +16,7 @@ describe 'Resource creation', js: true do
       fill_in 'Url', with: 'http://www.hackingchinese.com/best-twitter-feeds-learning-chinese-2016/'
       fill_in 'Title', with: 'blablablablablabla'
       fill_in 'Description', with: 'asdads asdasda dasd asdasd asdasdasd'
+      sleep 0.2
 
       first('.select2').click
       first('.select2-results li', text: 'Beginner').click
