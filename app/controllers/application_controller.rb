@@ -1,4 +1,11 @@
 class ApplicationController < ActionController::Base
+  before_action :block_ie
+  def block_ie
+    if request.user_agent.to_s =~ /MSIE|Trident/
+      render plain: "Your browser is not supported anymore.", status: 406
+    end
+  end
+
   before_action do
     @site_title = (Rails.env.development? ? "(DEV) " : "") + 'HC Challenges'
     @page_description = 'Hacking Chinese Challenges - building language skills through daily practice and friendly competition!'
