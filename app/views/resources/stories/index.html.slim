@@ -11,7 +11,7 @@ h4: small Filter
 .row
   .col-md-8
     .resource-filter
-      - @filter.tags_per_tiers.each do |tier|
+      - @filter.tags_per_tiers.compact.each do |tier|
         .row
           .col-sm-2
             strong = tier.label
