@@ -54,6 +54,7 @@ describe 'Registration', js: true do
   end
 
   def logout!
+    expect(page).to have_link 'Stefan'
     within('.navbar') {
       find('a', text: /Stefan/).click
     }

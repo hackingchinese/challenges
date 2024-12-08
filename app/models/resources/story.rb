@@ -1,7 +1,7 @@
 class Resources::Story < ApplicationRecord
   belongs_to :user
   mount_uploader :image, ImageUploader
-  include PgSearch
+  include PgSearch::Model
   multisearchable :against => [:title, :description, :url, :tag_list]
 
 	has_many :taggings, class_name: "Resources::Tagging", foreign_key: 'story_id', dependent: :destroy

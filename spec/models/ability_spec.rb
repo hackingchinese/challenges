@@ -27,13 +27,13 @@ describe Ability do
     end
 
     specify 'cannot create upcoming challenge' do
-      participation.challenge.update_attributes! from_date: 7.days.from_now, to_date: 27.days.from_now
+      participation.challenge.update! from_date: 7.days.from_now, to_date: 27.days.from_now
       expect(
         cannot?(:create, ActivityLog.new(participation_id: participation.id))
       ).to eql true
     end
     specify 'cannot create for old challenge' do
-      participation.challenge.update_attributes! from_date:  27.days.ago, to_date: 7.days.ago
+      participation.challenge.update! from_date:  27.days.ago, to_date: 7.days.ago
       expect(cannot?(:create, ActivityLog.new(participation_id: participation.id))).to eql true
     end
   end

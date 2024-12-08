@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
 ## Basic
-gem "rails", "~> 5.2.0"
+gem "rails", "~> 6.0.0"
 gem "pg"
 gem "pg_search"
 gem "slim-rails"
@@ -22,7 +22,7 @@ gem "bootsnap", require: false
 #
 gem "sass-rails"
 gem "uglifier", ">= 1.3.0"
-gem "coffee-rails", "~> 4.0"
+gem "coffee-rails"
 gem "jquery-rails"
 gem "turbolinks", '~> 5.0.0.beta'
 gem "bootstrap", "~> 4.1"
