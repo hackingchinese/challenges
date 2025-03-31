@@ -27,7 +27,7 @@ Rack::Attack.blocklist('fail2ban pentesters') do |req|
   end
 end
 
-Rack::Attack.throttle("requests by ip on ", limit: 30, period: 120) do |request|
+Rack::Attack.throttle("requests by ip on ", limit: 2, period: 120) do |request|
   logged_in = request.env['rack.session']['warden.user.user.key']
 
   if request.path.starts_with?('/resources') && request.path.length > 70 && !logged_in
@@ -47,3 +47,8 @@ Rack::Attack.throttle("throttle_baidu_bot", limit: 30, period: 602) do |request|
   end
 end
 Rack::Attack.enabled = Rails.env.production?
+
+
+Rack::Attack.blocklist('block bad UA logins for search') do |req|
+  req.user_agent.to_s[%r{trident|firefox/\d\d?\.|android [12][^\d]|iphone OS \d_}i]
+end

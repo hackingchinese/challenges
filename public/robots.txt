@@ -8,5 +8,9 @@ Sitemap: https://challenges.hackingchinese.com/system/sitemap.xml.gz
 User-agent: *
 Crawl-delay: 5
 
-Disallow /admin
-Disallow /users
+Disallow: /admin
+Disallow: /users
+Disallow: /resources/Advanced+Beginner+Intermediate/
+Disallow: /resources/Beginner+Intermediate/
+Disallow: /resources/Advanced+Beginner/
+Disallow: /resources/Advanced+Intermediate/
