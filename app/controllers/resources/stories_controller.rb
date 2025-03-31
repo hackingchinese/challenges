@@ -3,11 +3,6 @@ class Resources::StoriesController < ResourcesController
     redirect_to '/resources/stories', alert: "Your request has expired, please try again"
   end
   def index
-    if params[:extra] && !@current_user
-      # remove extra
-      redirect_to resources_stories_path(params.except(:extra))
-      return
-    end
     @filter = ResourcesFilter.new(params, current_user: current_user)
     if @filter.current_path != request.fullpath && !current_user
       redirect_to @filter.current_path
