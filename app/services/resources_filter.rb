@@ -10,13 +10,17 @@ class ResourcesFilter
   end
 
   attr_reader :params, :selected_tag_ids
-  def initialize(params)
+  def initialize(params, current_user: nil)
     @params = params
+    @current_user = current_user
 
     @tags = Resources::Tag.all
     @selected_tags_per_tier = {}
     Resources::Tag.tiers.each do |tier, _|
-      @selected_tags_per_tier[tier] = (params[tier] || "").split("+").map { |n| @tags.find { |t| t.name == n } }.compact
+      @selected_tags_per_tier[tier] = (params[tier] || "").split("+").map { |n| @tags.find { |t| t.name == n } }.compact.take(1)
+    end
+    if !current_user
+      @selected_tags_per_tier['extra'] = []
     end
 
     @selected_tag_ids = @selected_tags_per_tier.values.flatten.map(&:id)
@@ -27,6 +31,7 @@ class ResourcesFilter
   def tags_per_tiers
     Resources::Tag.tiers.keys.map do |tier|
       next if tier == 'extra' && selected_tag_ids.blank?
+      next if tier == 'extra' && !@current_user
       label = I18n.t("resources.tiers.#{tier}")
 
       tags = Resources::Tag.send(tier)
@@ -63,7 +68,7 @@ class ResourcesFilter
 
   def enable_filter_path(tag)
     options = @link_map.deep_dup
-    options[tag.tier] << tag.name
+    options[tag.tier] = [tag.name]
     search_path(options)
   end
 
