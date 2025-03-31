@@ -7,10 +7,17 @@ Sitemap: https://challenges.hackingchinese.com/system/sitemap.xml.gz
 
 User-agent: *
 Crawl-delay: 5
-
 Disallow: /admin
 Disallow: /users
 Disallow: /resources/Advanced+Beginner+Intermediate/
 Disallow: /resources/Beginner+Intermediate/
 Disallow: /resources/Advanced+Beginner/
 Disallow: /resources/Advanced+Intermediate/
+Disallow: /resources/Advanced
+Disallow: /resources/Beginner
+Disallow: /resources/Intermediate
+Disallow: /resources/stories?type
+
+
+User-agent: msnbot
+Crawl-delay: 30
