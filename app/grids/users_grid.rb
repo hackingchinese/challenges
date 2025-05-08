@@ -1,6 +1,6 @@
 class UsersGrid < BaseGrid
   scope do
-    User.order('last_sign_in_at is null, last_sign_in_at desc').includes(:account_connections, :mail_preference)
+    User.order(Arel.sql('last_sign_in_at is null, last_sign_in_at desc')).includes(:account_connections, :mail_preference)
   end
 
   filter(:email, :string) { |value| where("email ilike ?", "%#{value}%") }
