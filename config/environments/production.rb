@@ -134,6 +134,7 @@ Rails.application.configure do
     }
   end
   config.middleware.use ExceptionNotification::Rack,
+    ignore_exceptions: %w[ActionController::InvalidAuthenticityToken] + ExceptionNotifier.ignored_exceptions,
     email: {
       email_prefix: "[Challenge] ",
       sender_address: %{"challenge" <challenges@hackingchinese.com>},
