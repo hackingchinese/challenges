@@ -13,6 +13,7 @@ class ChallengeMailing
           end
         end
       end
+      User.order(id: :desc).where(avatar: nil).find_each(&:generate_random_image)
     end
 
     def users
